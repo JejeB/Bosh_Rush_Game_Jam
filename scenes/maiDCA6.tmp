@@ -75,8 +75,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_882bd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_kvofp")
 
-[node name="Player2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clu5s")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, -4.70524)
+[node name="boss" parent="." instance=ExtResource("6_clu5s")]
 script = ExtResource("7_3dd7d")
-movement_speed = 2
-target = NodePath("../Player")

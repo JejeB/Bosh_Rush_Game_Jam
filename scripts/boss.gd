@@ -3,12 +3,11 @@ extends CharacterBody3D
 signal coin_collected
 
 @export_subgroup("Components")
-@export var view: Node3D
 
 @export_subgroup("Properties")
 @export var movement_speed = 250
 @export var jump_strength = 7
-@export var navigation_agent : NavigationAgent3D
+
 
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -21,6 +20,8 @@ var jump_double = true
 
 var coins = 0
 
+@export var target: Node
+
 @onready var particles_trail = $ParticlesTrail
 @onready var sound_footsteps = $SoundFootsteps
 @onready var model = $Character
@@ -32,9 +33,8 @@ func _physics_process(delta):
 	
 	# Handle functions
 	
-	handle_controls(delta)
 	handle_gravity(delta)
-	
+	followplayer(delta)
 	handle_effects()
 	
 	# Movement
@@ -85,23 +85,9 @@ func handle_effects():
 			sound_footsteps.stream_paused = false
 		else:
 			animation.play("idle", 0.5)
-
-# Handle movement input
-
-func handle_controls(delta):
 	
-	# Movement
-	
-	var input := Vector3.ZERO
-	
-	input.x = Input.get_axis("move_left", "move_right")
-	input.z = Input.get_axis("move_forward", "move_back")
-	
-	input = input.rotated(Vector3.UP, view.rotation.y).normalized()
-	
-	movement_velocity = input * movement_speed * delta
-	
-
+func followplayer(delta):
+	movement_velocity = position.direction_to(target.position) * movement_speed
 # Handle gravity
 
 func handle_gravity(delta):
