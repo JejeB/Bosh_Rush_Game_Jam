@@ -1,18 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=11 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
 [ext_resource type="Script" path="res://scripts/view.gd" id="5_bg0fr"]
 [ext_resource type="Texture2D" uid="uid://cx8lcorkfu7ti" path="res://sprites/texture_01.png" id="5_o7dvy"]
-[ext_resource type="Script" path="res://scripts/StaticBody3D.gd" id="6_5okbv"]
-[ext_resource type="PackedScene" path="res://objects/boss.tscn" id="6_clu5s"]
+[ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
 [ext_resource type="Script" path="res://scripts/boss.gd" id="7_3dd7d"]
-[ext_resource type="PackedScene" uid="uid://coebog4yvxamu" path="res://objects/swappable_object.tscn" id="9_enp3u"]
 [ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://objects/cloud.tscn" id="13_drtpy"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_3rtad"]
-radius = 0.1
-height = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_yohtx"]
 
@@ -31,10 +25,6 @@ environment = ExtResource("1_ahusb")
 transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 0, 0.5, 0)
 view = NodePath("../View")
 
-[node name="Marker" type="MeshInstance3D" parent="." groups=["decor"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.893314, 0.583551, 0)
-mesh = SubResource("CapsuleMesh_3rtad")
-
 [node name="View" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(0.707107, 0, 0.707106, 0, 1, 0, -0.707107, 0, 0.707106, 0, 0, 0)
 script = ExtResource("5_bg0fr")
@@ -43,7 +33,7 @@ target = NodePath("../Player")
 [node name="Camera" type="Camera3D" parent="View"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93346, 4.04577)
 current = true
-fov = 50.0
+fov = 41.2245
 
 [node name="World" type="Node3D" parent="."]
 
@@ -80,30 +70,10 @@ transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 mesh = SubResource("BoxMesh_yohtx")
 surface_material_override/0 = SubResource("StandardMaterial3D_882bd")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground/MeshInstance3D" groups=["decor"]]
-script = ExtResource("6_5okbv")
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground/MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_kvofp")
 
-[node name="Player2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clu5s")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, -4.70524)
+[node name="boss" parent="." instance=ExtResource("6_clu5s")]
 script = ExtResource("7_3dd7d")
-movement_speed = 2
-target = NodePath("../Player")
-
-[node name="SwapObject" type="Node3D" parent="."]
-
-[node name="swappable_object2" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4389, 0.498065, 0)
-player = NodePath("../../Player")
-
-[node name="swappable_object" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509874, 10.0378)
-player = NodePath("../../Player")
-
-[node name="swappable_object3" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520863, -19.7149)
-player = NodePath("../../Player")
-
-[connection signal="input_event" from="Ground/MeshInstance3D/StaticBody3D" to="Ground/MeshInstance3D/StaticBody3D" method="_on_input_event"]

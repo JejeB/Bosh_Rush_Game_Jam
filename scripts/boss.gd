@@ -3,11 +3,11 @@ extends CharacterBody3D
 signal coin_collected
 
 @export_subgroup("Components")
-@export var view: Node3D
 
 @export_subgroup("Properties")
 @export var movement_speed = 250
 @export var jump_strength = 7
+
 
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -17,11 +17,10 @@ var previously_floored = false
 
 var jump_single = true
 var jump_double = true
-var swap_is_activated = false
 
 var coins = 0
 
-var target = Vector3.ZERO
+@export var target: Node
 
 @onready var particles_trail = $ParticlesTrail
 @onready var sound_footsteps = $SoundFootsteps
@@ -34,11 +33,8 @@ func _physics_process(delta):
 	
 	# Handle functions
 	
-	handle_action(delta)
-	#handle_controls(delta)
-	handle_point_and_click(delta)
 	handle_gravity(delta)
-	
+	followplayer(delta)
 	handle_effects()
 	
 	# Movement
@@ -71,7 +67,7 @@ func _physics_process(delta):
 	
 	if is_on_floor() and gravity > 2 and !previously_floored:
 		model.scale = Vector3(1.25, 0.75, 1.25)
-		
+		Audio.play("res://sounds/land.ogg")
 	
 	previously_floored = is_on_floor()
 
@@ -89,24 +85,9 @@ func handle_effects():
 			sound_footsteps.stream_paused = false
 		else:
 			animation.play("idle", 0.5)
-
-# Handle movement input
-
-func handle_controls(delta):
 	
-	# Movement
-	
-	var input := Vector3.ZERO
-	
-	input.x = Input.get_axis("move_left", "move_right")
-	input.z = Input.get_axis("move_forward", "move_back")
-	
-	
-	input = input.rotated(Vector3.UP, view.rotation.y).normalized()
-	
-	movement_velocity = input * movement_speed * delta
-	
-
+func followplayer(delta):
+	movement_velocity = position.direction_to(target.position) * movement_speed
 # Handle gravity
 
 func handle_gravity(delta):
@@ -116,20 +97,3 @@ func handle_gravity(delta):
 	if gravity > 0 and is_on_floor():
 		gravity = 0
 
-func handle_point_and_click(delta):
-	
-	if target:
-		var direction = global_position.direction_to(target)
-		movement_velocity = direction * movement_speed * delta
-		
-		if transform.origin.distance_to(target) < .5:
-			target = Vector3.ZERO
-			movement_velocity = Vector3.ZERO
-
-func handle_action(delta):
-	if Input.is_action_just_pressed("swap_button"):
-		print("SWAPPP")
-		swap_is_activated = true
-		
-	if Input.is_action_just_pressed("click_gauche"):
-		swap_is_activated = false
