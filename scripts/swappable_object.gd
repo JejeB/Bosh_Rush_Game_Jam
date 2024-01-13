@@ -14,14 +14,15 @@ func _process(delta):
 
 func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton and event.pressed and player.swap_state_mode == player.Swap_State.SWAP:
-			
+
 		var object_position = self.get_position()
 		var player_position = player.position
 		
 		# change position
 		self.set_position(player_position)
 		player.set_position(object_position)
-		player.target = Vector3.ZERO
+		
+		# recalculate the direction to go
 		
 		print("position clicke: " + str(position))
 		print("player position: "+ str(player.position))
