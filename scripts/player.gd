@@ -17,6 +17,7 @@ var previously_floored = false
 
 var jump_single = true
 var jump_double = true
+var swap_is_activated = false
 
 var coins = 0
 
@@ -33,6 +34,7 @@ func _physics_process(delta):
 	
 	# Handle functions
 	
+	handle_action(delta)
 	#handle_controls(delta)
 	handle_point_and_click(delta)
 	handle_gravity(delta)
@@ -123,3 +125,11 @@ func handle_point_and_click(delta):
 		if transform.origin.distance_to(target) < .5:
 			target = Vector3.ZERO
 			movement_velocity = Vector3.ZERO
+
+func handle_action(delta):
+	if Input.is_action_just_pressed("swap_button"):
+		print("SWAPPP")
+		swap_is_activated = true
+		
+	if Input.is_action_just_pressed("click_gauche"):
+		swap_is_activated = false

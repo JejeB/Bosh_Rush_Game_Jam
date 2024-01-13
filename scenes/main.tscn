@@ -102,4 +102,8 @@ player = NodePath("../../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509874, 10.0378)
 player = NodePath("../../Player")
 
+[node name="swappable_object3" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520863, -19.7149)
+player = NodePath("../../Player")
+
 [connection signal="input_event" from="Ground/MeshInstance3D/StaticBody3D" to="Ground/MeshInstance3D/StaticBody3D" method="_on_input_event"]
