@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-signal coin_collected
+signal hp_changed
+signal spell_changed
 
 @export_subgroup("Components")
 @export var view: Node3D
@@ -8,6 +9,7 @@ signal coin_collected
 @export_subgroup("Properties")
 @export var movement_speed = 250
 @export var jump_strength = 7
+@export var max_hp = 100
 
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -22,13 +24,16 @@ var swap_is_activated = false
 var coins = 0
 
 var target = Vector3.ZERO
-
+ 
+var hp: int
 @onready var particles_trail = $ParticlesTrail
 @onready var sound_footsteps = $SoundFootsteps
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
 
 # Functions
+func _ready():
+	hp = max_hp
 
 func _physics_process(delta):
 	
@@ -128,8 +133,15 @@ func handle_point_and_click(delta):
 
 func handle_action(delta):
 	if Input.is_action_just_pressed("swap_button"):
-		print("SWAPPP")
 		swap_is_activated = true
+		spell_changed.emit("SWAP")
 		
 	if Input.is_action_just_pressed("click_gauche"):
 		swap_is_activated = false
+		spell_changed.emit("MOVING")
+		update_hp(-5)
+		
+func update_hp(value:int):
+	hp=hp+value
+	print(hp)
+	hp_changed.emit((float(hp)/float(max_hp))*100)
