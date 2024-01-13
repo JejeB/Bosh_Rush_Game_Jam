@@ -9,6 +9,8 @@ signal coin_collected
 @export var movement_speed = 250
 @export var jump_strength = 7
 
+enum Swap_State {MOVEMENT, SWAP}
+
 var movement_velocity: Vector3
 var rotation_direction: float
 var gravity = 0
@@ -17,14 +19,13 @@ var previously_floored = false
 
 var jump_single = true
 var jump_double = true
-var swap_is_activated = false
+var swap_state_mode = Swap_State.MOVEMENT
 
 var coins = 0
 
 var target = Vector3.ZERO
 
 @onready var particles_trail = $ParticlesTrail
-@onready var sound_footsteps = $SoundFootsteps
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
 
@@ -76,22 +77,18 @@ func _physics_process(delta):
 	previously_floored = is_on_floor()
 
 # Handle animation(s)
-
 func handle_effects():
 	
 	particles_trail.emitting = false
-	sound_footsteps.stream_paused = true
 	
 	if is_on_floor():
 		if abs(velocity.x) > 1 or abs(velocity.z) > 1:
 			animation.play("walk", 0.5)
 			particles_trail.emitting = true
-			sound_footsteps.stream_paused = false
 		else:
 			animation.play("idle", 0.5)
 
-# Handle movement input
-
+# old function to Handle movement input with keyboard
 func handle_controls(delta):
 	
 	# Movement
@@ -108,7 +105,6 @@ func handle_controls(delta):
 	
 
 # Handle gravity
-
 func handle_gravity(delta):
 	
 	gravity += 25 * delta
@@ -116,6 +112,7 @@ func handle_gravity(delta):
 	if gravity > 0 and is_on_floor():
 		gravity = 0
 
+# function to handle the deplacement of the player using mouse
 func handle_point_and_click(delta):
 	
 	if target:
@@ -126,10 +123,11 @@ func handle_point_and_click(delta):
 			target = Vector3.ZERO
 			movement_velocity = Vector3.ZERO
 
+# Handle the action when you press your spell or sword
 func handle_action(delta):
 	if Input.is_action_just_pressed("swap_button"):
-		print("SWAPPP")
-		swap_is_activated = true
+		print("SWAPPP MODE")
+		swap_state_mode = Swap_State.SWAP
 		
 	if Input.is_action_just_pressed("click_gauche"):
-		swap_is_activated = false
+		swap_state_mode = Swap_State.MOVEMENT

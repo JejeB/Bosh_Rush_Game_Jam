@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://440rqsqg6bur"]
+[gd_scene load_steps=7 format=3 uid="uid://440rqsqg6bur"]
 
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_sqo0v"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_6f5u1"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_fgork"]
-[ext_resource type="AudioStream" uid="uid://cydjn1ct3hps2" path="res://sounds/walking.ogg" id="5_u2olp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
@@ -65,11 +64,5 @@ direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0.1, 0)
 scale_amount_min = 0.75
 scale_amount_curve = SubResource("Curve_xh1e2")
-
-[node name="SoundFootsteps" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_u2olp")
-volume_db = -5.0
-pitch_scale = 1.25
-autoplay = true
 
 [editable path="Character"]

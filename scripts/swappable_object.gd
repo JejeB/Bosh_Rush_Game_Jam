@@ -13,7 +13,7 @@ func _process(delta):
 
 
 func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed and player.swap_is_activated:
+	if event is InputEventMouseButton and event.pressed and player.swap_state_mode == player.Swap_State.SWAP:
 			
 		var object_position = self.get_position()
 		var player_position = player.position

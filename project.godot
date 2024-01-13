@@ -18,10 +18,6 @@ boot_splash/bg_color=Color(0.92549, 0.92549, 0.960784, 1)
 boot_splash/image="res://splash-screen.png"
 config/icon="res://icon.png"
 
-[autoload]
-
-Audio="*res://scripts/audio.gd"
-
 [display]
 
 window/size/viewport_width=1280

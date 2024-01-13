@@ -23,7 +23,6 @@ var coins = 0
 @export var target: Node
 
 @onready var particles_trail = $ParticlesTrail
-@onready var sound_footsteps = $SoundFootsteps
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
 
@@ -67,7 +66,6 @@ func _physics_process(delta):
 	
 	if is_on_floor() and gravity > 2 and !previously_floored:
 		model.scale = Vector3(1.25, 0.75, 1.25)
-		Audio.play("res://sounds/land.ogg")
 	
 	previously_floored = is_on_floor()
 
@@ -76,13 +74,11 @@ func _physics_process(delta):
 func handle_effects():
 	
 	particles_trail.emitting = false
-	sound_footsteps.stream_paused = true
 	
 	if is_on_floor():
 		if abs(velocity.x) > 1 or abs(velocity.z) > 1:
 			animation.play("walk", 0.5)
 			particles_trail.emitting = true
-			sound_footsteps.stream_paused = false
 		else:
 			animation.play("idle", 0.5)
 	

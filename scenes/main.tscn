@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/view.gd" id="5_bg0fr"]
 [ext_resource type="Texture2D" uid="uid://cx8lcorkfu7ti" path="res://sprites/texture_01.png" id="5_o7dvy"]
 [ext_resource type="Script" path="res://scripts/StaticBody3D.gd" id="6_5okbv"]
-[ext_resource type="PackedScene" path="res://objects/boss.tscn" id="6_clu5s"]
+[ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
 [ext_resource type="Script" path="res://scripts/boss.gd" id="7_3dd7d"]
 [ext_resource type="PackedScene" uid="uid://coebog4yvxamu" path="res://objects/swappable_object.tscn" id="9_enp3u"]
 [ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://objects/cloud.tscn" id="13_drtpy"]
