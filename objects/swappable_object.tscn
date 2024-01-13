@@ -19,4 +19,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.249148, 0)
 shape = SubResource("BoxShape3D_mua45")
 
 [connection signal="input_event" from="rock/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
-[connection signal="input_event" from="rock/StaticBody3D" to="rock/StaticBody3D" method="_on_input_event"]

@@ -22,8 +22,6 @@ func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
 		self.set_position(player_position)
 		player.set_position(object_position)
 		
-		# recalculate the direction to go
-		
 		print("position clicke: " + str(position))
 		print("player position: "+ str(player.position))
 		print("object position: "+ str(object_position))
