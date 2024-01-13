@@ -8,7 +8,6 @@ signal coin_collected
 @export_subgroup("Properties")
 @export var movement_speed = 250
 @export var jump_strength = 7
-@export var navigation_agent : NavigationAgent3D
 
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -21,6 +20,8 @@ var jump_double = true
 
 var coins = 0
 
+var target = Vector3.ZERO
+
 @onready var particles_trail = $ParticlesTrail
 @onready var sound_footsteps = $SoundFootsteps
 @onready var model = $Character
@@ -32,7 +33,8 @@ func _physics_process(delta):
 	
 	# Handle functions
 	
-	handle_controls(delta)
+	#handle_controls(delta)
+	handle_point_and_click(delta)
 	handle_gravity(delta)
 	
 	handle_effects()
@@ -97,6 +99,7 @@ func handle_controls(delta):
 	input.x = Input.get_axis("move_left", "move_right")
 	input.z = Input.get_axis("move_forward", "move_back")
 	
+	
 	input = input.rotated(Vector3.UP, view.rotation.y).normalized()
 	
 	movement_velocity = input * movement_speed * delta
@@ -111,3 +114,12 @@ func handle_gravity(delta):
 	if gravity > 0 and is_on_floor():
 		gravity = 0
 
+func handle_point_and_click(delta):
+	
+	if target:
+		var direction = global_position.direction_to(target)
+		movement_velocity = direction * movement_speed * delta
+		
+		if transform.origin.distance_to(target) < .5:
+			target = Vector3.ZERO
+			movement_velocity = Vector3.ZERO

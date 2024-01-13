@@ -1,0 +1,8 @@
+res://scenes/main.tscn
+res://scenes/main-environment.tres
+res://scripts/player.gd
+res://scripts/StaticBody3D.gd
+res://objects/cloud.tscn
+res://objects/swappable_object.tscn
+res://objects/swappable_object.gd
+res://scripts/swappable_object.gd

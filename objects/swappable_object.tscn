@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://coebog4yvxamu"]
+
+[ext_resource type="Script" path="res://scripts/swappable_object.gd" id="1_3glop"]
+[ext_resource type="ArrayMesh" uid="uid://c63w7syw770iw" path="res://objects/rocks.obj" id="1_a47j7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mua45"]
+size = Vector3(1, 0.5, 1)
+
+[node name="swappable_object" type="Node3D"]
+script = ExtResource("1_3glop")
+
+[node name="rock" type="MeshInstance3D" parent="." groups=["swappable"]]
+mesh = ExtResource("1_a47j7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rock"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rock/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.249148, 0)
+shape = SubResource("BoxShape3D_mua45")
+
+[connection signal="input_event" from="rock/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="input_event" from="rock/StaticBody3D" to="rock/StaticBody3D" method="_on_input_event"]
