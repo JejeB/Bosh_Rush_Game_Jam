@@ -38,7 +38,7 @@ font_size = 20
 environment = ExtResource("1_ahusb")
 
 [node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("2_onms2")]
-transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 0, 0.5, 0)
+transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 0, 0.5, 1)
 view = NodePath("../View")
 
 [node name="Marker" type="MeshInstance3D" parent="." groups=["decor"]]
@@ -200,3 +200,4 @@ label_settings = SubResource("LabelSettings_u3yxo")
 
 [connection signal="hp_changed" from="Player" to="CanvasLayer" method="_on_player_hp_changed"]
 [connection signal="spell_changed" from="Player" to="CanvasLayer" method="_on_player_spell_changed"]
+[connection signal="hp_changed" from="Boss" to="CanvasLayer" method="_on_boss_hp_changed"]

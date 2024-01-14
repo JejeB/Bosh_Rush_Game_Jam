@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://440rqsqg6bur"]
+[gd_scene load_steps=15 format=3 uid="uid://440rqsqg6bur"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_fbayf"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_sqo0v"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_6f5u1"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_fgork"]
+[ext_resource type="Material" uid="uid://cjxpohja4fnf0" path="res://meshes/white.tres" id="5_kr85j"]
+[ext_resource type="Material" uid="uid://cqvccxqvantrc" path="res://meshes/blue.tres" id="6_a64pn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
@@ -22,6 +24,51 @@ proximity_fade_distance = 0.25
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.249284, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmx42"]
+albedo_color = Color(0.627451, 0.694118, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xni8r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fup3e"]
+
+[sub_resource type="Animation" id="Animation_ajcq8"]
+resource_name = "attack"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_hmx42"), ExtResource("6_a64pn")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"hurt"
+}, {
+"args": [],
+"method": &"back_idle"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8448n"]
+_data = {
+"attack": SubResource("Animation_ajcq8")
+}
+
 [node name="Boss" type="CharacterBody3D"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, 0)
 script = ExtResource("1_fbayf")
@@ -39,7 +86,7 @@ transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -0.125, 0.17625, -0.02375)
 
 [node name="torso" parent="Character/character2/root" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, -1.80478e-15, 0.17625, -0.02375)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, -1.80478e-15, 0.17625, -0.02375)
 
 [node name="arm-left" parent="Character/character2/root/torso" index="0"]
 transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.3, 0.2, 0)
@@ -66,5 +113,33 @@ direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0.1, 0)
 scale_amount_min = 0.75
 scale_amount_curve = SubResource("Curve_xh1e2")
+
+[node name="AttackHitbox" type="Node3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.357803, 0.212043)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AttackHitbox"]
+material_override = SubResource("StandardMaterial3D_hmx42")
+mesh = SubResource("SphereMesh_xni8r")
+surface_material_override/0 = ExtResource("5_kr85j")
+
+[node name="Area3D" type="Area3D" parent="AttackHitbox/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox/MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_fup3e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AttackHitbox/MeshInstance3D"]
+material_override = ExtResource("6_a64pn")
+mesh = SubResource("SphereMesh_xni8r")
+surface_material_override/0 = ExtResource("5_kr85j")
+
+[node name="Area3D" type="Area3D" parent="AttackHitbox/MeshInstance3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox/MeshInstance3D/MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_fup3e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AttackHitbox"]
+libraries = {
+"": SubResource("AnimationLibrary_8448n")
+}
 
 [editable path="Character"]
