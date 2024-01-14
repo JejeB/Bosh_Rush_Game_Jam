@@ -143,7 +143,7 @@ offset_left = 108.0
 offset_top = 59.0
 offset_right = 1126.0
 offset_bottom = 98.0
-value = 70.0
+value = 100.0
 show_percentage = false
 
 [node name="Player" type="Node" parent="CanvasLayer"]
