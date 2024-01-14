@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var player: CharacterBody3D
+@export var hover_range: int = 10
 
 @onready var rock : MeshInstance3D = $rock
 @onready var magic : GPUParticles3D = $MagicParticles
@@ -35,7 +36,7 @@ func _on_static_body_3d_mouse_entered():
 	#print("distance " + str(distance))
 	
 	# range between the player and the object
-	if distance <= 10 :
+	if distance <= hover_range :
 		# hover color when mouse is on the staticbody3d
 		var newMaterial = StandardMaterial3D.new()
 		newMaterial.albedo_color = Color(0.92, 0.69, 0.13, 1.0)
@@ -47,7 +48,6 @@ func _on_static_body_3d_mouse_entered():
 		player.swappable_object_position = self.get_position()
 
 func _on_static_body_3d_mouse_exited():
-	
 	rock.material_override = null
 
 	# give the exit hover signal
@@ -64,13 +64,8 @@ func swap_position(player_position, object_position):
 	# change position
 	self.set_position(player_position)
 	player.set_position(object_position)
-	print("player position: "+ str(player_position))
-	print("object position: "+ str(object_position))
+  
 	FMODRuntime.play_one_shot_path("event:/SFX/Swap/Swap")
-	
-	
-	print("after player position: "+ str(player.position))
-	print("after object position: "+ str(self.get_position()))
 
 func _on_magic_timer_timeout():
 	magic.emitting = false

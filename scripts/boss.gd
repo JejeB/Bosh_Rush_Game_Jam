@@ -5,6 +5,8 @@ signal state_changed
 
 enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP}
 
+enum State { IDLE, MELLE_ATTACK}
+
 @export_subgroup("Properties")
 @export var movement_speed = 250
 @export var max_hp: int = 1000
@@ -20,6 +22,7 @@ var movement_velocity: Vector3
 var rotation_direction: float
 var gravity = 0
 
+
 var aiming:Vector3
 var previously_floored = false
 
@@ -31,6 +34,7 @@ var hp: int
 @onready var attackhitbox1 = $AttackHitbox/MeshInstance3D/Area3D
 @onready var attackhitbox1Node = $AttackHitbox
 @onready var attackhitboxAnim = $AttackHitbox/AnimationPlayer
+
 @onready var timer = $Timer
 @onready var boss_state: int = State.CHASE
 
@@ -65,6 +69,7 @@ func choose_action(delta):
 			jump_on_player()
 	elif boss_state == State.PREPARE_JUMP:
 		look_at(aiming,Vector3.UP,true)
+
 	
 func handle_movement(delta):
 	# Movement
