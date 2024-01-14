@@ -40,6 +40,7 @@ func _on_static_body_3d_mouse_entered():
 		var newMaterial = StandardMaterial3D.new()
 		newMaterial.albedo_color = Color(0.92, 0.69, 0.13, 1.0)
 		rock.material_override = newMaterial
+		FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
 		
 		# give the enter hover signal
 		player.hover_on_swappable_object = true
@@ -65,6 +66,8 @@ func swap_position(player_position, object_position):
 	player.set_position(object_position)
 	print("player position: "+ str(player_position))
 	print("object position: "+ str(object_position))
+	FMODRuntime.play_one_shot_path("event:/SFX/Swap/Swap")
+	
 	
 	print("after player position: "+ str(player.position))
 	print("after object position: "+ str(self.get_position()))
