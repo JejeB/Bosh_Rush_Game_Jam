@@ -13,9 +13,12 @@ enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP}
 @export var target: Node
 
 @export_subgroup("JumpAttack")
+## The range that trigger the jump action if the player is over
 @export var JUMPING_RANGE: int = 10
+## The time before the jump in sec
 @export var AIMING_TIME:float = 1.5
-@export var PREPARE_JUMP:float = 0.5
+## The time after the target lock of the boss 
+@export var PREPARE_JUMP_TIME:float = 0.5
 
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -137,7 +140,7 @@ func _on_timer_timeout():
 	if boss_state == State.AIMING_PLAYER:
 		aiming = target.position
 		state(State.PREPARE_JUMP)
-		start_timer_for(PREPARE_JUMP)
+		start_timer_for(PREPARE_JUMP_TIME)
 	elif boss_state == State.PREPARE_JUMP:
 		state(State.JUMPING)
 
