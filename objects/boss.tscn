@@ -131,7 +131,6 @@ scale_amount_min = 0.75
 scale_amount_curve = SubResource("Curve_xh1e2")
 
 [node name="AttackHitbox" type="Node3D" parent="."]
-
 transform = Transform3D(1.42907, 0, 0, 0, 0.211577, 0, 0, 0, 1.23744, 0, 0.273964, 0.0692814)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AttackHitbox"]

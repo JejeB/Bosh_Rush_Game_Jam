@@ -5,7 +5,6 @@ signal state_changed
 
 enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP}
 
-enum State { IDLE, MELLE_ATTACK}
 
 @export_subgroup("Properties")
 @export var movement_speed = 250
