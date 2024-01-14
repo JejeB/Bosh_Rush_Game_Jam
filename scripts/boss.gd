@@ -1,12 +1,9 @@
 extends CharacterBody3D
 
 signal hp_changed
-@export_subgroup("Components")
 
 @export_subgroup("Properties")
 @export var movement_speed = 250
-@export var jump_strength = 7
-
 @export var max_hp: int = 1000
 
 var movement_velocity: Vector3
