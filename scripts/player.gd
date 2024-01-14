@@ -131,13 +131,14 @@ func handle_action(delta):
 	# if the swap button is pressed and the player is not in cooldown state attribute swap mode
 	if Input.is_action_just_pressed("swap_button") and hover_on_swappable_object and swap_state_mode != Swap_State.COOLDOWN:
 		swap_state_mode = Swap_State.SWAP
-		print("swappp")
+		
 		# swap position
 		emit_signal("swappositon")
 		
 		# Begin The Cooldown the spell for the player
 		swap_state_mode = Swap_State.COOLDOWN
 		swap_cooldown_timer.start()
+		emit_signal("spell_changed", "Cooldown")
 	
 	# Reinit the movement mode when cooldown 
 	#if Input.is_action_just_pressed("click_gauche") and swap_state_mode != Swap_State.COOLDOWN:
@@ -146,6 +147,7 @@ func handle_action(delta):
 # when the timer cooldown is finish reset the swap_state_mode
 func _on_swap_cooldown_timer_timeout():
 	swap_state_mode = Swap_State.MOVEMENT
+	emit_signal("spell_changed", "Swap Ready")
 
 func update_hp(value:int):
 	hp=hp+value

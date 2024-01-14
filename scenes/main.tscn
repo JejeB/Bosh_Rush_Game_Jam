@@ -189,12 +189,13 @@ offset_bottom = 698.0
 value = 100.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="CanvasLayer/Player"]
+[node name="SwapLabel" type="Label" parent="CanvasLayer/Player"]
+modulate = Color(1, 1, 0.0941176, 1)
 offset_left = 596.0
 offset_top = 671.0
 offset_right = 662.0
 offset_bottom = 698.0
-text = "Moving"
+text = "Swap Ready"
 label_settings = SubResource("LabelSettings_u3yxo")
 
 [connection signal="hp_changed" from="Player" to="CanvasLayer" method="_on_player_hp_changed"]
