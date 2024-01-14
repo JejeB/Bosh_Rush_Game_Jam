@@ -4,6 +4,7 @@ extends Node3D
 
 @onready var rock : MeshInstance3D = $rock
 @onready var magic : GPUParticles3D = $MagicParticles
+@onready var magic_timer : Timer = $MagicTimer
 
 func _ready():
 	player.connect("swappositon", handle_signal_for_position_swap )
@@ -42,6 +43,7 @@ func _on_static_body_3d_mouse_entered():
 		
 		# give the enter hover signal
 		player.hover_on_swappable_object = true
+		player.swappable_object_position = self.get_position()
 
 func _on_static_body_3d_mouse_exited():
 	
@@ -51,8 +53,11 @@ func _on_static_body_3d_mouse_exited():
 	player.hover_on_swappable_object = false
 
 func handle_signal_for_position_swap():
-	swap_position(player.position, self.get_position())
-	magic.emitting = true
+	# verify that the signal execute to the good object
+	if self.position == player.swappable_object_position: 
+		swap_position(player.position, self.get_position())
+		magic.emitting = true
+		magic_timer.start()
 	
 func swap_position(player_position, object_position):
 	# change position
@@ -63,6 +68,6 @@ func swap_position(player_position, object_position):
 	
 	print("after player position: "+ str(player.position))
 	print("after object position: "+ str(self.get_position()))
-	
-	
-	
+
+func _on_magic_timer_timeout():
+	magic.emitting = false
