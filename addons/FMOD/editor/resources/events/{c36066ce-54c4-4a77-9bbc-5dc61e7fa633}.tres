@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://c6q7ue7587o8q"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Hero/HeroFootstepsStop"
+guid = "{c36066ce-54c4-4a77-9bbc-5dc61e7fa633}"
+name = "HeroFootstepsStop"

@@ -1,0 +1,8 @@
+[gd_resource type="EventAsset" format=3 uid="uid://o2waq8sesyq8"]
+
+[resource]
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Hero/Test"
+guid = "{8eb2725e-6c02-4803-aced-ce3652f9ccd8}"
+name = "Test"

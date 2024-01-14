@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://cj1oeug1adnkv"]
+
+[resource]
+is_3d = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Hero/HeroFootsteps"
+guid = "{016bfa3f-0e8f-49b5-a436-9ac127e53879}"
+name = "HeroFootsteps"

@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://lvc3mjeipvlr"]
+
+[resource]
+is_3d = true
+min_distance = 10.0
+max_distance = 30.0
+path = "event:/SFX/Block"
+guid = "{d20bfaf4-974e-4b25-8e33-0ac7b5df2dd7}"
+name = "Block"

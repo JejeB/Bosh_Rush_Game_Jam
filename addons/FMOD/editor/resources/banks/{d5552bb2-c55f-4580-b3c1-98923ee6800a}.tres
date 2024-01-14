@@ -1,0 +1,8 @@
+[gd_resource type="BankAsset" format=3 uid="uid://bpnkmat20hvl2"]
+
+[resource]
+file_path = "res://audio/banks/Desktop/Master.bank"
+modified_time = 1705200133
+path = "bank:/Master"
+guid = "{d5552bb2-c55f-4580-b3c1-98923ee6800a}"
+name = "Master"

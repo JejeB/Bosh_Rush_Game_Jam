@@ -1,12 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=16 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
 [ext_resource type="Script" path="res://scripts/view.gd" id="5_bg0fr"]
 [ext_resource type="Texture2D" uid="uid://cx8lcorkfu7ti" path="res://sprites/texture_01.png" id="5_o7dvy"]
-[ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
-[ext_resource type="Script" path="res://scripts/boss.gd" id="7_3dd7d"]
-[ext_resource type="Script" path="res://scripts/StaticBody3D.gd" id="6_5okbv"]
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
 [ext_resource type="PackedScene" uid="uid://coebog4yvxamu" path="res://objects/swappable_object.tscn" id="9_enp3u"]
 [ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://fonts/lilita_one_regular.ttf" id="10_p5k18"]
@@ -119,7 +116,6 @@ player = NodePath("../../Player")
 [node name="swappable_object3" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520863, -19.7149)
 player = NodePath("../../Player")
-
 
 [node name="swappable_object4" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0021, 0.520863, -19.7149)

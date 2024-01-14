@@ -17,6 +17,10 @@ boot_splash/bg_color=Color(0.92549, 0.92549, 0.960784, 1)
 boot_splash/image="res://splash-screen.png"
 config/icon="res://icon.png"
 
+[autoload]
+
+FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -25,6 +29,28 @@ window/size/viewport_height=720
 [editor]
 
 movie_writer/movie_file="C:/Users/Kenney/Desktop/video-footage.avi"
+
+[fmod]
+
+settings/banks_path="res://audio/banks/Desktop"
+settings/fmod_output_type=0
+settings/fmod_debug_flags=0
+settings/fmod_debug_mode=1
+settings/banks_to_load_at_startup=Array[String](["res://audio/banks/Desktop/Master.bank", "res://audio/banks/Desktop/Master.strings.bank"])
+settings/banks_preload_samples=false
+settings/banks_flags=0
+settings/sample_rate=48000
+settings/speaker_mode=3
+settings/dsp_buffer_length=512
+settings/dsp_buffer_count=4
+settings/real_channel_count=32
+settings/virtual_channel_count=128
+settings/enable_live_update=true
+settings/live_update_port=9264
+settings/enable_memory_tracking=false
+settings/encryption_key=""
+settings/distance_scale_2d=1.0
+settings/init_with_3d_righthanded=true
 
 [input]
 

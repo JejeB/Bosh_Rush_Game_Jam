@@ -1,0 +1,10 @@
+res://objects/player.tscn
+res://addons/FMOD/editor/cache/fmod_project_cache.tres
+res://scenes/main-environment.tres
+res://scenes/main.tscn
+res://objects/character.tscn
+res://scripts/player.gd
+res://addons/FMOD/editor/resources/banks/{d5552bb2-c55f-4580-b3c1-98923ee6800a}.tres
+res://addons/FMOD/editor/resources/busses/{1c273448-b4e5-4e84-8778-54b58fe204da}.tres
+res://addons/FMOD/editor/resources/busses/{0d13739b-b545-4ddb-8de5-c990a5732626}.tres
+res://addons/FMOD/editor/resources/banks/{4d480b66-b424-09c2-3588-126ccf158692}.tres

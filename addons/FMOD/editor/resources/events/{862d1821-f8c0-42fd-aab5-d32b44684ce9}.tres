@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://hl60bs8ilrhu"]
+
+[resource]
+is_3d = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Hero/FS"
+guid = "{862d1821-f8c0-42fd-aab5-d32b44684ce9}"
+name = "FS"
