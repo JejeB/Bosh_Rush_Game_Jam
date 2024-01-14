@@ -78,12 +78,10 @@ func _physics_process(delta):
 	if is_on_floor() and gravity > 2 and !previously_floored:
 		model.scale = Vector3(1.25, 0.75, 1.25)
 		
-	
 	previously_floored = is_on_floor()
 
 # Handle animation(s)
 func handle_effects():
-	
 	particles_trail.emitting = false
 	
 	if is_on_floor():
@@ -99,21 +97,16 @@ func handle_effects():
 func handle_controls(delta):
 	
 	# Movement
-	
 	var input := Vector3.ZERO
 	
 	input.x = Input.get_axis("move_left", "move_right")
 	input.z = Input.get_axis("move_forward", "move_back")
-	
-	
 	input = input.rotated(Vector3.UP, view.rotation.y).normalized()
 	
 	movement_velocity = input * movement_speed * delta
 	
-
 # Handle gravity
 func handle_gravity(delta):
-	
 	gravity += 25 * delta
 	
 	if gravity > 0 and is_on_floor():
@@ -121,7 +114,6 @@ func handle_gravity(delta):
 
 # function to handle the deplacement of the player using mouse
 func handle_point_and_click(delta):
-	
 	if target:
 		var direction = global_position.direction_to(target)
 		movement_velocity = direction * movement_speed * delta
@@ -138,22 +130,19 @@ func handle_action(delta):
 		
 		if hover_on_swappable_object and swap_state_mode != Swap_State.COOLDOWN:
 			swap_state_mode = Swap_State.SWAP
-			
 			# swap position
 			emit_signal("swappositon")
 			
 			# Begin The Cooldown the spell for the player
 			swap_state_mode = Swap_State.COOLDOWN
 			swap_cooldown_timer.start()
+			# emit signal for the hud
 			emit_signal("spell_changed", "Cooldown")
 	
 	if Input.is_action_just_pressed("swap_button"):
 		spell_indicator.visible = true
 		spell_indicator.scale.x = spell_range
 		spell_indicator.scale.z = spell_range
-		
-	#if Input.is_action_just_released("swap_button"):
-	#	spell_indicator.visible = false
 		
 	# Reinit the movement mode when cooldown 
 	#if Input.is_action_just_pressed("click_gauche") and swap_state_mode != Swap_State.COOLDOWN:
@@ -162,6 +151,7 @@ func handle_action(delta):
 # when the timer cooldown is finish reset the swap_state_mode
 func _on_swap_cooldown_timer_timeout():
 	swap_state_mode = Swap_State.MOVEMENT
+	# hud update
 	emit_signal("spell_changed", "Swap Ready")
 
 func update_hp(value:int):
