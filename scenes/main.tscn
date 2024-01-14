@@ -40,6 +40,7 @@ environment = ExtResource("1_ahusb")
 [node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("2_onms2")]
 transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 0, 0.5, 1)
 view = NodePath("../View")
+movement_speed = 300
 
 [node name="Marker" type="MeshInstance3D" parent="." groups=["decor"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.893314, 0.583551, 0)
@@ -100,7 +101,7 @@ shape = SubResource("BoxShape3D_kvofp")
 
 [node name="Boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clu5s")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, -4.70524)
-movement_speed = 5
+movement_speed = 3
 target = NodePath("../Player")
 
 [node name="SwapObject" type="Node3D" parent="."]
@@ -198,6 +199,25 @@ offset_bottom = 698.0
 text = "Swap Ready"
 label_settings = SubResource("LabelSettings_u3yxo")
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_bottom = 0.069
+offset_left = 16.0
+offset_top = 164.0
+offset_right = 125.0
+offset_bottom = 156.32
+text = "BOSS STATE : "
+
+[node name="BossState" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_bottom = 0.069
+offset_left = 125.0
+offset_top = 165.0
+offset_right = 186.0
+offset_bottom = 141.32
+text = "CHASE"
+
 [connection signal="hp_changed" from="Player" to="CanvasLayer" method="_on_player_hp_changed"]
 [connection signal="spell_changed" from="Player" to="CanvasLayer" method="_on_player_spell_changed"]
 [connection signal="hp_changed" from="Boss" to="CanvasLayer" method="_on_boss_hp_changed"]
+[connection signal="state_changed" from="Boss" to="CanvasLayer" method="_on_boss_state_changed"]

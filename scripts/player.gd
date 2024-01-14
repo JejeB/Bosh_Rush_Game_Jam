@@ -89,8 +89,10 @@ func handle_effects():
 		if abs(velocity.x) > 1 or abs(velocity.z) > 1:
 			animation.play("walk", 0.5)
 			particles_trail.emitting = true
+			FMODRuntime.play_one_shot_path("event:/SFX/Hero/HeroFootsteps")
 		else:
 			animation.play("idle", 0.5)
+			FMODRuntime.play_one_shot_path("event:/SFX/Hero/HeroFootstepsStop")
 
 # old function to Handle movement input with keyboard
 func handle_controls(delta):
