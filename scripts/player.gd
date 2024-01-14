@@ -35,6 +35,7 @@ var hp: int
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
 @onready var swap_cooldown_timer = $SwapCooldownTimer
+@onready var spell_indicator = $SpellIndicator
 
 # Functions
 
@@ -129,7 +130,7 @@ func handle_point_and_click(delta):
 # Handle the action when you press your spell or sword
 func handle_action(delta):
 	# if the swap button is pressed and the player is not in cooldown state attribute swap mode
-	if Input.is_action_just_pressed("swap_button") and hover_on_swappable_object and swap_state_mode != Swap_State.COOLDOWN:
+	if Input.is_action_pressed("swap_button") and hover_on_swappable_object and swap_state_mode != Swap_State.COOLDOWN:
 		swap_state_mode = Swap_State.SWAP
 		
 		# swap position
@@ -140,6 +141,14 @@ func handle_action(delta):
 		swap_cooldown_timer.start()
 		emit_signal("spell_changed", "Cooldown")
 	
+	if Input.is_action_just_pressed("swap_button"):
+		spell_indicator.visible = true
+		spell_indicator.scale.x = 10
+		spell_indicator.scale.z = 10
+		
+	if Input.is_action_just_released("swap_button"):
+		spell_indicator.visible = false
+		
 	# Reinit the movement mode when cooldown 
 	#if Input.is_action_just_pressed("click_gauche") and swap_state_mode != Swap_State.COOLDOWN:
 	#	swap_state_mode = Swap_State.MOVEMENT

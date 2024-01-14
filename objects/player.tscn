@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=10 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ffboj"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_nero3"]
@@ -21,6 +21,13 @@ proximity_fade_distance = 0.25
 [sub_resource type="Curve" id="Curve_xh1e2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.249284, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="TorusMesh" id="TorusMesh_lrtwo"]
+inner_radius = 0.98
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3stdq"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.666667, 0.780392, 1, 0)
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -69,6 +76,12 @@ scale_amount_curve = SubResource("Curve_xh1e2")
 
 [node name="SwapCooldownTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="SpellIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(-10, 0, 8.74228e-07, 0, 0.14, 0, -8.74228e-07, 0, -10, 0, 0.1, 0)
+visible = false
+mesh = SubResource("TorusMesh_lrtwo")
+surface_material_override/0 = SubResource("StandardMaterial3D_3stdq")
 
 [connection signal="timeout" from="SwapCooldownTimer" to="." method="_on_swap_cooldown_timer_timeout"]
 
