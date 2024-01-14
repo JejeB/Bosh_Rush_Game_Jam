@@ -18,4 +18,5 @@ mesh = ExtResource("1_a47j7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.249148, 0)
 shape = SubResource("BoxShape3D_mua45")
 
-[connection signal="input_event" from="rock/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="mouse_entered" from="rock/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="rock/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

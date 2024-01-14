@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=13 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
 [ext_resource type="Script" path="res://scripts/view.gd" id="5_bg0fr"]
 [ext_resource type="Texture2D" uid="uid://cx8lcorkfu7ti" path="res://sprites/texture_01.png" id="5_o7dvy"]
-[ext_resource type="Script" path="res://scripts/ground.gd" id="6_7cvjf"]
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
 [ext_resource type="Script" path="res://scripts/boss.gd" id="7_3dd7d"]
 [ext_resource type="PackedScene" uid="uid://coebog4yvxamu" path="res://objects/swappable_object.tscn" id="9_enp3u"]
@@ -33,12 +32,15 @@ view = NodePath("../View")
 
 [node name="Marker" type="MeshInstance3D" parent="." groups=["decor"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.893314, 0.583551, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_3rtad")
 
 [node name="View" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(0.707107, 0, 0.707106, 0, 1, 0, -0.707107, 0, 0.707106, 0, 0, 0)
 script = ExtResource("5_bg0fr")
 target = NodePath("../Player")
+distance = 11
+height = 14
 
 [node name="Camera" type="Camera3D" parent="View"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93346, 4.04577)
@@ -81,7 +83,6 @@ mesh = SubResource("BoxMesh_yohtx")
 surface_material_override/0 = SubResource("StandardMaterial3D_882bd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground/MeshInstance3D" groups=["decor"]]
-script = ExtResource("6_7cvjf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_kvofp")
@@ -106,4 +107,34 @@ player = NodePath("../../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520863, -19.7149)
 player = NodePath("../../Player")
 
-[connection signal="input_event" from="Ground/MeshInstance3D/StaticBody3D" to="Ground/MeshInstance3D/StaticBody3D" method="_on_input_event"]
+[node name="swappable_object4" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0021, 0.520863, -19.7149)
+player = NodePath("../../Player")
+
+[node name="swappable_object5" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520863, 2.03134)
+player = NodePath("../../Player")
+
+[node name="swappable_object6" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6833, 0.520863, -19.7149)
+player = NodePath("../../Player")
+
+[node name="swappable_object7" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66515, 0.520863, -5.02327)
+player = NodePath("../../Player")
+
+[node name="swappable_object8" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.71531, 0.520863, -14.9947)
+player = NodePath("../../Player")
+
+[node name="swappable_object9" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6289, 0.520863, -10.4402)
+player = NodePath("../../Player")
+
+[node name="swappable_object10" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.32472, 0.520863, 6.60032)
+player = NodePath("../../Player")
+
+[node name="swappable_object11" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.70286, 0.520863, 5.72477)
+player = NodePath("../../Player")
