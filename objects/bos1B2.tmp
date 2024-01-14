@@ -88,6 +88,10 @@ _data = {
 [node name="Boss" type="CharacterBody3D"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, 0)
 script = ExtResource("1_fbayf")
+movement_speed = null
+max_hp = null
+melee_range = null
+jump_range = null
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
