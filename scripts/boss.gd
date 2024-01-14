@@ -1,13 +1,10 @@
 extends CharacterBody3D
 
-signal coin_collected
-
-@export_subgroup("Components")
+signal hp_changed
 
 @export_subgroup("Properties")
 @export var movement_speed = 250
-@export var jump_strength = 7
-
+@export var max_hp: int = 1000
 
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -15,11 +12,7 @@ var gravity = 0
 
 var previously_floored = false
 
-var jump_single = true
-var jump_double = true
-
-var coins = 0
-
+var hp: int
 @export var target: Node
 
 @onready var particles_trail = $ParticlesTrail
@@ -27,11 +20,12 @@ var coins = 0
 @onready var animation = $Character/AnimationPlayer
 
 # Functions
+func _ready():
+	hp = max_hp
 
 func _physics_process(delta):
 	
 	# Handle functions
-	
 	handle_gravity(delta)
 	followplayer(delta)
 	handle_effects()
@@ -93,3 +87,7 @@ func handle_gravity(delta):
 	if gravity > 0 and is_on_floor():
 		gravity = 0
 
+func update_hp(value:int):
+	hp=hp+value
+	print(hp)
+	hp_changed.emit((float(hp)/float(max_hp))*100)

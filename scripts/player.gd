@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-signal coin_collected
+signal hp_changed
+signal spell_changed
 
 @export_subgroup("Components")
 @export var view: Node3D
@@ -8,6 +9,7 @@ signal coin_collected
 @export_subgroup("Properties")
 @export var movement_speed = 250
 @export var jump_strength = 7
+@export var max_hp = 100
 
 enum Swap_State {MOVEMENT, SWAP, COOLDOWN}
 
@@ -24,13 +26,18 @@ var swap_state_mode = Swap_State.MOVEMENT
 var coins = 0
 
 var target = Vector3.ZERO
-
+ 
+var hp: int
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
 @onready var swap_cooldown_timer = $SwapCooldownTimer
 
 # Functions
+
+func _ready():
+	hp = max_hp
+
 func _physics_process(delta):
 	
 	# Handle functions
@@ -129,3 +136,9 @@ func handle_action(delta):
 # when the timer cooldown is finish reset the swap_state_mode
 func _on_swap_cooldown_timer_timeout():
 	swap_state_mode = Swap_State.MOVEMENT
+		
+func update_hp(value:int):
+	hp=hp+value
+	print(hp)
+	hp_changed.emit((float(hp)/float(max_hp))*100)
+

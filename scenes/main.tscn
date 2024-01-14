@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=19 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cx8lcorkfu7ti" path="res://sprites/texture_01.png" id="5_o7dvy"]
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
 [ext_resource type="Script" path="res://scripts/boss.gd" id="7_3dd7d"]
+[ext_resource type="Script" path="res://scripts/StaticBody3D.gd" id="6_5okbv"]
+[ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
 [ext_resource type="PackedScene" uid="uid://coebog4yvxamu" path="res://objects/swappable_object.tscn" id="9_enp3u"]
+[ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://fonts/lilita_one_regular.ttf" id="10_p5k18"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="10_wxsm4"]
 [ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://objects/cloud.tscn" id="13_drtpy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3rtad"]
@@ -20,6 +24,16 @@ albedo_texture = ExtResource("5_o7dvy")
 uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvofp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yrr27"]
+font = ExtResource("10_p5k18")
+font_size = 30
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u3yxo"]
+font = ExtResource("10_p5k18")
+font_size = 20
 
 [node name="Main" type="Node3D"]
 
@@ -87,10 +101,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_882bd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_kvofp")
 
-[node name="Player2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clu5s")]
+[node name="Boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clu5s")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, -4.70524)
-script = ExtResource("7_3dd7d")
-movement_speed = 2
+movement_speed = 5
 target = NodePath("../Player")
 
 [node name="SwapObject" type="Node3D" parent="."]
@@ -106,6 +119,7 @@ player = NodePath("../../Player")
 [node name="swappable_object3" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520863, -19.7149)
 player = NodePath("../../Player")
+
 
 [node name="swappable_object4" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0021, 0.520863, -19.7149)
@@ -138,3 +152,55 @@ player = NodePath("../../Player")
 [node name="swappable_object11" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.70286, 0.520863, 5.72477)
 player = NodePath("../../Player")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("10_wxsm4")
+
+[node name="BossLife" type="Node" parent="CanvasLayer"]
+
+[node name="Label" type="Label" parent="CanvasLayer/BossLife"]
+offset_left = 380.0
+offset_top = 10.0
+offset_right = 781.0
+offset_bottom = 48.0
+text = "Amagemnon Lord of Desolation"
+label_settings = SubResource("LabelSettings_yrr27")
+
+[node name="Label" type="Label" parent="CanvasLayer/BossLife/Label"]
+layout_mode = 0
+offset_left = -361.0
+offset_top = 652.0
+offset_right = -323.0
+offset_bottom = 690.0
+text = "P"
+label_settings = SubResource("LabelSettings_yrr27")
+
+[node name="LifeBar" type="ProgressBar" parent="CanvasLayer/BossLife"]
+offset_left = 108.0
+offset_top = 59.0
+offset_right = 1126.0
+offset_bottom = 98.0
+value = 100.0
+show_percentage = false
+
+[node name="Player" type="Node" parent="CanvasLayer"]
+
+[node name="LifeBar" type="ProgressBar" parent="CanvasLayer/Player"]
+offset_left = 50.0
+offset_top = 666.0
+offset_right = 309.0
+offset_bottom = 698.0
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/Player"]
+offset_left = 596.0
+offset_top = 671.0
+offset_right = 662.0
+offset_bottom = 698.0
+text = "Moving"
+label_settings = SubResource("LabelSettings_u3yxo")
+
+[connection signal="hp_changed" from="Player" to="CanvasLayer" method="_on_player_hp_changed"]
+[connection signal="spell_changed" from="Player" to="CanvasLayer" method="_on_player_spell_changed"]
+[connection signal="input_event" from="Ground/MeshInstance3D/StaticBody3D" to="Ground/MeshInstance3D/StaticBody3D" method="_on_input_event"]
