@@ -3,6 +3,7 @@ extends Node3D
 @export var player: CharacterBody3D
 
 @onready var rock : MeshInstance3D = $rock
+@onready var magic : GPUParticles3D = $MagicParticles
 
 func _ready():
 	player.connect("swappositon", handle_signal_for_position_swap )
@@ -51,6 +52,7 @@ func _on_static_body_3d_mouse_exited():
 
 func handle_signal_for_position_swap():
 	swap_position(player.position, self.get_position())
+	magic.emitting = true
 	
 func swap_position(player_position, object_position):
 	# change position
