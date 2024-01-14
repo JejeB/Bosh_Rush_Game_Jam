@@ -8,8 +8,13 @@ enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP}
 @export_subgroup("Properties")
 @export var movement_speed = 250
 @export var max_hp: int = 1000
-@export var melee_range: int = 5
-@export var jump_range: int = 10
+@export var MELEE_RANGE: int = 5
+@export var target: Node
+
+@export_subgroup("JumpAttack")
+@export var JUMPING_RANGE: int = 10
+@export var AIMING_TIME:float = 1.5
+@export var PREPARE_JUMP:float = 0.5
 
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -19,8 +24,6 @@ var aiming:Vector3
 var previously_floored = false
 
 var hp: int
-@export var target: Node
-@export var bomb:Node
 
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
@@ -46,9 +49,9 @@ func choose_action(delta):
 	
 	if boss_state == State.CHASE:
 		var distance:int = target.global_position.distance_to(self.global_position)
-		if distance < melee_range:
+		if distance < MELEE_RANGE:
 			start_melee_attack()
-		elif distance > jump_range:
+		elif distance > JUMPING_RANGE:
 			start_jump_attack()
 		else :
 			chase_player()
@@ -56,7 +59,7 @@ func choose_action(delta):
 		look_at(target.position,Vector3.UP,true)
 	elif boss_state == State.JUMPING:
 		var distance:int = aiming.distance_to(self.global_position)
-		if distance < melee_range:
+		if distance < MELEE_RANGE:
 			start_melee_attack()
 		else:
 			jump_on_player()
@@ -92,7 +95,7 @@ func start_jump_attack():
 	movement_velocity = Vector3.ZERO
 	animation.play("static")
 	state(State.AIMING_PLAYER)
-	start_timer_for(1.5)
+	start_timer_for(AIMING_TIME)
 	
 func chase_player():
 	animation.play("walk", 0.5)
@@ -126,12 +129,11 @@ func update_hp(value:int):
 	hp=hp+value
 	hp_changed.emit((float(hp)/float(max_hp))*100)
 
-
 func _on_timer_timeout():
 	if boss_state == State.AIMING_PLAYER:
 		aiming = target.position
 		state(State.PREPARE_JUMP)
-		start_timer_for(0.5)
+		start_timer_for(PREPARE_JUMP)
 	elif boss_state == State.PREPARE_JUMP:
 		state(State.JUMPING)
 

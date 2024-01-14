@@ -102,7 +102,6 @@ shape = SubResource("BoxShape3D_kvofp")
 [node name="Boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clu5s")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, -4.70524)
 movement_speed = 3
-melee_range = 3
 target = NodePath("../Player")
 
 [node name="SwapObject" type="Node3D" parent="."]
