@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://440rqsqg6bur"]
+[gd_scene load_steps=7 format=3 uid="uid://440rqsqg6bur"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_fbayf"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_sqo0v"]
@@ -66,10 +66,5 @@ direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0.1, 0)
 scale_amount_min = 0.75
 scale_amount_curve = SubResource("Curve_xh1e2")
-
-[node name="SoundFootsteps" type="AudioStreamPlayer" parent="."]
-volume_db = -5.0
-pitch_scale = 1.25
-autoplay = true
 
 [editable path="Character"]

@@ -67,9 +67,9 @@ gravity = Vector3(0, 0.1, 0)
 scale_amount_min = 0.75
 scale_amount_curve = SubResource("Curve_xh1e2")
 
-[node name="SoundFootsteps" type="AudioStreamPlayer" parent="."]
-volume_db = -5.0
-pitch_scale = 1.25
-autoplay = true
+[node name="SwapCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SwapCooldownTimer" to="." method="_on_swap_cooldown_timer_timeout"]
 
 [editable path="Character"]
