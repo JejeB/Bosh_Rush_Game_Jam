@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://coebog4yvxamu"]
 
 [ext_resource type="Script" path="res://scripts/swappable_object.gd" id="1_3glop"]
-[ext_resource type="ArrayMesh" uid="uid://c63w7syw770iw" path="res://meshes/rocks.obj" id="1_a47j7"]
+[ext_resource type="ArrayMesh" uid="uid://fedbfopgkhd2" path="res://meshes/rocks.obj" id="1_a47j7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mua45"]
 size = Vector3(1, 0.5, 1)

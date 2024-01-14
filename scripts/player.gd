@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 signal hp_changed
 signal spell_changed
+signal swappositon
 
 @export_subgroup("Components")
 @export var view: Node3D
@@ -22,6 +23,8 @@ var previously_floored = false
 var jump_single = true
 var jump_double = true
 var swap_state_mode = Swap_State.MOVEMENT
+var hover_on_swappable_object : bool = false
+var swappable_object_position : Vector3 = Vector3.ZERO
 
 var coins = 0
 
@@ -126,17 +129,24 @@ func handle_point_and_click(delta):
 # Handle the action when you press your spell or sword
 func handle_action(delta):
 	# if the swap button is pressed and the player is not in cooldown state attribute swap mode
-	if Input.is_action_just_pressed("swap_button") and swap_state_mode != Swap_State.COOLDOWN:
+	if Input.is_action_just_pressed("swap_button") and hover_on_swappable_object and swap_state_mode != Swap_State.COOLDOWN:
 		swap_state_mode = Swap_State.SWAP
+		print("swappp")
+		# swap position
+		emit_signal("swappositon")
+		
+		# Begin The Cooldown the spell for the player
+		swap_state_mode = Swap_State.COOLDOWN
+		swap_cooldown_timer.start()
 	
 	# Reinit the movement mode when cooldown 
-	#if (Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_forward") or  Input.is_action_just_pressed("move_back"))and swap_state_mode != Swap_State.COOLDOWN:
+	#if Input.is_action_just_pressed("click_gauche") and swap_state_mode != Swap_State.COOLDOWN:
 	#	swap_state_mode = Swap_State.MOVEMENT
 
 # when the timer cooldown is finish reset the swap_state_mode
 func _on_swap_cooldown_timer_timeout():
 	swap_state_mode = Swap_State.MOVEMENT
-		
+
 func update_hp(value:int):
 	hp=hp+value
 	print(hp)

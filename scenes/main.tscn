@@ -199,4 +199,3 @@ label_settings = SubResource("LabelSettings_u3yxo")
 
 [connection signal="hp_changed" from="Player" to="CanvasLayer" method="_on_player_hp_changed"]
 [connection signal="spell_changed" from="Player" to="CanvasLayer" method="_on_player_spell_changed"]
-[connection signal="input_event" from="Ground/MeshInstance3D/StaticBody3D" to="Ground/MeshInstance3D/StaticBody3D" method="_on_input_event"]
