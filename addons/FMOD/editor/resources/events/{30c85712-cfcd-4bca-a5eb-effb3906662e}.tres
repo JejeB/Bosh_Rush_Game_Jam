@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://4p07mvv6upxm"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Swap/SwapHover"
+guid = "{30c85712-cfcd-4bca-a5eb-effb3906662e}"
+name = "SwapHover"

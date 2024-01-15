@@ -61,6 +61,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93346, 4.04577)
 current = true
 fov = 50.0
 
+[node name="StudioListener3D" type="StudioListener3D" parent="View/Camera"]
+
 [node name="World" type="Node3D" parent="."]
 
 [node name="cube8" parent="World" instance=ExtResource("13_drtpy")]

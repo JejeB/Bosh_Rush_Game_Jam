@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=17 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ffboj"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_nero3"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_0c7wt"]
-[ext_resource type="ArrayMesh" uid="uid://27tvjnqsy3hw" path="res://models/knife_sharp.obj" id="3_wr2yh"]
+[ext_resource type="ArrayMesh" uid="uid://dl51dxrhonkrb" path="res://models/knife_sharp.obj" id="3_wr2yh"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_mvhqy"]
+[ext_resource type="EventAsset" uid="uid://b8jcx0j1gsg5w" path="res://addons/FMOD/editor/resources/events/{71da30dc-15fb-40a0-aad8-69440659c44e}.tres" id="4_mw5se"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
@@ -129,6 +130,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Character/AnimationWeapon/StudioEventEmitter2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dgagd"]
 _data = {
@@ -197,6 +212,9 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_dgagd")
 }
+
+[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="Character/AnimationWeapon"]
+event = ExtResource("4_mw5se")
 
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)

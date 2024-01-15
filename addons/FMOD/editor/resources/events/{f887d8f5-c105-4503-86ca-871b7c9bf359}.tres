@@ -4,6 +4,6 @@
 is_oneshot = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/SFX/Hero/Jump"
+path = "event:/SFX/Swap/Swap"
 guid = "{f887d8f5-c105-4503-86ca-871b7c9bf359}"
-name = "Jump"
+name = "Swap"
