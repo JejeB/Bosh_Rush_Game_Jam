@@ -85,7 +85,7 @@ _data = {
 "jump": SubResource("Animation_pq0dh")
 }
 
-[node name="Boss" type="CharacterBody3D"]
+[node name="Boss" type="CharacterBody3D" groups=["boss"]]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, 0)
 script = ExtResource("1_fbayf")
 
@@ -140,7 +140,7 @@ surface_material_override/0 = ExtResource("5_kr85j")
 
 [node name="Area3D" type="Area3D" parent="AttackHitbox/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox/MeshInstance3D/Area3D"]
+[node name="BossHitbox" type="CollisionShape3D" parent="AttackHitbox/MeshInstance3D/Area3D"]
 shape = SubResource("SphereShape3D_fup3e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AttackHitbox/MeshInstance3D"]
@@ -150,7 +150,7 @@ surface_material_override/0 = ExtResource("5_kr85j")
 
 [node name="Area3D" type="Area3D" parent="AttackHitbox/MeshInstance3D/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox/MeshInstance3D/MeshInstance3D/Area3D"]
+[node name="BossHitbox2" type="CollisionShape3D" parent="AttackHitbox/MeshInstance3D/MeshInstance3D/Area3D"]
 shape = SubResource("SphereShape3D_fup3e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AttackHitbox"]

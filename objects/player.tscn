@@ -1,13 +1,141 @@
-[gd_scene load_steps=10 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=16 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ffboj"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_nero3"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_0c7wt"]
+[ext_resource type="ArrayMesh" uid="uid://27tvjnqsy3hw" path="res://models/knife_sharp.obj" id="3_wr2yh"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_mvhqy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
 height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p1wcw"]
+height = 8.376
+
+[sub_resource type="Animation" id="Animation_sfj7p"]
+resource_name = "knife"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character/character2/root/torso/sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.835681, 0, 0), Vector3(0.701776, 3.01672, 3.04889), Vector3(0.859859, 0.146279, 0.0993328)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character/character2/root/torso/sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.494853, -0.0331964, 0.145849), Vector3(-0.494853, -0.0331964, 0.145849)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Character/character2/root/torso/sword/Area3D/SwordCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_cmffe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character/character2/root/torso/sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.835681, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character/character2/root/torso/sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.494853, -0.0331964, 0.145849)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Character/character2/root/torso/sword/Area3D/SwordCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nwyhw"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character/character2/root/torso/sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.494853, -0.0331964, 0.145849)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character/character2/root/torso/sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.835681, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Character/character2/root/torso/sword/Area3D/SwordCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgagd"]
+_data = {
+"RESET": SubResource("Animation_cmffe"),
+"idle": SubResource("Animation_nwyhw"),
+"knife": SubResource("Animation_sfj7p")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7stj"]
 diffuse_mode = 2
@@ -54,6 +182,22 @@ transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 
 [node name="arm-right" parent="Character/character2/root/torso" index="1"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.3, 0.1445, 0)
 
+[node name="sword" type="MeshInstance3D" parent="Character/character2/root/torso" index="3"]
+transform = Transform3D(7.99999, 0, 0, 0, 5.36538, -5.93403, 0, 5.93403, 5.36538, -0.494853, -0.0331964, 0.145849)
+mesh = ExtResource("3_wr2yh")
+
+[node name="Area3D" type="Area3D" parent="Character/character2/root/torso/sword"]
+
+[node name="SwordCollision" type="CollisionShape3D" parent="Character/character2/root/torso/sword/Area3D"]
+transform = Transform3D(0.0187851, 0.00411072, 0.00549745, -0.00349729, 0.0195139, -0.0026411, -0.00590668, 0.00151936, 0.0190474, 0.0103076, 0.0555211, 0.00326348)
+shape = SubResource("CapsuleShape3D_p1wcw")
+
+[node name="AnimationWeapon" type="AnimationPlayer" parent="Character"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_dgagd")
+}
+
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
 size = Vector3(1, 2, 1)
@@ -83,6 +227,7 @@ visible = false
 mesh = SubResource("TorusMesh_lrtwo")
 surface_material_override/0 = SubResource("StandardMaterial3D_3stdq")
 
+[connection signal="body_entered" from="Character/character2/root/torso/sword/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="SwapCooldownTimer" to="." method="_on_swap_cooldown_timer_timeout"]
 
 [editable path="Character"]

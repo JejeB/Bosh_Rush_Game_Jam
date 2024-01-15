@@ -12,6 +12,7 @@ signal player_dead
 @export var movement_speed = 250
 @export var jump_strength = 7
 @export var max_hp = 100
+@export var sword_damage = 10
 
 enum Swap_State {MOVEMENT, SWAP, COOLDOWN}
 
@@ -25,15 +26,18 @@ var swap_state_mode = Swap_State.MOVEMENT
 var hover_on_swappable_object : bool = false
 var swappable_object_position : Vector3 = Vector3.ZERO
 var spell_range : int = 10
+var sword_state : bool = false
 
 var target = Vector3.ZERO
  
 var hp: int
+
 var game_state: bool = true
 
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
+@onready var animation_weapon = $Character/AnimationWeapon
 @onready var swap_cooldown_timer = $SwapCooldownTimer
 @onready var spell_indicator = $SpellIndicator
 
@@ -92,6 +96,11 @@ func handle_effects():
 		else:
 			animation.play("idle", 0.5)
 			FMODRuntime.play_one_shot_path("event:/SFX/Hero/HeroFootstepsStop")
+	
+	if sword_state:
+		animation_weapon.play("knife", 0.5)
+	if !sword_state:
+		animation_weapon.play("idle", 0.5)
 
 # old function to Handle movement input with keyboard
 func handle_controls(delta):
@@ -143,6 +152,13 @@ func handle_action(delta):
 		spell_indicator.visible = true
 		spell_indicator.scale.x = spell_range
 		spell_indicator.scale.z = spell_range
+	
+	# melee sword activation
+	if Input.is_action_just_pressed("right_click"):
+		sword_state = true
+	
+	if Input.is_action_just_released("right_click"):
+		sword_state = false
 		
 	# Reinit the movement mode when cooldown 
 	#if Input.is_action_just_pressed("click_gauche") and swap_state_mode != Swap_State.COOLDOWN:
@@ -165,3 +181,10 @@ func update_hp(value:int):
 
 func hurt():
 	update_hp(-10)
+
+# detect collision with the boss and sword is pressed
+func _on_area_3d_body_entered(body):
+
+	if body.get_name() == "Boss":
+		print("collision")
+		body.update_hp(-sword_damage)
