@@ -10,7 +10,7 @@ extends Node3D
 
 func _ready():
 	# connect signal to swap position sended by player
-	player.connect("swappositon", handle_signal_for_position_swap)
+	player.connect("swap_positon", handle_signal_for_position_swap)
 	
 	# give the range decided for the hover to the spell indicator
 	player.spell_range = hover_range

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-@onready var boss_life_bar = $BossLife/LifeBar
-@onready var player_life_bar = $Player/LifeBar
+@onready var boss_life_bar = $BossLife/VBoxContainer/LifeBar
+@onready var player_life_bar = $Player/HBoxContainer/LifeBar
 @onready var player_spell = $Player/SwapLabel
 @onready var boss_state_label = $BossState
 

@@ -2,7 +2,8 @@ extends CharacterBody3D
 
 signal hp_changed
 signal spell_changed
-signal swappositon
+signal swap_positon
+signal player_dead
 
 @export_subgroup("Components")
 @export var view: Node3D
@@ -20,18 +21,16 @@ var gravity = 0
 
 var previously_floored = false
 
-var jump_single = true
-var jump_double = true
 var swap_state_mode = Swap_State.MOVEMENT
 var hover_on_swappable_object : bool = false
 var swappable_object_position : Vector3 = Vector3.ZERO
 var spell_range : int = 10
 
-var coins = 0
-
 var target = Vector3.ZERO
  
 var hp: int
+var game_state: bool = true
+
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
@@ -39,46 +38,47 @@ var hp: int
 @onready var spell_indicator = $SpellIndicator
 
 # Functions
-
 func _ready():
 	hp = max_hp
 
 func _physics_process(delta):
-	
 	# Handle functions
-	handle_action(delta)
-	handle_controls(delta)
-	handle_gravity(delta)
+	handle_hp()
 	
-	handle_effects()
-	
-	# Movement
-	var applied_velocity: Vector3
-	
-	applied_velocity = velocity.lerp(movement_velocity, delta * 10)
-	applied_velocity.y = -gravity
-	
-	velocity = applied_velocity
-	move_and_slide()
-	
-	# Rotation
-	if Vector2(velocity.z, velocity.x).length() > 0:
-		rotation_direction = Vector2(velocity.z, velocity.x).angle()
+	if game_state:
+		handle_action(delta)
+		handle_controls(delta)
+		handle_gravity(delta)
 		
-	rotation.y = lerp_angle(rotation.y, rotation_direction, delta * 10)
-	
-	# Falling/respawning
-	if position.y < -10:
-		get_tree().reload_current_scene()
-	
-	# Animation for scale (jumping and landing)
-	model.scale = model.scale.lerp(Vector3(1, 1, 1), delta * 10)
-	
-	# Animation when landing
-	if is_on_floor() and gravity > 2 and !previously_floored:
-		model.scale = Vector3(1.25, 0.75, 1.25)
+		handle_effects()
 		
-	previously_floored = is_on_floor()
+		# Movement
+		var applied_velocity: Vector3
+		
+		applied_velocity = velocity.lerp(movement_velocity, delta * 10)
+		applied_velocity.y = -gravity
+		
+		velocity = applied_velocity
+		move_and_slide()
+		
+		# Rotation
+		if Vector2(velocity.z, velocity.x).length() > 0:
+			rotation_direction = Vector2(velocity.z, velocity.x).angle()
+			
+		rotation.y = lerp_angle(rotation.y, rotation_direction, delta * 10)
+		
+		# Falling/respawning
+		if position.y < -10:
+			get_tree().reload_current_scene()
+		
+		# Animation for scale (jumping and landing)
+		model.scale = model.scale.lerp(Vector3(1, 1, 1), delta * 10)
+		
+		# Animation when landing
+		if is_on_floor() and gravity > 2 and !previously_floored:
+			model.scale = Vector3(1.25, 0.75, 1.25)
+			
+		previously_floored = is_on_floor()
 
 # Handle animation(s)
 func handle_effects():
@@ -131,7 +131,7 @@ func handle_action(delta):
 		if hover_on_swappable_object and swap_state_mode != Swap_State.COOLDOWN:
 			swap_state_mode = Swap_State.SWAP
 			# swap position
-			emit_signal("swappositon")
+			emit_signal("swap_positon")
 			
 			# Begin The Cooldown the spell for the player
 			swap_state_mode = Swap_State.COOLDOWN
@@ -154,6 +154,11 @@ func _on_swap_cooldown_timer_timeout():
 	# hud update
 	emit_signal("spell_changed", "Swap Ready")
 
+func handle_hp():
+	if hp <= 0:
+		game_state = false
+		emit_signal("player_dead", "Youu Loosee!")
+	
 func update_hp(value:int):
 	hp=hp+value
 	hp_changed.emit((float(hp)/float(max_hp))*100)

@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 signal hp_changed
 signal state_changed
+signal boss_dead
 
 enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP}
 
@@ -29,6 +30,7 @@ var aiming:Vector3
 var previously_floored = false
 
 var hp: int
+var game_state: bool = true
 
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
@@ -47,9 +49,12 @@ func _ready():
 
 func _physics_process(delta):
 	# Handle functions
-	handle_gravity(delta)
-	choose_action(delta)	
-	handle_movement(delta)
+	handle_hp()
+	
+	if game_state:
+		handle_gravity(delta)
+		choose_action(delta)
+		handle_movement(delta)
 
 func choose_action(delta):
 	
@@ -152,3 +157,8 @@ func state(value:int):
 	boss_state = value
 	print(State.keys()[value])
 	state_changed.emit(State.keys()[value])
+
+func handle_hp():
+	if hp <= 0:
+		game_state = false
+		emit_signal("boss_dead", "You WIN!")
