@@ -61,7 +61,7 @@ func _on_static_body_3d_mouse_exited():
 
 func handle_signal_for_position_swap():
 	# verify that the signal execute to the good object
-	if self.position == player.swappable_object_position: 
+	if self.position == player.swappable_object_position:
 		swap_position(player.position, self.get_position())
 		magic.emitting = true
 		magic_timer.start()

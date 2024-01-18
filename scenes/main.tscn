@@ -63,6 +63,9 @@ fov = 50.0
 
 [node name="StudioListener3D" type="StudioListener3D" parent="View/Camera"]
 
+[node name="CameraFreezeTimer" type="Timer" parent="View/Camera"]
+one_shot = true
+
 [node name="World" type="Node3D" parent="."]
 
 [node name="cube8" parent="World" instance=ExtResource("13_drtpy")]
@@ -288,6 +291,8 @@ text = "Replay"
 
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]
 [connection signal="spell_changed" from="Player" to="GameHud" method="_on_player_spell_changed"]
+[connection signal="swap_positon" from="Player" to="View" method="_on_player_swap_positon"]
+[connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
 [connection signal="hp_changed" from="Boss" to="GameHud" method="_on_boss_hp_changed"]
 [connection signal="state_changed" from="Boss" to="GameHud" method="_on_boss_state_changed"]
 [connection signal="button_down" from="ReplayHud/VBoxContainer/ReplayButton" to="ReplayHud" method="_on_replay_button_button_down"]
