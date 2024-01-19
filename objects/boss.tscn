@@ -155,6 +155,9 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 
+[node name="AttackTime" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackTime" to="." method="_on_attack_time_timeout"]
 
 [editable path="Character"]

@@ -4,7 +4,7 @@ signal hp_changed
 signal state_changed
 signal boss_dead
 
-enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP}
+enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP,STUN}
 
 
 @export_subgroup("Properties")
@@ -20,11 +20,17 @@ enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP}
 @export var AIMING_TIME:float = 1.5
 ## The time after the target lock of the boss 
 @export var PREPARE_JUMP_TIME:float = 0.5
+## Time elasped between 2 jump in sec
+@export var JUMP_COOLDOWN:float = 5
+
+@export_subgroup("STUNT")
+## Time of the stun
+@export var STUN_TIME:float = 2
 
 var movement_velocity: Vector3
 var rotation_direction: float
 var gravity = 0
-
+var jump_ready = true
 
 var aiming:Vector3
 var previously_floored = false
@@ -39,6 +45,7 @@ var game_state: bool = true
 @onready var attackhitbox1Node = $AttackHitbox
 @onready var attackhitboxAnim = $AttackHitbox/AnimationPlayer
 
+@onready var attacktime = $AttackTime
 @onready var timer = $Timer
 @onready var boss_state: int = State.CHASE
 
@@ -62,7 +69,7 @@ func choose_action(delta):
 		var distance:int = target.global_position.distance_to(self.global_position)
 		if distance < MELEE_RANGE:
 			start_melee_attack()
-		elif distance > JUMPING_RANGE:
+		elif distance > JUMPING_RANGE and jump_ready:
 			start_jump_attack()
 		else :
 			chase_player()
@@ -72,6 +79,8 @@ func choose_action(delta):
 		var distance:int = aiming.distance_to(self.global_position)
 		if distance < MELEE_RANGE:
 			start_melee_attack()
+			start_attack_timer_for(JUMP_COOLDOWN)
+			jump_ready = false
 		else:
 			jump_on_player()
 	elif boss_state == State.PREPARE_JUMP:
@@ -118,6 +127,10 @@ func jump_on_player():
 	animation.play("walk", 3)
 	particles_trail.emitting = true
 	movement_velocity = position.direction_to(aiming) * movement_speed * 50
+	for i in get_slide_collision_count():
+		if get_slide_collision(i).get_collider().name == "RockHitbox":
+			print("STUN !")
+			state(State.STUN)
 
 func back_to_default_state():
 	state(State.CHASE)
@@ -128,9 +141,7 @@ func back_to_default_state():
 func melee_attack():
 	for body in attackhitbox1.get_overlapping_bodies():
 		if body==target:
-			target.hurt()
-		if body.get_name()=="RockHitbox":
-			update_hp(-100)
+			target.hurt(position)
 
 func handle_gravity(delta):
 	gravity += 25 * delta
@@ -153,12 +164,19 @@ func start_timer_for(value:float):
 	timer.set_wait_time(value)
 	timer.start()
 	
+func start_attack_timer_for(value:float):
+	attacktime.set_wait_time(value)
+	attacktime.start()
+	
 func state(value:int):
 	boss_state = value
-	print(State.keys()[value])
 	state_changed.emit(State.keys()[value])
 
 func handle_hp():
 	if hp <= 0:
 		game_state = false
 		emit_signal("boss_dead", "You WIN!")
+
+func _on_attack_time_timeout():
+	if !jump_ready:
+		jump_ready = true
