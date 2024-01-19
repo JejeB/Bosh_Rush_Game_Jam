@@ -55,6 +55,7 @@ script = ExtResource("5_bg0fr")
 target = NodePath("../Player")
 distance = 11
 height = 14
+freeze_time = 0.3
 
 [node name="Camera" type="Camera3D" parent="View"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93346, 4.04577)
@@ -194,6 +195,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameHud/Player"]
 layout_mode = 1
@@ -260,6 +262,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("10_m5xe4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ReplayHud"]
