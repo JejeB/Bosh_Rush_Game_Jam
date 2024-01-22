@@ -5,7 +5,6 @@ extends CanvasLayer
 @onready var player_spell = $Player/SwapLabel
 @onready var boss_state_label = $BossState
 
-@onready var boss = $Boss
 
 func _on_player_hp_changed(ratio):
 	player_life_bar.set_value(ratio)

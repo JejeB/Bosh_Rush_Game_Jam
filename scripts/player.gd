@@ -13,8 +13,10 @@ signal player_dead
 @export var jump_strength = 7
 @export var max_hp = 100
 @export var sword_damage = 10
+@export var spell_range : int = 10
 
 enum Swap_State {MOVEMENT, SWAP, COOLDOWN}
+
 
 var movement_velocity: Vector3
 var rotation_direction: float
@@ -25,7 +27,7 @@ var previously_floored = false
 var swap_state_mode = Swap_State.MOVEMENT
 var hover_on_swappable_object : bool = false
 var swappable_object_position : Vector3 = Vector3.ZERO
-var spell_range : int = 10
+
 var sword_state : bool = false
 
 var target = Vector3.ZERO
@@ -179,8 +181,9 @@ func update_hp(value:int):
 	hp=hp+value
 	hp_changed.emit((float(hp)/float(max_hp))*100)
 
-func hurt():
+func hurt(impact_position:Vector3):
 	update_hp(-10)
+	
 
 # detect collision with the boss and sword is pressed
 func _on_area_3d_body_entered(body):
