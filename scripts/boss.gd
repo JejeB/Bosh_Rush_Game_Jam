@@ -79,8 +79,6 @@ func choose_action(delta):
 		var distance:int = aiming.distance_to(self.global_position)
 		if distance < MELEE_RANGE:
 			start_melee_attack()
-			start_attack_timer_for(JUMP_COOLDOWN)
-			jump_ready = false
 		else:
 			jump_on_player()
 	elif boss_state == State.PREPARE_JUMP:
@@ -117,6 +115,17 @@ func start_jump_attack():
 	animation.play("static")
 	state(State.AIMING_PLAYER)
 	start_timer_for(AIMING_TIME)
+	start_attack_timer_for(JUMP_COOLDOWN)
+	jump_ready = false
+	
+func start_stun():
+	movement_velocity = Vector3.ZERO
+	state(State.STUN)
+	animation.play("idle")
+	attackhitbox1Node.visible = true
+	attackhitboxAnim.stop()
+	attackhitboxAnim.play("stun")
+	start_timer_for(STUN_TIME)
 	
 func chase_player():
 	animation.play("walk", 0.5)
@@ -129,8 +138,7 @@ func jump_on_player():
 	movement_velocity = position.direction_to(aiming) * movement_speed * 50
 	for i in get_slide_collision_count():
 		if get_slide_collision(i).get_collider().name == "RockHitbox":
-			print("STUN !")
-			state(State.STUN)
+			start_stun()
 
 func back_to_default_state():
 	state(State.CHASE)
@@ -159,6 +167,8 @@ func _on_timer_timeout():
 		start_timer_for(PREPARE_JUMP_TIME)
 	elif boss_state == State.PREPARE_JUMP:
 		state(State.JUMPING)
+	elif boss_state == State.STUN:
+		back_to_default_state()
 
 func start_timer_for(value:float):
 	timer.set_wait_time(value)
