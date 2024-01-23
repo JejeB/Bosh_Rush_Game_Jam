@@ -8,6 +8,8 @@ extends Node3D
 @onready var magic : GPUParticles3D = $MagicParticles
 @onready var magic_timer : Timer = $MagicTimer
 
+
+
 func _ready():
 	# connect signal to swap position sended by player
 	player.connect("swap_positon", handle_signal_for_position_swap)
