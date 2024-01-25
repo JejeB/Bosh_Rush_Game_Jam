@@ -83,9 +83,6 @@ func choose_action(delta):
 		look_at(aiming,Vector3.UP,true)
 
 
-	
-
-
 # ---JUMP---
 func start_jump_attack():
 	movement_velocity = Vector3.ZERO

@@ -6,7 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_fgork"]
 [ext_resource type="Material" uid="uid://cjxpohja4fnf0" path="res://meshes/white.tres" id="5_kr85j"]
 [ext_resource type="Material" uid="uid://cqvccxqvantrc" path="res://meshes/blue.tres" id="6_a64pn"]
-[ext_resource type="Script" path="res://objects/Jump.gd" id="7_ix3hw"]
+[ext_resource type="PackedScene" uid="uid://dkhvvkycfd3i5" path="res://zone_attack.tscn" id="7_p3n8r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
@@ -148,6 +148,7 @@ scale_amount_curve = SubResource("Curve_xh1e2")
 
 [node name="AttackHitbox" type="Node3D" parent="."]
 transform = Transform3D(1.42907, 0, 0, 0, 0.211577, 0, 0, 0, 1.23744, 0, 0.273964, 0.0692814)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AttackHitbox"]
 material_override = SubResource("StandardMaterial3D_b8tow")
@@ -179,8 +180,8 @@ wait_time = 1.5
 
 [node name="AttackTime" type="Timer" parent="."]
 
-[node name="Jump" type="Node" parent="."]
-script = ExtResource("7_ix3hw")
+[node name="Zone Attack" parent="." instance=ExtResource("7_p3n8r")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AttackTime" to="." method="_on_attack_time_timeout"]

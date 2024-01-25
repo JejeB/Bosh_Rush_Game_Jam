@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkhvvkycfd3i5"]
+
+[ext_resource type="Material" uid="uid://ep37frxjh6ob" path="res://meshes/zone_attack.tres" id="1_oq80x"]
+[ext_resource type="Script" path="res://zone_attack.gd" id="1_ytcup"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_umn7s"]
+radius = 1.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_y2rpw"]
+inner_radius = 0.834
+
+[node name="Zone Attack" type="Node3D"]
+script = ExtResource("1_ytcup")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_umn7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0893406, 0)
+mesh = SubResource("TorusMesh_y2rpw")
+surface_material_override/0 = ExtResource("1_oq80x")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

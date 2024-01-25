@@ -78,3 +78,7 @@ func swap_position(player_position, object_position):
 # Cooldown timer timeout stop the particules
 func _on_magic_timer_timeout():
 	magic.emitting = false
+
+
+func _on_rock_destruction_shape_destructed():
+	print("CRAAASH")
