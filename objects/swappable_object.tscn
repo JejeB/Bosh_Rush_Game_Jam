@@ -1,10 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://coebog4yvxamu"]
+[gd_scene load_steps=12 format=3 uid="uid://coebog4yvxamu"]
 
 [ext_resource type="Script" path="res://scripts/swappable_object.gd" id="1_3glop"]
 [ext_resource type="ArrayMesh" uid="uid://fedbfopgkhd2" path="res://meshes/rocks.obj" id="1_a47j7"]
 [ext_resource type="Texture2D" uid="uid://bq02qdwep2736" path="res://sprites/magic_05.png" id="3_fn0mj"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b0np"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bk2w"]
 blend_mode = 1
@@ -55,48 +53,12 @@ turbulence_noise_speed_random = 0.1
 [sub_resource type="BoxShape3D" id="BoxShape3D_mua45"]
 size = Vector3(1, 0.5, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dml7w"]
-albedo_color = Color(0.776471, 0.14902, 0.384314, 1)
-
-[sub_resource type="Animation" id="Animation_lj4ub"]
-resource_name = "just_swapped"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("rock:material_override")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [SubResource("StandardMaterial3D_dml7w"), SubResource("StandardMaterial3D_5b0np")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"back_so_default"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lq5s4"]
-_data = {
-"just_swapped": SubResource("Animation_lj4ub")
-}
-
-[node name="SwappableObject" type="StaticBody3D"]
+[node name="SwappableObject" type="StaticBody3D" groups=["swapable"]]
 script = ExtResource("1_3glop")
+hard_color = Color(0.027451, 0.482353, 0.541176, 1)
+POST_SWAP_TIME = 10
 
 [node name="rock" type="MeshInstance3D" parent="." groups=["swappable"]]
-material_override = SubResource("StandardMaterial3D_5b0np")
 mesh = ExtResource("1_a47j7")
 
 [node name="MagicParticles" type="GPUParticles3D" parent="."]
@@ -111,17 +73,11 @@ process_material = SubResource("ParticleProcessMaterial_np56g")
 draw_pass_1 = SubResource("QuadMesh_jq5jb")
 
 [node name="MagicTimer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.249148, 0)
 shape = SubResource("BoxShape3D_mua45")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_lq5s4")
-}
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

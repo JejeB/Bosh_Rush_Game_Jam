@@ -3,11 +3,13 @@ extends Node3D
 @export var player: CharacterBody3D
 @export var hover_range: int = 10
 @export var hover_color: Color = Color(0.92, 0.69, 0.13, 1.0)
+@export var hard_color: Color = Color(0.92, 0.69, 0.13, 1.0)
+## Time when the rock is unbreakable after swap is sec
+@export var POST_SWAP_TIME = 1
 
 @onready var rock : MeshInstance3D = $rock
 @onready var magic : GPUParticles3D = $MagicParticles
 @onready var magic_timer : Timer = $MagicTimer
-@onready var anim = $AnimationPlayer
 
 enum State {DESTROYABLE,HARD}
 
@@ -68,8 +70,6 @@ func handle_signal_for_position_swap():
 	# verify that the signal execute to the good object
 	if self.position == player.swappable_object_position:
 		swap_position(player.position, self.get_position())
-		magic.emitting = true
-		magic_timer.start()
 	
 func swap_position(player_position, object_position):
 	# change position
@@ -77,11 +77,16 @@ func swap_position(player_position, object_position):
 	player.set_position(object_position)
 	FMODRuntime.play_one_shot_path("event:/SFX/Swap/Swap")
 	state  = State.HARD
-	anim.play("just_swapped")
+	var newMaterial = StandardMaterial3D.new()
+	newMaterial.albedo_color = hard_color
+	rock.material_override = newMaterial
+	print(name+" Swaped")
+	magic.emitting = true
+	start_timer_for(POST_SWAP_TIME)
 	
 # Cooldown timer timeout stop the particules
 func _on_magic_timer_timeout():
-	magic.emitting = false
+	back_so_default()
 	
 func hurt():
 	if State.DESTROYABLE == state:
@@ -89,5 +94,11 @@ func hurt():
 		queue_free()
 	
 func back_so_default():
-	print("Back to default")
-	state = State.DESTROYABLE	
+	print(name+" Back to default")
+	state = State.DESTROYABLE
+	magic.emitting = false
+	rock.material_override = null
+	
+func start_timer_for(value:float):
+	magic_timer.set_wait_time(value)
+	magic_timer.start()
