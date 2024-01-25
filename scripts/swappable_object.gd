@@ -18,7 +18,7 @@ func _ready():
 	player.spell_range = hover_range
 
 # for the mouse moving
-func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
+func input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and player.swap_state_mode == player.Swap_State.SWAP:
 
 		var object_position = self.get_position()
@@ -37,7 +37,7 @@ func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
 		#print("player position: "+ str(player.position))
 		#print("object position: "+ str(object_position))
 
-func _on_static_body_3d_mouse_entered():
+func _on_mouse_entered():
 	
 	var distance = player.global_position.distance_to(self.global_position)
 	#print("distance " + str(distance))
@@ -54,7 +54,7 @@ func _on_static_body_3d_mouse_entered():
 		player.hover_on_swappable_object = true
 		player.swappable_object_position = self.get_position()
 
-func _on_static_body_3d_mouse_exited():
+func _on_mouse_exited():
 	# remove the over
 	rock.material_override = null
 
@@ -78,7 +78,7 @@ func swap_position(player_position, object_position):
 # Cooldown timer timeout stop the particules
 func _on_magic_timer_timeout():
 	magic.emitting = false
-
-
-func _on_rock_destruction_shape_destructed():
-	print("CRAAASH")
+	
+func hurt():
+	print("HURT")
+	queue_free()

@@ -181,7 +181,7 @@ func update_hp(value:int):
 	hp=hp+value
 	hp_changed.emit((float(hp)/float(max_hp))*100)
 
-func hurt(impact_position:Vector3):
+func hurt():
 	update_hp(-10)
 	
 

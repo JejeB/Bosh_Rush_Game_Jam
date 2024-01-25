@@ -4,9 +4,6 @@
 [ext_resource type="ArrayMesh" uid="uid://fedbfopgkhd2" path="res://meshes/rocks.obj" id="1_a47j7"]
 [ext_resource type="Texture2D" uid="uid://bq02qdwep2736" path="res://sprites/magic_05.png" id="3_fn0mj"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mua45"]
-size = Vector3(1, 0.5, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bk2w"]
 blend_mode = 1
 vertex_color_use_as_albedo = true
@@ -53,17 +50,14 @@ turbulence_noise_speed_random = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_jq5jb"]
 
-[node name="swappable_object" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mua45"]
+size = Vector3(1, 0.5, 1)
+
+[node name="SwappableObject" type="StaticBody3D"]
 script = ExtResource("1_3glop")
 
 [node name="rock" type="MeshInstance3D" parent="." groups=["swappable"]]
 mesh = ExtResource("1_a47j7")
-
-[node name="RockHitbox" type="StaticBody3D" parent="rock"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rock/RockHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.249148, 0)
-shape = SubResource("BoxShape3D_mua45")
 
 [node name="MagicParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.663532, 0)
@@ -80,6 +74,10 @@ draw_pass_1 = SubResource("QuadMesh_jq5jb")
 wait_time = 2.0
 one_shot = true
 
-[connection signal="mouse_entered" from="rock/RockHitbox" to="." method="_on_static_body_3d_mouse_entered"]
-[connection signal="mouse_exited" from="rock/RockHitbox" to="." method="_on_static_body_3d_mouse_exited"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.249148, 0)
+shape = SubResource("BoxShape3D_mua45")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="MagicTimer" to="." method="_on_magic_timer_timeout"]

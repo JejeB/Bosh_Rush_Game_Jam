@@ -97,7 +97,8 @@ func jump_on_player():
 	particles_trail.emitting = true
 	movement_velocity = position.direction_to(aiming) * movement_speed * 50
 	for i in get_slide_collision_count():
-		if get_slide_collision(i).get_collider().name == "RockHitbox":
+		var collirder = get_slide_collision(i).get_collider()
+		if collirder and collirder.name == "RockHitbox":
 			start_stun()
 
 # ---MELEE ATTACK---
@@ -110,7 +111,7 @@ func start_melee_attack():
 func melee_attack():
 	for body in attackhitbox1.get_overlapping_bodies():
 		if body==target:
-			target.hurt(position)
+			target.hurt()
 
 
 # ---STUN---
