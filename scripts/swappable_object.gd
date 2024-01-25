@@ -80,7 +80,6 @@ func swap_position(player_position, object_position):
 	var newMaterial = StandardMaterial3D.new()
 	newMaterial.albedo_color = hard_color
 	rock.material_override = newMaterial
-	print(name+" Swaped")
 	magic.emitting = true
 	start_timer_for(POST_SWAP_TIME)
 	
@@ -94,7 +93,6 @@ func hurt():
 		queue_free()
 	
 func back_so_default():
-	print(name+" Back to default")
 	state = State.DESTROYABLE
 	magic.emitting = false
 	rock.material_override = null

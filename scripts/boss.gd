@@ -97,7 +97,6 @@ func jump_on_player():
 	movement_velocity = position.direction_to(aiming) * movement_speed * 50
 	for i in get_slide_collision_count():
 		var collirder = get_slide_collision(i).get_collider()
-		print(collirder.get_groups())
 		if collirder and collirder.is_in_group("swapable"):
 			start_stun()
 
