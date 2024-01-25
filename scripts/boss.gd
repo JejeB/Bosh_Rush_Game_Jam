@@ -41,9 +41,7 @@ var game_state: bool = true
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
-@onready var attackhitbox1 = $AttackHitbox/MeshInstance3D/Area3D
-@onready var attackhitbox1Node = $AttackHitbox
-@onready var attackhitboxAnim = $AttackHitbox/AnimationPlayer
+@onready var attackZone = $"Zone Attack"
 
 @onready var attacktime = $AttackTime
 @onready var timer = $Timer
@@ -76,7 +74,7 @@ func choose_action(delta):
 	elif boss_state == State.JUMPING:
 		var distance:int = aiming.distance_to(self.global_position)
 		if distance < MELEE_RANGE:
-			start_melee_attack()
+			back_to_default_state()
 		else:
 			jump_on_player()
 	elif boss_state == State.PREPARE_JUMP:
@@ -91,6 +89,7 @@ func start_jump_attack():
 	start_timer_for(AIMING_TIME)
 	start_attack_timer_for(JUMP_COOLDOWN)
 	jump_ready = false
+	attackZone.enable()
 	
 func jump_on_player():
 	animation.play("walk", 3)
@@ -103,15 +102,7 @@ func jump_on_player():
 
 # ---MELEE ATTACK---
 func start_melee_attack():
-	movement_velocity = Vector3.ZERO
-	attackhitbox1Node.visible = true
-	attackhitboxAnim.play("attack")
-	state(State.MELLE_ATTACK)
-
-func melee_attack():
-	for body in attackhitbox1.get_overlapping_bodies():
-		if body==target:
-			target.hurt()
+	pass
 
 
 # ---STUN---
@@ -119,9 +110,6 @@ func start_stun():
 	movement_velocity = Vector3.ZERO
 	state(State.STUN)
 	animation.play("idle")
-	attackhitbox1Node.visible = true
-	attackhitboxAnim.stop()
-	attackhitboxAnim.play("stun")
 	start_timer_for(STUN_TIME)
 	
 # ---CHASE PLAYER---
@@ -196,6 +184,5 @@ func state(value:int):
 
 func back_to_default_state():
 	state(State.CHASE)
-	attackhitbox1Node.visible = false
-	attackhitboxAnim.stop()
 	animation.play("idle")
+	attackZone.disable()

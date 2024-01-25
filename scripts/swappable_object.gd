@@ -7,8 +7,11 @@ extends Node3D
 @onready var rock : MeshInstance3D = $rock
 @onready var magic : GPUParticles3D = $MagicParticles
 @onready var magic_timer : Timer = $MagicTimer
+@onready var anim = $AnimationPlayer
 
+enum State {DESTROYABLE,HARD}
 
+var state: int = State.DESTROYABLE
 
 func _ready():
 	# connect signal to swap position sended by player
@@ -72,13 +75,19 @@ func swap_position(player_position, object_position):
 	# change position
 	self.set_position(player_position)
 	player.set_position(object_position)
-  
 	FMODRuntime.play_one_shot_path("event:/SFX/Swap/Swap")
-
+	state  = State.HARD
+	anim.play("just_swapped")
+	
 # Cooldown timer timeout stop the particules
 func _on_magic_timer_timeout():
 	magic.emitting = false
 	
 func hurt():
-	print("HURT")
-	queue_free()
+	if State.DESTROYABLE == state:
+		print("Rock Destroy")
+		queue_free()
+	
+func back_so_default():
+	print("Back to default")
+	state = State.DESTROYABLE	
