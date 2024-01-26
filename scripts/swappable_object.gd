@@ -76,7 +76,7 @@ func swap_position(player_position, object_position):
 	self.set_position(player_position)
 	player.set_position(object_position)
 	FMODRuntime.play_one_shot_path("event:/SFX/Swap/Swap")
-	state  = State.HARD
+	state = State.HARD
 	var newMaterial = StandardMaterial3D.new()
 	newMaterial.albedo_color = hard_color
 	rock.material_override = newMaterial
