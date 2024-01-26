@@ -25,15 +25,12 @@ proximity_fade_distance = 0.25
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.249284, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8tow"]
-albedo_color = Color(0.278431, 0.568627, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmx42"]
+albedo_color = Color(0.627451, 0.694118, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_xni8r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fup3e"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmx42"]
-albedo_color = Color(0.627451, 0.694118, 0, 1)
 
 [sub_resource type="Animation" id="Animation_ajcq8"]
 resource_name = "attack"
@@ -83,6 +80,9 @@ tracks/0/keys = {
 "values": []
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8tow"]
+albedo_color = Color(0.278431, 0.568627, 0, 1)
+
 [sub_resource type="Animation" id="Animation_k11fa"]
 resource_name = "stun"
 length = 0.4
@@ -117,14 +117,20 @@ shape = SubResource("CapsuleShape3D_gdq8c")
 
 [node name="Character" parent="." instance=ExtResource("2_sqo0v")]
 
+[node name="leg-left" parent="Character/character2/root" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.872931, 0.487844, 0, -0.487844, 0.872931, 0.125, 0.239, 0.077)
+
+[node name="leg-right" parent="Character/character2/root" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.837576, -0.546321, 0, 0.546321, 0.837576, -0.125, 0.229, -0.193)
+
 [node name="torso" parent="Character/character2/root" index="2"]
 transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, -1.80478e-15, 0.17625, -0.02375)
 
 [node name="arm-left" parent="Character/character2/root/torso" index="0"]
-transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.3, 0.2, 0)
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0.3, 0.2, 0)
 
 [node name="arm-right" parent="Character/character2/root/torso" index="1"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.3, 0.1445, 0)
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.3, 0.1445, 0)
 
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
@@ -151,7 +157,7 @@ transform = Transform3D(1.42907, 0, 0, 0, 0.211577, 0, 0, 0, 1.23744, 0, 0.27396
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AttackHitbox"]
-material_override = SubResource("StandardMaterial3D_b8tow")
+material_override = SubResource("StandardMaterial3D_hmx42")
 mesh = SubResource("SphereMesh_xni8r")
 surface_material_override/0 = ExtResource("5_kr85j")
 
