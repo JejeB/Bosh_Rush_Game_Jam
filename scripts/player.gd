@@ -28,7 +28,7 @@ var HURT_DECELERATION = HURT_FORCE * 0.01 * RESISTANCE
 
 
 enum Swap_State {MOVEMENT, SWAP, COOLDOWN,HURT}
-enum State {STANDARD,HURT}
+enum State {STANDARD, HURT, ATTACK}
 
 
 var movement_velocity: Vector3
@@ -72,11 +72,11 @@ func _physics_process(delta):
 		handle_action(delta)
 		handle_controls(delta)
 		handle_effects()
-	elif  state ==State.HURT:
+	elif state == State.HURT:
 		push_back(delta)
+		
 	handle_gravity(delta)
 		
-	
 	handle_movement(delta)
 		
 
@@ -89,7 +89,7 @@ func handle_action(_delta):
 	if Input.is_action_just_pressed("swap_button"):
 			prepare_swap()
 	if Input.is_action_just_pressed("right_click"):
-		start_melee_attack()
+		start_melee_attack(_delta)
 
 
 #---SWAP---
@@ -140,14 +140,21 @@ func _on_hurt_timer_timeout():
 	state = State.STANDARD
 	
 #---MELEE ATTACK---
-func start_melee_attack():
+func start_melee_attack(delta):
+	state = State.ATTACK
 	print("[PLAY] PLayer melee attack")
 	animation_weapon.play("knife", 0.5)
+	movement_velocity = Vector3.ZERO
+	
+func stop_melee_attack():
+	state = State.STANDARD
+	animation_weapon.stop()
+
 # detect collision with the boss and sword is pressed
 func _on_area_3d_body_entered(body:Node3D):
 	if body.get_name() == "Boss":
 		body.hurted(-sword_damage)
-		
+
 #---UTIL---
 func handle_movement(delta):
 	var applied_velocity: Vector3

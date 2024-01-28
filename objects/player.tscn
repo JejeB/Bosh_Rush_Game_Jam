@@ -51,6 +51,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Character/character2/root/torso/sword/Area3D:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_nwyhw"]
 resource_name = "idle"
@@ -145,6 +157,32 @@ tracks/3/keys = {
 "method": &"play"
 }]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop_melee_attack"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Character/character2/root/torso/sword/Area3D:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dgagd"]
 _data = {
@@ -183,23 +221,30 @@ shape = SubResource("CapsuleShape3D_gdq8c")
 
 [node name="Character" parent="." instance=ExtResource("2_nero3")]
 
+[node name="leg-left" parent="Character/character2/root" index="0"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.125, 0.17625, -0.02375)
+
+[node name="leg-right" parent="Character/character2/root" index="1"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -0.125, 0.17625, -0.02375)
+
 [node name="torso" parent="Character/character2/root" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.999048, 0.0436194, 0, -0.0436194, 0.999048, -1.80478e-15, 0.17625, -0.02375)
+transform = Transform3D(1, 0, 0, 0, 0.996194, 0.0871557, 0, -0.0871557, 0.996194, -1.80478e-15, 0.17625, -0.02375)
 
 [node name="arm-left" parent="Character/character2/root/torso" index="0"]
-transform = Transform3D(0.793353, 0.608761, 0, -0.608761, 0.793353, 0, 0, 0, 1, 0.3, 0.2, 0)
+transform = Transform3D(0.707106, 0.707106, 0, -0.707106, 0.707106, 0, 0, 0, 1, 0.3, 0.2, 0)
 
 [node name="arm-right" parent="Character/character2/root/torso" index="1"]
-transform = Transform3D(0.793353, -0.608761, 0, 0.608761, 0.793353, 0, 0, 0, 1, -0.3, 0.1445, 0)
+transform = Transform3D(0.707106, -0.707106, 0, 0.707106, 0.707106, 0, 0, 0, 1, -0.3, 0.1445, 0)
 
 [node name="antenna" parent="Character/character2/root/torso" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.996194, 0.0871557, 0, -0.0871557, 0.996194, 0, 0.6, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0.6, 0)
 
 [node name="sword" type="MeshInstance3D" parent="Character/character2/root/torso" index="3"]
 transform = Transform3D(8, 0, 0, 0, 20.1202, -5.93404, 0, 22.2526, 5.36539, -0.494853, -0.0331964, 0.145849)
 mesh = ExtResource("3_wr2yh")
 
 [node name="Area3D" type="Area3D" parent="Character/character2/root/torso/sword"]
+monitoring = false
 
 [node name="SwordCollision" type="CollisionShape3D" parent="Character/character2/root/torso/sword/Area3D"]
 transform = Transform3D(0.02, -7.45058e-09, 9.8953e-10, 5.82077e-11, 0.0199998, -2.79397e-09, -1.10595e-09, 2.64496e-07, 0.02, -0.00135548, 0.0211697, 0.0048188)
