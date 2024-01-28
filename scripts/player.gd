@@ -106,7 +106,7 @@ func _on_swap_cooldown_timer_timeout():
 func handle_hp():
 	if hp <= 0:
 		game_state = false
-		emit_signal("player_dead", "Youu Loosee!")
+		emit_signal("player_dead", "YOU LOOSE")
 	
 func update_hp(value:int):
 	hp=hp+value

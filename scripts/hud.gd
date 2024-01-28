@@ -4,13 +4,13 @@ extends CanvasLayer
 
 @onready var boss_life_bar = $Boss/VBoxContainer/LifeBarHBox/BossLifeBar
 @onready var player_life_bar = $Player/LifeBarHBox/PlayerLifeBar
-@onready var blood_texture = $BloodTexture
-@onready var blood_timer = $BloodTime
+@onready var blood_texture: TextureRect = $VFX/BloodTexture
+@onready var blood_timer = $VFX/BloodTime
 @onready var swappable_info: TextureRect = $Player/LifeBarHBox/SwappableInfo
 
 func _on_player_hp_changed(ratio):
 	player_life_bar.set_value(ratio)
-	blood_texture.visible =true
+	blood_texture.visible = true
 	blood_timer.start()
 
 func _on_blood_time_timeout():
