@@ -8,23 +8,28 @@ enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP,STUN}
 
 
 @export_subgroup("Properties")
+## Speed deplacement of the boss
 @export var movement_speed = 250
+## Health point of the boss
 @export var max_hp: int = 1000
-@export var MELEE_RANGE: int = 5
 @export var target: Node
+
+@export_subgroup("Melee Attack")
+## Range of the melee attack
+@export var MELEE_RANGE: float = 2
 
 @export_subgroup("JumpAttack")
 ## The range that trigger the jump action if the player is over
 @export var JUMPING_RANGE: int = 10
-## The time before the jump in sec
+## The time before the jump when the boss is targeting the player in sec
 @export var AIMING_TIME:float = 1.5
-## The time after the target lock of the boss 
+## The time just before the jump when the jump direction is locked
 @export var PREPARE_JUMP_TIME:float = 0.5
-## Time elasped between 2 jump in sec
+## Time elasped between 2 jumps in sec
 @export var JUMP_COOLDOWN:float = 5
 
 @export_subgroup("STUNT")
-## Time of the stun
+## Time of the stun in sec
 @export var STUN_TIME:float = 2
 
 var movement_velocity: Vector3
@@ -66,7 +71,7 @@ func _physics_process(delta):
 
 func choose_action(delta):
 	if boss_state == State.CHASE:
-		var distance:int = target.global_position.distance_to(self.global_position)
+		var distance:float = target.global_position.distance_to(self.global_position)
 		if distance < MELEE_RANGE:
 			start_melee_attack()
 		elif distance > JUMPING_RANGE and jump_ready:
@@ -76,7 +81,7 @@ func choose_action(delta):
 	elif boss_state == State.AIMING_PLAYER:
 		look_at(target.position,Vector3.UP,true)
 	elif boss_state == State.JUMPING:
-		var distance:int = aiming.distance_to(self.global_position)
+		var distance:float = aiming.distance_to(self.global_position)
 		if distance < MELEE_RANGE:
 			back_to_default_state()
 		else:
@@ -212,6 +217,7 @@ func back_to_default_state():
 # --- ZONE Attack---
 func init_zone_attack():
 	zone_attack = zone_attack_scene.instantiate()
+	zone_attack.set_scale(Vector3(1,1,1)*MELEE_RANGE * 1/scale.x)
 	add_child(zone_attack)
 	
 func free_zone_attack():

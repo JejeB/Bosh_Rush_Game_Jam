@@ -9,14 +9,22 @@ signal player_dead
 @export var view: Node3D
 
 @export_subgroup("Properties")
+## Deplacement speed of the player
 @export var movement_speed = 250
+## Max Health points of the player
 @export var max_hp = 100
+## Damage done to the boss
 @export var sword_damage = 10
+## Range of the swap spell
 @export var spell_range : int = 10
 
-@export_subgroup("Hurt")
-@export var HURT_FORCE =3000
-
+##When the player get hurt he get bump
+@export_subgroup("Hurt") 
+## Power of the force that eject the player
+@export var HURT_FORCE:int =6000
+## Resistance of the player to the push force
+@export var RESISTANCE:int = 20
+var HURT_DECELERATION = HURT_FORCE * 0.01 * RESISTANCE
 
 
 enum Swap_State {MOVEMENT, SWAP, COOLDOWN,HURT}
@@ -43,7 +51,7 @@ var hp: int
 var game_state: bool = true
 var hurt_direction:Vector3 = Vector3.ZERO
 var hurt_force
-var HURT_DECELERATION = HURT_FORCE * 0.1
+
 
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
@@ -116,7 +124,6 @@ func update_hp(value:int):
 func hurt(impact_position):
 	print("[PLAY] Player hurt")
 	hurt_direction = (position - impact_position).normalized()
-	hurt_direction = hurt_direction.rotated(Vector3.UP,-1.5708)
 	state = State.HURT
 	hurt_force = HURT_FORCE
 	hurt_timer.start()
