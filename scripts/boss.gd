@@ -123,7 +123,7 @@ func chase_player():
 func handle_hp():
 	if hp <= 0:
 		game_state = false
-		emit_signal("boss_dead", "You WIN!")
+		emit_signal("boss_dead", "YOU WIN")
 
 func update_hp(value:int):
 	hp=hp+value
