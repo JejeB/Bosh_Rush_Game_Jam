@@ -93,10 +93,11 @@ func _on_magic_timer_timeout():
 	
 func hurt(_position):
 	if State.DESTROYABLE == state:
-		print("Rock Destroy")
+		print("[PLAY] Rock Destroy")
 		queue_free()
 	
 func back_so_default():
+	print("[PLAY] Rock stop being hard")
 	state = State.DESTROYABLE
 	magic.emitting = false
 	current_material = STANDAR_MATERIAl

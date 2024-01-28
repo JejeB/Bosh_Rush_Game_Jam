@@ -114,9 +114,9 @@ func update_hp(value:int):
 
 #--- HURT---
 func hurt(impact_position):
+	print("[PLAY] Player hurt")
 	hurt_direction = (position - impact_position).normalized()
 	hurt_direction = hurt_direction.rotated(Vector3.UP,-1.5708)
-	print(hurt_direction)
 	state = State.HURT
 	hurt_force = HURT_FORCE
 	hurt_timer.start()
@@ -131,8 +131,10 @@ func push_back(delta):
 
 func _on_hurt_timer_timeout():
 	state = State.STANDARD
+	
 #---MELEE ATTACK---
 func start_melee_attack():
+	print("[PLAY] PLayer melee attack")
 	animation_weapon.play("knife", 0.5)
 # detect collision with the boss and sword is pressed
 func _on_area_3d_body_entered(body:Node3D):
@@ -178,6 +180,3 @@ func handle_gravity(delta):
 	gravity += 25 * delta
 	if gravity > 0 and is_on_floor():
 		gravity = 0
-
-
-

@@ -42,6 +42,7 @@ var game_state: bool = true
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
 @onready var blood = $Blood
+@onready var jump_path = $JumpPath
 
 @onready var attacktime = $AttackTime
 @onready var timer = $Timer
@@ -86,15 +87,18 @@ func choose_action(delta):
 
 # ---JUMP---
 func start_jump_attack():
+	print("[PLAY] prepare jump attack")
 	movement_velocity = Vector3.ZERO
 	animation.play("idle")
 	state(State.AIMING_PLAYER)
 	start_timer_for(AIMING_TIME)
 	start_attack_timer_for(JUMP_COOLDOWN)
 	jump_ready = false
+	jump_path.visible = true
 	init_zone_attack()
 	
 func jump_on_player():
+	jump_path.visible = false
 	animation.play("walk", 3)
 	particles_trail.emitting = true
 	movement_velocity = position.direction_to(aiming) * movement_speed * 50
@@ -105,6 +109,7 @@ func jump_on_player():
 
 # ---MELEE ATTACK---
 func start_melee_attack():
+	print("[PLAY] Boss melee attack")
 	animation.play(("idle"))
 	state(State.MELLE_ATTACK)
 	start_timer_for(1)
@@ -115,6 +120,7 @@ func start_melee_attack():
 
 # ---STUN---
 func start_stun():
+	print("[PLAY] Stun boss")
 	movement_velocity = Vector3.ZERO
 	state(State.STUN)
 	animation.play("idle")
@@ -135,6 +141,7 @@ func handle_hp():
 		emit_signal("boss_dead", "YOU WIN")
 
 func hurted(damage:int):
+	print("[PLAY] Boss hurt")
 	update_hp(damage)
 	blood.emitting = true
 	
@@ -145,6 +152,7 @@ func update_hp(value:int):
 
 # -- TIMERS---
 func _on_timer_timeout():
+	timer.stop()
 	if boss_state == State.AIMING_PLAYER:
 		aiming = target.position
 		state(State.PREPARE_JUMP)
@@ -196,12 +204,12 @@ func state(value:int):
 	state_changed.emit(State.keys()[value])
 
 func back_to_default_state():
+	print("[PLAY] Boss walking")
 	state(State.CHASE)
 	animation.play("idle")
 	free_zone_attack()
-	
-# --- ZONE Attack---
 
+# --- ZONE Attack---
 func init_zone_attack():
 	zone_attack = zone_attack_scene.instantiate()
 	add_child(zone_attack)

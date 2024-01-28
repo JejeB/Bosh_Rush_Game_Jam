@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://440rqsqg6bur"]
+[gd_scene load_steps=22 format=3 uid="uid://440rqsqg6bur"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_fbayf"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_sqo0v"]
@@ -6,6 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_fgork"]
 [ext_resource type="Material" uid="uid://cjxpohja4fnf0" path="res://meshes/white.tres" id="5_kr85j"]
 [ext_resource type="Material" uid="uid://cqvccxqvantrc" path="res://meshes/blue.tres" id="6_a64pn"]
+[ext_resource type="Material" uid="uid://ep37frxjh6ob" path="res://meshes/zone_attack.tres" id="7_r5jpn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
@@ -113,6 +114,8 @@ albedo_color = Color(0.784314, 0.188235, 0.172549, 1)
 material = SubResource("StandardMaterial3D_p43up")
 left_to_right = 1.2
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_iayhs"]
+
 [node name="Boss" type="CharacterBody3D" groups=["boss"]]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, 0)
 script = ExtResource("1_fbayf")
@@ -146,7 +149,6 @@ modulate = Color(1, 1, 1, 0.705882)
 normal_fade = 0.5
 
 [node name="ParticlesTrail" type="CPUParticles3D" parent="."]
-visible = false
 material_override = SubResource("StandardMaterial3D_q7stj")
 cast_shadow = 0
 amount = 60
@@ -204,6 +206,12 @@ spread = 27.0
 initial_velocity_min = 3.0
 initial_velocity_max = 10.0
 hue_variation_min = -0.15
+
+[node name="JumpPath" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.365737, 0, 0, 0, -1.19028e-07, -0.179361, 0, 2.72304, -7.84013e-09, 0, 0, 2.74313)
+visible = false
+mesh = SubResource("CylinderMesh_iayhs")
+surface_material_override/0 = ExtResource("7_r5jpn")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AttackTime" to="." method="_on_attack_time_timeout"]
