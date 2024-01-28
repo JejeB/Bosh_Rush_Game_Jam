@@ -198,6 +198,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameHud/Boss"]
 layout_mode = 1
@@ -279,15 +280,27 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("17_5mmak")
 
-[node name="BloodTexture" type="TextureRect" parent="GameHud"]
-visible = false
-offset_right = 3840.0
-offset_bottom = 2160.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("20_uwp2t")
+[node name="VFX" type="Control" parent="GameHud"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 
-[node name="BloodTime" type="Timer" parent="GameHud"]
+[node name="BloodTexture" type="TextureRect" parent="GameHud/VFX"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_uwp2t")
+expand_mode = 1
+
+[node name="BloodTime" type="Timer" parent="GameHud/VFX"]
 wait_time = 0.5
 
 [node name="ReplayHud" type="Control" parent="."]
@@ -386,5 +399,5 @@ uppercase = true
 [connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
 [connection signal="hp_changed" from="Boss" to="GameHud" method="_on_boss_hp_changed"]
 [connection signal="state_changed" from="Boss" to="DebugHud" method="_on_boss_state_changed"]
-[connection signal="timeout" from="GameHud/BloodTime" to="GameHud" method="_on_blood_time_timeout"]
+[connection signal="timeout" from="GameHud/VFX/BloodTime" to="GameHud" method="_on_blood_time_timeout"]
 [connection signal="button_down" from="ReplayHud/VBoxContainer/TextureButton" to="ReplayHud" method="_on_texture_button_button_down"]
