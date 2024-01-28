@@ -1,18 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=16 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ffboj"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_nero3"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_0c7wt"]
 [ext_resource type="ArrayMesh" uid="uid://dl51dxrhonkrb" path="res://models/knife_sharp.obj" id="3_wr2yh"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_mvhqy"]
-[ext_resource type="EventAsset" uid="uid://b8jcx0j1gsg5w" path="res://addons/FMOD/editor/resources/events/{71da30dc-15fb-40a0-aad8-69440659c44e}.tres" id="4_mw5se"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
 height = 1.0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p1wcw"]
-height = 3.03193
+[sub_resource type="BoxShape3D" id="BoxShape3D_uat0u"]
+size = Vector3(1, 4.75729, 1)
 
 [sub_resource type="Animation" id="Animation_cmffe"]
 length = 0.001
@@ -94,6 +93,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_sfj7p"]
 resource_name = "knife"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -101,7 +101,7 @@ tracks/0/path = NodePath("Character/character2/root/torso/sword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0.835681, 0, 0), Vector3(0.701776, 3.01672, 3.04889), Vector3(0.859859, 0.146279, 0.0993328)]
@@ -113,7 +113,7 @@ tracks/1/path = NodePath("Character/character2/root/torso/sword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.494853, 0.56615, 0.610553), Vector3(-0.476749, -0.525848, 0.515015), Vector3(-0.476749, 0.487129, 0.603639)]
@@ -125,7 +125,7 @@ tracks/2/path = NodePath("Character/character2/root/torso/sword/Area3D/SwordColl
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -183,13 +183,16 @@ shape = SubResource("CapsuleShape3D_gdq8c")
 [node name="Character" parent="." instance=ExtResource("2_nero3")]
 
 [node name="torso" parent="Character/character2/root" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, -1.80478e-15, 0.17625, -0.02375)
+transform = Transform3D(1, 0, 0, 0, 0.999528, 0.030713, 0, -0.030713, 0.999528, -1.80478e-15, 0.17625, -0.02375)
 
 [node name="arm-left" parent="Character/character2/root/torso" index="0"]
-transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.3, 0.2, 0)
+transform = Transform3D(0.816339, 0.577573, 0, -0.577573, 0.816339, 0, 0, 0, 1, 0.3, 0.2, 0)
 
 [node name="arm-right" parent="Character/character2/root/torso" index="1"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.3, 0.1445, 0)
+transform = Transform3D(0.816339, -0.577573, 0, 0.577573, 0.816339, 0, 0, 0, 1, -0.3, 0.1445, 0)
+
+[node name="antenna" parent="Character/character2/root/torso" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.993611, 0.112856, 0, -0.112856, 0.993611, 0, 0.6, 0)
 
 [node name="sword" type="MeshInstance3D" parent="Character/character2/root/torso" index="3"]
 transform = Transform3D(8, 0, 0, 0, 20.1202, -5.93404, 0, 22.2526, 5.36539, -0.494853, -0.0331964, 0.145849)
@@ -198,8 +201,8 @@ mesh = ExtResource("3_wr2yh")
 [node name="Area3D" type="Area3D" parent="Character/character2/root/torso/sword"]
 
 [node name="SwordCollision" type="CollisionShape3D" parent="Character/character2/root/torso/sword/Area3D"]
-transform = Transform3D(0.0187851, 0.00411071, 0.00549744, -0.00349728, 0.0195139, -0.0026411, -0.00590668, 0.00151936, 0.0190474, -0.00135545, 0.00306958, 0.00481863)
-shape = SubResource("CapsuleShape3D_p1wcw")
+transform = Transform3D(0.02, -7.45058e-09, 9.8953e-10, 5.82077e-11, 0.0199998, -2.79397e-09, -1.10595e-09, 2.64496e-07, 0.02, -0.00135548, 0.0211697, 0.0048188)
+shape = SubResource("BoxShape3D_uat0u")
 
 [node name="AnimationWeapon" type="AnimationPlayer" parent="Character"]
 root_node = NodePath("../..")
@@ -208,7 +211,6 @@ libraries = {
 }
 
 [node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="Character/AnimationWeapon"]
-event = ExtResource("4_mw5se")
 
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)

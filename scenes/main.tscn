@@ -42,7 +42,7 @@ environment = ExtResource("1_ahusb")
 transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 0, 0.5, 1)
 view = NodePath("../View")
 movement_speed = 300
-sword_damage = 100
+sword_damage = 50
 
 [node name="Marker" type="MeshInstance3D" parent="." groups=["decor"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.893314, 0.583551, 0)

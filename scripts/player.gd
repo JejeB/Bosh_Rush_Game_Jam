@@ -98,11 +98,6 @@ func handle_effects():
 		else:
 			animation.play("idle", 0.5)
 			FMODRuntime.play_one_shot_path("event:/SFX/Hero/HeroFootstepsStop")
-	
-	if sword_state:
-		animation_weapon.play("knife", 0.5)
-	if !sword_state:
-		animation_weapon.play("idle", 0.5)
 
 # old function to Handle movement input with keyboard
 func handle_controls(delta):
@@ -147,6 +142,7 @@ func handle_action(delta):
 			# Begin The Cooldown the spell for the player
 			swap_state_mode = Swap_State.COOLDOWN
 			swap_cooldown_timer.start()
+			
 			# emit signal for the hud
 			emit_signal("spell_changed", "Cooldown")
 	
@@ -157,10 +153,7 @@ func handle_action(delta):
 	
 	# melee sword activation
 	if Input.is_action_just_pressed("right_click"):
-		sword_state = true
-	
-	if Input.is_action_just_released("right_click"):
-		sword_state = false
+		animation_weapon.play("knife", 0.5)
 		
 	# Reinit the movement mode when cooldown 
 	#if Input.is_action_just_pressed("click_gauche") and swap_state_mode != Swap_State.COOLDOWN:
@@ -183,11 +176,9 @@ func update_hp(value:int):
 
 func hurt():
 	update_hp(-10)
-	
 
 # detect collision with the boss and sword is pressed
-func _on_area_3d_body_entered(body):
-
+func _on_area_3d_body_entered(body:Node3D):
+	
 	if body.get_name() == "Boss":
-		print("collision")
 		body.update_hp(-sword_damage)
