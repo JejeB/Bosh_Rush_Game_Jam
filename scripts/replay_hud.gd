@@ -30,5 +30,5 @@ func toggle_hud(hud_boolean) -> void:
 func reset_scene() -> void:
 	get_tree().reload_current_scene()
 
-func _on_replay_button_button_down():
+func _on_texture_button_button_down():
 	reset_scene()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=33 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
@@ -6,10 +6,24 @@
 [ext_resource type="Texture2D" uid="uid://cx8lcorkfu7ti" path="res://sprites/texture_01.png" id="5_o7dvy"]
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
 [ext_resource type="PackedScene" uid="uid://coebog4yvxamu" path="res://objects/swappable_object.tscn" id="9_enp3u"]
+[ext_resource type="FontFile" uid="uid://b7gqejqvj2ptm" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="9_vthv5"]
+[ext_resource type="Texture2D" uid="uid://7wdyy316vf5g" path="res://ui_assets/boss_health_bar/health_bar_under(2).png" id="10_2yj5e"]
 [ext_resource type="Script" path="res://scripts/replay_hud.gd" id="10_m5xe4"]
-[ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://fonts/lilita_one_regular.ttf" id="10_p5k18"]
+[ext_resource type="Texture2D" uid="uid://ccdhdn3557e2r" path="res://ui_assets/boss_health_bar/left_decoration_health_bar_over.png" id="10_sibkq"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="10_wxsm4"]
+[ext_resource type="Texture2D" uid="uid://dcrvllxsvv1io" path="res://ui_assets/boss_health_bar/health_bar_over_no_decoration.png" id="11_alvg0"]
+[ext_resource type="Texture2D" uid="uid://t0pqhg0j0kb8" path="res://ui_assets/boss_health_bar/health_bar_progress(2).png" id="12_pui74"]
+[ext_resource type="Texture2D" uid="uid://chcm6v3epjtak" path="res://ui_assets/replay_button/replay_button_normal(1).png" id="12_rjwxu"]
+[ext_resource type="Texture2D" uid="uid://bhwl6utnm7m5" path="res://ui_assets/replay_button/button_replay_pressed(1).png" id="13_1itfd"]
 [ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://objects/cloud.tscn" id="13_drtpy"]
+[ext_resource type="Texture2D" uid="uid://wxni61c8cmfw" path="res://ui_assets/replay_button/button_replay_hover(1).png" id="14_flgyp"]
+[ext_resource type="Texture2D" uid="uid://qh4g6ct8m1e2" path="res://ui_assets/boss_health_bar/right_decoration_health_bar_over.png" id="14_rydei"]
+[ext_resource type="Texture2D" uid="uid://csauso006uwxx" path="res://ui_assets/player_health_bar/swappable_cooldown_final.png" id="15_lidip"]
+[ext_resource type="Texture2D" uid="uid://dcnmcelpx2dsv" path="res://ui_assets/player_health_bar/health_bar_player_under.png" id="16_swi37"]
+[ext_resource type="Texture2D" uid="uid://dkgblggplbi80" path="res://ui_assets/player_health_bar/health_bar_player_normal_progress.png" id="16_u8slq"]
+[ext_resource type="Texture2D" uid="uid://dq4v5tfdu7r7t" path="res://ui_assets/player_health_bar/health_bar_player_normal.png" id="16_uq0nh"]
+[ext_resource type="Texture2D" uid="uid://bvopwffpulo3h" path="res://ui_assets/player_health_bar/health_bar_player_decoration.png" id="17_5mmak"]
+[ext_resource type="Script" path="res://scripts/debug_hud.gd" id="25_pkcod"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3rtad"]
 radius = 0.1
@@ -24,14 +38,22 @@ uv1_scale = Vector3(50, 50, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvofp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yrr27"]
-font = ExtResource("10_p5k18")
-font_size = 30
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
+font = ExtResource("9_vthv5")
+font_size = 39
+font_color = Color(0.623529, 0.894118, 0.768627, 1)
+outline_size = 2
+outline_color = Color(0, 0.439216, 0.756863, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_u3yxo"]
-font = ExtResource("10_p5k18")
-font_size = 20
+[sub_resource type="LabelSettings" id="LabelSettings_bhott"]
+font_size = 80
+outline_size = 4
+outline_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_16yup"]
+font_names = PackedStringArray("URW Gothic")
+
+[sub_resource type="Theme" id="Theme_io7gs"]
+default_font = SubResource("SystemFont_16yup")
 
 [node name="Main" type="Node3D"]
 
@@ -166,8 +188,9 @@ player = NodePath("../../Player")
 
 [node name="GameHud" type="CanvasLayer" parent="."]
 script = ExtResource("10_wxsm4")
+cooldown_color = Color(0.258824, 0.537255, 0.933333, 0.968627)
 
-[node name="BossLife" type="Control" parent="GameHud"]
+[node name="Boss" type="Control" parent="GameHud"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,24 +198,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameHud/BossLife"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHud/Boss"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
+alignment = 1
 
-[node name="BossNameLabel" type="Label" parent="GameHud/BossLife/VBoxContainer"]
+[node name="BossNameLabel" type="Label" parent="GameHud/Boss/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Amagemnon Lord of Desolation"
+theme_override_fonts/font = ExtResource("9_vthv5")
+text = "TEZCATLIPOCA"
 label_settings = SubResource("LabelSettings_yrr27")
+uppercase = true
 
-[node name="LifeBar" type="ProgressBar" parent="GameHud/BossLife/VBoxContainer"]
-custom_minimum_size = Vector2(0, 15)
+[node name="LifeBarHBox" type="HBoxContainer" parent="GameHud/Boss/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="LeftDecoration" type="TextureRect" parent="GameHud/Boss/VBoxContainer/LifeBarHBox"]
+layout_mode = 2
+texture = ExtResource("10_sibkq")
+
+[node name="BossLifeBar" type="TextureProgressBar" parent="GameHud/Boss/VBoxContainer/LifeBarHBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+step = 0.01
 value = 100.0
-show_percentage = false
+texture_under = ExtResource("10_2yj5e")
+texture_over = ExtResource("11_alvg0")
+texture_progress = ExtResource("12_pui74")
+
+[node name="RightDecoration" type="TextureRect" parent="GameHud/Boss/VBoxContainer/LifeBarHBox"]
+layout_mode = 2
+texture = ExtResource("14_rydei")
 
 [node name="Player" type="Control" parent="GameHud"]
 layout_mode = 3
@@ -203,62 +245,38 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameHud/Player"]
+[node name="LifeBarHBox" type="HBoxContainer" parent="GameHud/Player"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_left = 3.0
+offset_top = -100.0
+offset_right = 303.0
+offset_bottom = -2.0
 grow_vertical = 0
-alignment = 1
+theme_override_constants/separation = 0
 
-[node name="LifeBarLabel" type="Label" parent="GameHud/Player/HBoxContainer"]
-layout_mode = 2
-text = " P"
-label_settings = SubResource("LabelSettings_yrr27")
-
-[node name="LifeBar" type="ProgressBar" parent="GameHud/Player/HBoxContainer"]
-custom_minimum_size = Vector2(200, 15)
+[node name="SwappableInfo" type="TextureRect" parent="GameHud/Player/LifeBarHBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+texture = ExtResource("15_lidip")
+
+[node name="PlayerLifeBar" type="TextureProgressBar" parent="GameHud/Player/LifeBarHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+step = 0.01
 value = 100.0
-show_percentage = false
+texture_under = ExtResource("16_swi37")
+texture_over = ExtResource("16_uq0nh")
+texture_progress = ExtResource("16_u8slq")
 
-[node name="SwapLabel" type="Label" parent="GameHud/Player"]
-modulate = Color(1, 1, 0.0941176, 1)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -52.5
-offset_top = -27.0
-offset_right = 52.5
-grow_horizontal = 2
-grow_vertical = 0
-text = "Swap Ready"
-label_settings = SubResource("LabelSettings_u3yxo")
-
-[node name="Label" type="Label" parent="GameHud"]
-anchors_preset = -1
-anchor_bottom = 0.069
-offset_left = 16.0
-offset_top = 164.0
-offset_right = 125.0
-offset_bottom = 156.32
-text = "BOSS STATE : "
-
-[node name="BossState" type="Label" parent="GameHud"]
-anchors_preset = -1
-anchor_bottom = 0.069
-offset_left = 125.0
-offset_top = 165.0
-offset_right = 186.0
-offset_bottom = 141.32
-text = "CHASE"
+[node name="RightDecoration" type="TextureRect" parent="GameHud/Player/LifeBarHBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_5mmak")
 
 [node name="ReplayHud" type="Control" parent="."]
 visible = false
@@ -286,22 +304,74 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ReplayLabel" type="Label" parent="ReplayHud/VBoxContainer"]
-modulate = Color(1, 1, 0, 1)
+modulate = Color(0.704553, 0.69936, 0, 1)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("10_p5k18")
+theme_override_fonts/font = ExtResource("9_vthv5")
 theme_override_font_sizes/font_size = 80
 text = "GAME OVER"
+label_settings = SubResource("LabelSettings_bhott")
 
-[node name="ReplayButton" type="Button" parent="ReplayHud/VBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="ReplayHud/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("10_p5k18")
-theme_override_font_sizes/font_size = 30
-text = "Replay"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("12_rjwxu")
+texture_pressed = ExtResource("13_1itfd")
+texture_hover = ExtResource("14_flgyp")
+stretch_mode = 0
+
+[node name="DebugHud" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 3.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_io7gs")
+script = ExtResource("25_pkcod")
+
+[node name="ListOfDebug" type="VBoxContainer" parent="DebugHud"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="BossStateDebug" type="HBoxContainer" parent="DebugHud/ListOfDebug"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugHud/ListOfDebug/BossStateDebug"]
+layout_mode = 2
+text = "BOSS STATE : "
+
+[node name="BossState" type="Label" parent="DebugHud/ListOfDebug/BossStateDebug"]
+layout_mode = 2
+text = "CHASE"
+
+[node name="SwapStateDebug" type="HBoxContainer" parent="DebugHud/ListOfDebug"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugHud/ListOfDebug/SwapStateDebug"]
+layout_mode = 2
+text = "PlayerSpell : "
+
+[node name="SwapLabel" type="Label" parent="DebugHud/ListOfDebug/SwapStateDebug"]
+modulate = Color(1, 1, 0.0941176, 1)
+layout_mode = 2
+text = "Swap Ready"
+uppercase = true
 
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]
 [connection signal="spell_changed" from="Player" to="GameHud" method="_on_player_spell_changed"]
+[connection signal="spell_changed" from="Player" to="DebugHud" method="_on_player_spell_changed"]
 [connection signal="swap_positon" from="Player" to="View" method="_on_player_swap_positon"]
 [connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
 [connection signal="hp_changed" from="Boss" to="GameHud" method="_on_boss_hp_changed"]
-[connection signal="state_changed" from="Boss" to="GameHud" method="_on_boss_state_changed"]
-[connection signal="button_down" from="ReplayHud/VBoxContainer/ReplayButton" to="ReplayHud" method="_on_replay_button_button_down"]
+[connection signal="state_changed" from="Boss" to="DebugHud" method="_on_boss_state_changed"]
+[connection signal="button_down" from="ReplayHud/VBoxContainer/TextureButton" to="ReplayHud" method="_on_texture_button_button_down"]
