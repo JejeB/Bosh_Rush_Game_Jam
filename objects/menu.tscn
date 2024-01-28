@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dp1hn135pmenu"]
 
-[ext_resource type="Texture2D" uid="uid://cp1nwyt8ygc72" path="res://ui_assets/menu/background.png" id="1_lw2u1"]
+[ext_resource type="Texture2D" uid="uid://bfond3wxly12i" path="res://ui_assets/menu/background.png" id="1_lw2u1"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_lymtx"]
-[ext_resource type="FontFile" uid="uid://b7gqejqvj2ptm" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="2_r7hrc"]
-[ext_resource type="Texture2D" uid="uid://b627smhw57edr" path="res://ui_assets/menu/play_button.png" id="3_3k8c6"]
-[ext_resource type="Texture2D" uid="uid://bpctmpkaap510" path="res://ui_assets/menu/play_button_hover.png" id="4_mhx05"]
+[ext_resource type="FontFile" uid="uid://clh3ck04e0cbq" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="2_r7hrc"]
+[ext_resource type="Texture2D" uid="uid://bshodew3hkhl6" path="res://ui_assets/menu/play_button.png" id="3_3k8c6"]
+[ext_resource type="Texture2D" uid="uid://c8fk2t17lxbli" path="res://ui_assets/menu/play_button_hover.png" id="4_mhx05"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fu884"]
 font = ExtResource("2_r7hrc")
@@ -71,5 +71,17 @@ layout_mode = 2
 texture_normal = ExtResource("3_3k8c6")
 texture_pressed = ExtResource("4_mhx05")
 texture_hover = ExtResource("4_mhx05")
+
+[node name="Credits" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Prog" type="Label" parent="Credits"]
+layout_mode = 2
 
 [connection signal="button_down" from="VBoxContainer/CenterContainer/StartGame" to="." method="_on_start_game_button_down"]
