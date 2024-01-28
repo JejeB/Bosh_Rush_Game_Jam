@@ -54,9 +54,10 @@ turbulence_noise_speed_random = 0.1
 size = Vector3(1, 0.5, 1)
 
 [node name="SwappableObject" type="StaticBody3D" groups=["swapable"]]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_3glop")
 hard_color = Color(0.027451, 0.482353, 0.541176, 1)
-POST_SWAP_TIME = 10
+POST_SWAP_TIME = 2
 
 [node name="rock" type="MeshInstance3D" parent="." groups=["swappable"]]
 mesh = ExtResource("1_a47j7")

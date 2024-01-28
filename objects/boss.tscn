@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://440rqsqg6bur"]
+[gd_scene load_steps=18 format=3 uid="uid://440rqsqg6bur"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_fbayf"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_sqo0v"]
@@ -6,7 +6,6 @@
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_fgork"]
 [ext_resource type="Material" uid="uid://cjxpohja4fnf0" path="res://meshes/white.tres" id="5_kr85j"]
 [ext_resource type="Material" uid="uid://cqvccxqvantrc" path="res://meshes/blue.tres" id="6_a64pn"]
-[ext_resource type="PackedScene" uid="uid://dkhvvkycfd3i5" path="res://zone_attack.tscn" id="7_p3n8r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
@@ -179,9 +178,6 @@ libraries = {
 wait_time = 1.5
 
 [node name="AttackTime" type="Timer" parent="."]
-
-[node name="Zone Attack" parent="." instance=ExtResource("7_p3n8r")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AttackTime" to="." method="_on_attack_time_timeout"]

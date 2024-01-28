@@ -63,19 +63,12 @@ current = true
 fov = 50.0
 
 [node name="StudioListener3D" type="StudioListener3D" parent="View/Camera"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
 
 [node name="CameraFreezeTimer" type="Timer" parent="View/Camera"]
 one_shot = true
 
 [node name="World" type="Node3D" parent="."]
+visible = false
 
 [node name="cube8" parent="World" instance=ExtResource("13_drtpy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5495, 12.5517, -2.666)
@@ -120,52 +113,55 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, -4.70524)
 movement_speed = 3
 MELEE_RANGE = 2
 target = NodePath("../Player")
-JUMPING_RANGE = 5
+JUMPING_RANGE = 7
+AIMING_TIME = 0.5
+JUMP_COOLDOWN = 7.0
+STUN_TIME = 3.0
 
 [node name="SwapObject" type="Node3D" parent="."]
 
 [node name="swappable_object2" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4389, 0.498065, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 10.4389, 0.498065, 0)
 player = NodePath("../../Player")
 
 [node name="swappable_object" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509874, 10.0378)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.509874, 10.0378)
 player = NodePath("../../Player")
 
 [node name="swappable_object3" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520863, -19.7149)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.520863, -19.7149)
 player = NodePath("../../Player")
 
 [node name="swappable_object4" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0021, 0.520863, -19.7149)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -13.0021, 0.520863, -19.7149)
 player = NodePath("../../Player")
 
 [node name="swappable_object5" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520863, 2.03134)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.520863, 2.03134)
 player = NodePath("../../Player")
 
 [node name="swappable_object6" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6833, 0.520863, -19.7149)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 14.6833, 0.520863, -19.7149)
 player = NodePath("../../Player")
 
 [node name="swappable_object7" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66515, 0.520863, -5.02327)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -6.66515, 0.520863, -5.02327)
 player = NodePath("../../Player")
 
 [node name="swappable_object8" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.71531, 0.520863, -14.9947)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.71531, 0.520863, -14.9947)
 player = NodePath("../../Player")
 
 [node name="swappable_object9" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6289, 0.520863, -10.4402)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 15.6289, 0.520863, -10.4402)
 player = NodePath("../../Player")
 
 [node name="swappable_object10" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.32472, 0.520863, 6.60032)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 5.32472, 0.520863, 6.60032)
 player = NodePath("../../Player")
 
 [node name="swappable_object11" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.70286, 0.520863, 5.72477)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -6.70286, 0.520863, 5.72477)
 player = NodePath("../../Player")
 
 [node name="GameHud" type="CanvasLayer" parent="."]

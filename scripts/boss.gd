@@ -41,11 +41,13 @@ var game_state: bool = true
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
-@onready var attackZone = $"Zone Attack"
 
 @onready var attacktime = $AttackTime
 @onready var timer = $Timer
 @onready var boss_state: int = State.CHASE
+
+var zone_attack_scene = preload("res://zone_attack.tscn")
+var zone_attack
 
 # Functions
 func _ready():
@@ -84,12 +86,12 @@ func choose_action(delta):
 # ---JUMP---
 func start_jump_attack():
 	movement_velocity = Vector3.ZERO
-	animation.play("static")
+	animation.play("idle")
 	state(State.AIMING_PLAYER)
 	start_timer_for(AIMING_TIME)
 	start_attack_timer_for(JUMP_COOLDOWN)
 	jump_ready = false
-	attackZone.enable()
+	init_zone_attack()
 	
 func jump_on_player():
 	animation.play("walk", 3)
@@ -102,6 +104,11 @@ func jump_on_player():
 
 # ---MELEE ATTACK---
 func start_melee_attack():
+	animation.play(("idle"))
+	state(State.MELLE_ATTACK)
+	start_timer_for(1)
+	movement_velocity = Vector3.ZERO
+	init_zone_attack()
 	pass
 
 
@@ -111,6 +118,7 @@ func start_stun():
 	state(State.STUN)
 	animation.play("idle")
 	start_timer_for(STUN_TIME)
+	free_zone_attack()
 	
 # ---CHASE PLAYER---
 func chase_player():
@@ -138,7 +146,7 @@ func _on_timer_timeout():
 		start_timer_for(PREPARE_JUMP_TIME)
 	elif boss_state == State.PREPARE_JUMP:
 		state(State.JUMPING)
-	elif boss_state == State.STUN:
+	else :
 		back_to_default_state()
 
 func start_timer_for(value:float):
@@ -185,4 +193,14 @@ func state(value:int):
 func back_to_default_state():
 	state(State.CHASE)
 	animation.play("idle")
-	attackZone.disable()
+	free_zone_attack()
+	
+# --- ZONE Attack---
+
+func init_zone_attack():
+	zone_attack = zone_attack_scene.instantiate()
+	add_child(zone_attack)
+	
+func free_zone_attack():
+	if zone_attack!=null:
+		zone_attack.queue_free()
