@@ -41,6 +41,7 @@ var game_state: bool = true
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
+@onready var blood = $Blood
 
 @onready var attacktime = $AttackTime
 @onready var timer = $Timer
@@ -133,6 +134,10 @@ func handle_hp():
 		game_state = false
 		emit_signal("boss_dead", "YOU WIN")
 
+func hurted(damage:int):
+	update_hp(damage)
+	blood.emitting = true
+	
 func update_hp(value:int):
 	hp=hp+value
 	hp_changed.emit((float(hp)/float(max_hp))*100)

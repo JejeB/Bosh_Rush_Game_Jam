@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://440rqsqg6bur"]
+[gd_scene load_steps=20 format=3 uid="uid://440rqsqg6bur"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_fbayf"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_sqo0v"]
@@ -106,6 +106,13 @@ _data = {
 "stun": SubResource("Animation_k11fa")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p43up"]
+albedo_color = Color(0.784314, 0.188235, 0.172549, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_8c2ue"]
+material = SubResource("StandardMaterial3D_p43up")
+left_to_right = 1.2
+
 [node name="Boss" type="CharacterBody3D" groups=["boss"]]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, 0)
 script = ExtResource("1_fbayf")
@@ -139,6 +146,7 @@ modulate = Color(1, 1, 1, 0.705882)
 normal_fade = 0.5
 
 [node name="ParticlesTrail" type="CPUParticles3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_q7stj")
 cast_shadow = 0
 amount = 60
@@ -184,6 +192,18 @@ libraries = {
 wait_time = 1.5
 
 [node name="AttackTime" type="Timer" parent="."]
+
+[node name="Blood" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.980278, 0.197623, 0, -0.197623, 0.980278, 0, 0.389741, 0)
+emitting = false
+lifetime = 0.2
+one_shot = true
+mesh = SubResource("PrismMesh_8c2ue")
+direction = Vector3(1, 1, 1)
+spread = 27.0
+initial_velocity_min = 3.0
+initial_velocity_max = 10.0
+hue_variation_min = -0.15
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AttackTime" to="." method="_on_attack_time_timeout"]

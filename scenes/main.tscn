@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=34 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
@@ -6,23 +6,24 @@
 [ext_resource type="Texture2D" uid="uid://cx8lcorkfu7ti" path="res://sprites/texture_01.png" id="5_o7dvy"]
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
 [ext_resource type="PackedScene" uid="uid://coebog4yvxamu" path="res://objects/swappable_object.tscn" id="9_enp3u"]
-[ext_resource type="FontFile" uid="uid://b7gqejqvj2ptm" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="9_vthv5"]
-[ext_resource type="Texture2D" uid="uid://7wdyy316vf5g" path="res://ui_assets/boss_health_bar/health_bar_under(2).png" id="10_2yj5e"]
+[ext_resource type="FontFile" uid="uid://clh3ck04e0cbq" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="9_vthv5"]
+[ext_resource type="Texture2D" uid="uid://s2wj1v86o6i" path="res://ui_assets/boss_health_bar/health_bar_under(2).png" id="10_2yj5e"]
 [ext_resource type="Script" path="res://scripts/replay_hud.gd" id="10_m5xe4"]
-[ext_resource type="Texture2D" uid="uid://ccdhdn3557e2r" path="res://ui_assets/boss_health_bar/left_decoration_health_bar_over.png" id="10_sibkq"]
+[ext_resource type="Texture2D" uid="uid://bik2dq12xgs27" path="res://ui_assets/boss_health_bar/left_decoration_health_bar_over.png" id="10_sibkq"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="10_wxsm4"]
-[ext_resource type="Texture2D" uid="uid://dcrvllxsvv1io" path="res://ui_assets/boss_health_bar/health_bar_over_no_decoration.png" id="11_alvg0"]
-[ext_resource type="Texture2D" uid="uid://t0pqhg0j0kb8" path="res://ui_assets/boss_health_bar/health_bar_progress(2).png" id="12_pui74"]
-[ext_resource type="Texture2D" uid="uid://chcm6v3epjtak" path="res://ui_assets/replay_button/replay_button_normal(1).png" id="12_rjwxu"]
-[ext_resource type="Texture2D" uid="uid://bhwl6utnm7m5" path="res://ui_assets/replay_button/button_replay_pressed(1).png" id="13_1itfd"]
+[ext_resource type="Texture2D" uid="uid://clbfjegw7uytd" path="res://ui_assets/boss_health_bar/health_bar_over_no_decoration.png" id="11_alvg0"]
+[ext_resource type="Texture2D" uid="uid://omitc1l8y6cg" path="res://ui_assets/boss_health_bar/health_bar_progress(2).png" id="12_pui74"]
+[ext_resource type="Texture2D" uid="uid://bf24jaschky3j" path="res://ui_assets/replay_button/replay_button_normal(1).png" id="12_rjwxu"]
+[ext_resource type="Texture2D" uid="uid://dn8pjgrhai4p5" path="res://ui_assets/replay_button/button_replay_pressed(1).png" id="13_1itfd"]
 [ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://objects/cloud.tscn" id="13_drtpy"]
-[ext_resource type="Texture2D" uid="uid://wxni61c8cmfw" path="res://ui_assets/replay_button/button_replay_hover(1).png" id="14_flgyp"]
-[ext_resource type="Texture2D" uid="uid://qh4g6ct8m1e2" path="res://ui_assets/boss_health_bar/right_decoration_health_bar_over.png" id="14_rydei"]
-[ext_resource type="Texture2D" uid="uid://csauso006uwxx" path="res://ui_assets/player_health_bar/swappable_cooldown_final.png" id="15_lidip"]
-[ext_resource type="Texture2D" uid="uid://dcnmcelpx2dsv" path="res://ui_assets/player_health_bar/health_bar_player_under.png" id="16_swi37"]
-[ext_resource type="Texture2D" uid="uid://dkgblggplbi80" path="res://ui_assets/player_health_bar/health_bar_player_normal_progress.png" id="16_u8slq"]
-[ext_resource type="Texture2D" uid="uid://dq4v5tfdu7r7t" path="res://ui_assets/player_health_bar/health_bar_player_normal.png" id="16_uq0nh"]
-[ext_resource type="Texture2D" uid="uid://bvopwffpulo3h" path="res://ui_assets/player_health_bar/health_bar_player_decoration.png" id="17_5mmak"]
+[ext_resource type="Texture2D" uid="uid://cjxnqieglkyoh" path="res://ui_assets/replay_button/button_replay_hover(1).png" id="14_flgyp"]
+[ext_resource type="Texture2D" uid="uid://cgqrfvtnr2tfa" path="res://ui_assets/boss_health_bar/right_decoration_health_bar_over.png" id="14_rydei"]
+[ext_resource type="Texture2D" uid="uid://qhf3lm184gmp" path="res://ui_assets/player_health_bar/swappable_cooldown_final.png" id="15_lidip"]
+[ext_resource type="Texture2D" uid="uid://cnbasquae1c12" path="res://ui_assets/player_health_bar/health_bar_player_under.png" id="16_swi37"]
+[ext_resource type="Texture2D" uid="uid://n010nhgqhbwy" path="res://ui_assets/player_health_bar/health_bar_player_normal_progress.png" id="16_u8slq"]
+[ext_resource type="Texture2D" uid="uid://b6rp4esf0id2c" path="res://ui_assets/player_health_bar/health_bar_player_normal.png" id="16_uq0nh"]
+[ext_resource type="Texture2D" uid="uid://cj4f54vamwy4" path="res://ui_assets/player_health_bar/health_bar_player_decoration.png" id="17_5mmak"]
+[ext_resource type="Texture2D" uid="uid://dv3f0gbj5w5kw" path="res://sprites/hurted.png" id="20_uwp2t"]
 [ext_resource type="Script" path="res://scripts/debug_hud.gd" id="25_pkcod"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3rtad"]
@@ -278,6 +279,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("17_5mmak")
 
+[node name="BloodTexture" type="TextureRect" parent="GameHud"]
+visible = false
+offset_right = 3840.0
+offset_bottom = 2160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("20_uwp2t")
+
+[node name="BloodTime" type="Timer" parent="GameHud"]
+wait_time = 0.5
+
 [node name="ReplayHud" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -374,4 +386,5 @@ uppercase = true
 [connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
 [connection signal="hp_changed" from="Boss" to="GameHud" method="_on_boss_hp_changed"]
 [connection signal="state_changed" from="Boss" to="DebugHud" method="_on_boss_state_changed"]
+[connection signal="timeout" from="GameHud/BloodTime" to="GameHud" method="_on_blood_time_timeout"]
 [connection signal="button_down" from="ReplayHud/VBoxContainer/TextureButton" to="ReplayHud" method="_on_texture_button_button_down"]

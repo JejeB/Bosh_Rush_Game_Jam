@@ -91,7 +91,7 @@ func swap_position(player_position, object_position):
 func _on_magic_timer_timeout():
 	back_so_default()
 	
-func hurt():
+func hurt(_position):
 	if State.DESTROYABLE == state:
 		print("Rock Destroy")
 		queue_free()
