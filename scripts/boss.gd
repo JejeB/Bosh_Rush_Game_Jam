@@ -87,6 +87,7 @@ func choose_action(delta):
 		else:
 			jump_on_player()
 	elif boss_state == State.PREPARE_JUMP:
+		jump_path.visible = true
 		look_at(aiming,Vector3.UP,true)
 
 
@@ -99,7 +100,7 @@ func start_jump_attack():
 	start_timer_for(AIMING_TIME)
 	start_attack_timer_for(JUMP_COOLDOWN)
 	jump_ready = false
-	jump_path.visible = true
+	
 	init_zone_attack()
 	
 func jump_on_player():
