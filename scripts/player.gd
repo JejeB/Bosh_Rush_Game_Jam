@@ -39,6 +39,7 @@ var previously_floored = false
 
 var swap_state_mode = Swap_State.MOVEMENT
 var state = State.STANDARD
+var attack_sequence:int = 1
 var hover_on_swappable_object : bool = false
 var swappable_object_position : Vector3 = Vector3.ZERO
 
@@ -142,13 +143,36 @@ func _on_hurt_timer_timeout():
 #---MELEE ATTACK---
 func start_melee_attack(delta):
 	state = State.ATTACK
-	print("[PLAY] PLayer melee attack")
-	animation_weapon.play("knife", 0.5)
+	play_good_anim()
 	movement_velocity = Vector3.ZERO
-	
+
+func play_good_anim():
+	if attack_sequence == 1:
+		play_anim("knife")
+	elif attack_sequence == 2:
+		play_anim("knife_2")
+	elif attack_sequence == 3:
+		play_anim("knife_3")
+
+func play_anim(attack_name:String):
+	var anim_speed:float = 0.5
+	animation_weapon.clear_queue()
+	animation_weapon.stop()
+	animation_weapon.play(attack_name,anim_speed)
+	print("[PLAY] PLayer melee "+ attack_name)
+		
 func stop_melee_attack():
 	state = State.STANDARD
-	animation_weapon.stop()
+	attack_sequence=1
+	animation_weapon.play("RESET")
+	
+func attack_2_enable():
+	state = State.STANDARD
+	attack_sequence = 2
+	
+func attack_3_enable():
+	state = State.STANDARD
+	attack_sequence = 3
 
 # detect collision with the boss and sword is pressed
 func _on_area_3d_body_entered(body:Node3D):
