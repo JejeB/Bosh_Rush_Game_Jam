@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp1hn135pmenu"]
+[gd_scene load_steps=8 format=3 uid="uid://dp1hn135pmenu"]
 
-[ext_resource type="Texture2D" uid="uid://bfond3wxly12i" path="res://ui_assets/menu/background.png" id="1_lw2u1"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_lymtx"]
+[ext_resource type="Texture2D" uid="uid://dmj5mvleb5bvc" path="res://ui_assets/menu/background_mask.png" id="2_32xw7"]
 [ext_resource type="FontFile" uid="uid://clh3ck04e0cbq" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="2_r7hrc"]
 [ext_resource type="Texture2D" uid="uid://bshodew3hkhl6" path="res://ui_assets/menu/play_button.png" id="3_3k8c6"]
 [ext_resource type="Texture2D" uid="uid://c8fk2t17lxbli" path="res://ui_assets/menu/play_button_hover.png" id="4_mhx05"]
+[ext_resource type="Texture2D" uid="uid://30efs10rgtu2" path="res://ui_assets/menu/MaskWheel.png" id="6_gpll0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fu884"]
 font = ExtResource("2_r7hrc")
@@ -35,22 +36,27 @@ offset_right = 4.0
 offset_bottom = 435.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_lw2u1")
+texture = ExtResource("2_32xw7")
 expand_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="TitleContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-offset_right = 725.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -362.5
+offset_right = 362.5
 offset_bottom = 175.0
+grow_horizontal = 2
 
-[node name="Title" type="Label" parent="HBoxContainer"]
+[node name="Title" type="Label" parent="TitleContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "tergesa"
 label_settings = SubResource("LabelSettings_fu884")
 uppercase = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -61,27 +67,52 @@ offset_bottom = 130.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="StartGame" type="TextureButton" parent="VBoxContainer/CenterContainer"]
+[node name="StartGame" type="TextureButton" parent="ButtonContainer/CenterContainer"]
 layout_mode = 2
 texture_normal = ExtResource("3_3k8c6")
 texture_pressed = ExtResource("4_mhx05")
 texture_hover = ExtResource("4_mhx05")
 
-[node name="Credits" type="VBoxContainer" parent="."]
+[node name="SeparateMask" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
+anchor_bottom = 0.5
+offset_top = -256.0
+offset_bottom = 256.0
+grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Prog" type="Label" parent="Credits"]
+[node name="LeftPart" type="HBoxContainer" parent="SeparateMask"]
 layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
 
-[connection signal="button_down" from="VBoxContainer/CenterContainer/StartGame" to="." method="_on_start_game_button_down"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SeparateMask"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="SeparateMask/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 120
+
+[node name="CenterContainer" type="CenterContainer" parent="SeparateMask/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="MaskTexture" type="TextureRect" parent="SeparateMask/VBoxContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+texture = ExtResource("6_gpll0")
+
+[connection signal="button_down" from="ButtonContainer/CenterContainer/StartGame" to="." method="_on_start_game_button_down"]
