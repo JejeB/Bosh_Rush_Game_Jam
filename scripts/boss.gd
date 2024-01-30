@@ -27,6 +27,8 @@ enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP,STUN}
 @export var PREPARE_JUMP_TIME:float = 0.5
 ## Time elasped between 2 jumps in sec
 @export var JUMP_COOLDOWN:float = 5
+## The distance of the dash done
+@export var JUMPING_DISTANCE = 0.5
 
 @export_subgroup("STUNT")
 ## Time of the stun in sec
@@ -37,7 +39,7 @@ var rotation_direction: float
 var gravity = 0
 var jump_ready = true
 
-var aiming:Vector3
+var jump_start_point:Vector3
 var previously_floored = false
 
 var hp: int
@@ -81,14 +83,13 @@ func choose_action(delta):
 	elif boss_state == State.AIMING_PLAYER:
 		look_at(target.position,Vector3.UP,true)
 	elif boss_state == State.JUMPING:
-		var distance:float = aiming.distance_to(self.global_position)
-		if distance < MELEE_RANGE:
+		var distance:float = jump_start_point.distance_to(self.global_position)
+		jump_on_player()
+		if distance > JUMPING_DISTANCE:
 			back_to_default_state()
-		else:
-			jump_on_player()
+		
 	elif boss_state == State.PREPARE_JUMP:
 		jump_path.visible = true
-		look_at(aiming,Vector3.UP,true)
 
 
 # ---JUMP---
@@ -100,14 +101,13 @@ func start_jump_attack():
 	start_timer_for(AIMING_TIME)
 	start_attack_timer_for(JUMP_COOLDOWN)
 	jump_ready = false
-	
 	init_zone_attack()
 	
 func jump_on_player():
 	jump_path.visible = false
 	animation.play("walk", 3)
 	particles_trail.emitting = true
-	movement_velocity = position.direction_to(aiming) * movement_speed * 50
+	movement_velocity = get_global_transform().basis.z * movement_speed * 50
 	for i in get_slide_collision_count():
 		var collirder = get_slide_collision(i).get_collider()
 		if collirder and collirder.is_in_group("swapable"):
@@ -160,7 +160,7 @@ func update_hp(value:int):
 func _on_timer_timeout():
 	timer.stop()
 	if boss_state == State.AIMING_PLAYER:
-		aiming = target.position
+		jump_start_point = position
 		state(State.PREPARE_JUMP)
 		start_timer_for(PREPARE_JUMP_TIME)
 	elif boss_state == State.PREPARE_JUMP:

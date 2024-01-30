@@ -129,7 +129,7 @@ surface_material_override/0 = ExtResource("5_eq6da")
 shape = SubResource("BoxShape3D_kvofp")
 
 [node name="Boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clu5s")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, -15.0947)
+transform = Transform3D(-0.366278, 0, 4.98657, 0, 5, 0, -4.98657, 0, -0.366278, 0, 0.5, -15.0947)
 movement_speed = 3
 target = NodePath("../Player")
 MELEE_RANGE = 5.0
@@ -158,7 +158,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -13.0021, 0.520863, -19
 player = NodePath("../../Player")
 
 [node name="swappable_object5" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.520863, 2.03134)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 2.10865, -22.1971, 2.03134)
 player = NodePath("../../Player")
 
 [node name="swappable_object6" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
