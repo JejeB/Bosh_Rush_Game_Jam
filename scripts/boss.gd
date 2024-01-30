@@ -124,6 +124,7 @@ func start_melee_attack():
 func start_stun():
 	print("[PLAY] Stun boss")
 	movement_velocity = Vector3.ZERO
+	velocity = Vector3.ZERO
 	state(State.STUN)
 	animation.play("idle")
 	start_timer_for(STUN_TIME)
