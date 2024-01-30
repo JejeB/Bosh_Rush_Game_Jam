@@ -8,7 +8,7 @@ extends Node3D
 ## Time when the rock is unbreakable after swap is sec
 @export var POST_SWAP_TIME = 1
 
-@onready var rock : MeshInstance3D = $rock
+#@onready var rock : MeshInstance3D = $rock
 @onready var magic : GPUParticles3D = $MagicParticles
 @onready var magic_timer : Timer = $MagicTimer
 
@@ -28,7 +28,7 @@ func _ready():
 	HARD_MATERIAl = init_material(hard_color)
 	STANDAR_MATERIAl = init_material(standar_color)
 	current_material = STANDAR_MATERIAl
-	rock.material_override = current_material
+	#rock.material_override = current_material
 	
 func init_material(c:Color):
 	var m = StandardMaterial3D.new()
@@ -57,7 +57,7 @@ func _on_mouse_entered():
 	
 	# range between the player and the object is in range
 	if distance <= hover_range :
-		rock.material_override = HOVER_MATERIAL
+		#rock.material_override = HOVER_MATERIAL
 		FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
 		
 		# give the enter hover signal
@@ -66,7 +66,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	# remove the over
-	rock.material_override = current_material
+	#rock.material_override = current_material
 
 	# give the exit hover signal
 	player.hover_on_swappable_object = false
@@ -83,7 +83,7 @@ func swap_position(player_position, object_position):
 	FMODRuntime.play_one_shot_path("event:/SFX/Swap/Swap")
 	state  = State.HARD
 	current_material = HARD_MATERIAl
-	rock.material_override = current_material
+	#rock.material_override = current_material
 	magic.emitting = true
 	start_timer_for(POST_SWAP_TIME)
 	
@@ -101,7 +101,7 @@ func back_so_default():
 	state = State.DESTROYABLE
 	magic.emitting = false
 	current_material = STANDAR_MATERIAl
-	rock.material_override = current_material
+	#rock.material_override = current_material
 	
 func start_timer_for(value:float):
 	magic_timer.set_wait_time(value)

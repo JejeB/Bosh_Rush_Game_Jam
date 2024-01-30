@@ -1,9 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=33 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
 [ext_resource type="Script" path="res://scripts/view.gd" id="5_bg0fr"]
-[ext_resource type="Texture2D" uid="uid://cx8lcorkfu7ti" path="res://sprites/texture_01.png" id="5_o7dvy"]
+[ext_resource type="Material" uid="uid://4osrpxngjhts" path="res://scenes/grasstiletexture.tres" id="5_eq6da"]
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
 [ext_resource type="PackedScene" uid="uid://coebog4yvxamu" path="res://objects/swappable_object.tscn" id="9_enp3u"]
 [ext_resource type="FontFile" uid="uid://clh3ck04e0cbq" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="9_vthv5"]
@@ -31,10 +31,6 @@ radius = 0.1
 height = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_yohtx"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_882bd"]
-albedo_texture = ExtResource("5_o7dvy")
-uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvofp"]
 
@@ -124,7 +120,7 @@ transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_yohtx")
-surface_material_override/0 = SubResource("StandardMaterial3D_882bd")
+surface_material_override/0 = ExtResource("5_eq6da")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground/MeshInstance3D" groups=["decor"]]
 
