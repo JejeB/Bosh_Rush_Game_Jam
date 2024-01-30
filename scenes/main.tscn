@@ -40,13 +40,13 @@ uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yrr27"]
 font = ExtResource("9_vthv5")
-font_size = 39
+font_size = 50
 font_color = Color(0.623529, 0.894118, 0.768627, 1)
 outline_size = 2
 outline_color = Color(0, 0.439216, 0.756863, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bhott"]
-font_size = 80
+font_size = 150
 outline_size = 4
 outline_color = Color(1, 0, 0, 1)
 
@@ -212,6 +212,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("9_vthv5")
+theme_override_font_sizes/font_size = 100
 text = "TEZCATLIPOCA"
 label_settings = SubResource("LabelSettings_yrr27")
 uppercase = true
@@ -311,6 +312,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("10_m5xe4")
 
@@ -339,7 +342,9 @@ label_settings = SubResource("LabelSettings_bhott")
 [node name="TextureButton" type="TextureButton" parent="ReplayHud/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 10.0
+mouse_filter = 1
 texture_normal = ExtResource("12_rjwxu")
 texture_pressed = ExtResource("13_1itfd")
 texture_hover = ExtResource("14_flgyp")
@@ -374,10 +379,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="DebugHud/ListOfDebug/BossStateDebug"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "BOSS STATE : "
 
 [node name="BossState" type="Label" parent="DebugHud/ListOfDebug/BossStateDebug"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "CHASE"
 
 [node name="SwapStateDebug" type="HBoxContainer" parent="DebugHud/ListOfDebug"]
@@ -385,11 +392,13 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="DebugHud/ListOfDebug/SwapStateDebug"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "PlayerSpell : "
 
 [node name="SwapLabel" type="Label" parent="DebugHud/ListOfDebug/SwapStateDebug"]
 modulate = Color(1, 1, 0.0941176, 1)
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Swap Ready"
 uppercase = true
 
