@@ -93,3 +93,9 @@ func back_so_default():
 func start_timer_for(value:float):
 	magic_timer.set_wait_time(value)
 	magic_timer.start()
+
+
+func _on_stun_collision_body_entered(body):
+	print(body)
+	if state == State.HARD and body.has_method("start_stun"):
+		body.start_stun()

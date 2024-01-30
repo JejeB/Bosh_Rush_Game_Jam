@@ -108,10 +108,6 @@ func jump_on_player():
 	animation.play("walk", 3)
 	particles_trail.emitting = true
 	movement_velocity = get_global_transform().basis.z * movement_speed * 50
-	for i in get_slide_collision_count():
-		var collirder = get_slide_collision(i).get_collider()
-		if collirder and collirder.is_in_group("swapable"):
-			start_stun()
 
 # ---MELEE ATTACK---
 func start_melee_attack():
