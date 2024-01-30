@@ -2,21 +2,19 @@ extends Node3D
 
 @export var player: CharacterBody3D
 @export var hover_range: int = 10
-@export var hover_color: Color = Color(0.92, 0.69, 0.13, 1.0)
-@export var hard_color: Color = Color(0.92, 0.69, 0.13, 1.0)
-@export var standar_color: Color = Color(1., 1., 1., 1.)
+@export var HOVER_MATERIAL:Material
+@export var HARD_MATERIAl:Material
+@export var STANDAR_MATERIAl:Material
 ## Time when the rock is unbreakable after swap is sec
 @export var POST_SWAP_TIME = 1
 
-#@onready var rock : MeshInstance3D = $rock
+@onready var rock : MeshInstance3D = $rock/Cube_002
 @onready var magic : GPUParticles3D = $MagicParticles
 @onready var magic_timer : Timer = $MagicTimer
 
 enum State {DESTROYABLE,HARD}
 var state: int = State.DESTROYABLE
-var HOVER_MATERIAL
-var HARD_MATERIAl
-var STANDAR_MATERIAl
+
 var current_material
 
 func _ready():
@@ -24,16 +22,8 @@ func _ready():
 	player.connect("swap_positon", handle_signal_for_position_swap)
 	# give the range decided for the hover to the spell indicator
 	player.spell_range = hover_range
-	HOVER_MATERIAL = init_material(hover_color)
-	HARD_MATERIAl = init_material(hard_color)
-	STANDAR_MATERIAl = init_material(standar_color)
 	current_material = STANDAR_MATERIAl
-	#rock.material_override = current_material
-	
-func init_material(c:Color):
-	var m = StandardMaterial3D.new()
-	m.albedo_color = c
-	return m
+	rock.set_surface_override_material(1,current_material)
 
 # for the mouse moving
 func input_event(_camera, event, _position, _normal, _shape_idx):
@@ -57,7 +47,7 @@ func _on_mouse_entered():
 	
 	# range between the player and the object is in range
 	if distance <= hover_range :
-		#rock.material_override = HOVER_MATERIAL
+		rock.set_surface_override_material(1,HOVER_MATERIAL)
 		FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
 		
 		# give the enter hover signal
@@ -65,10 +55,7 @@ func _on_mouse_entered():
 		player.swappable_object_position = self.get_position()
 
 func _on_mouse_exited():
-	# remove the over
-	#rock.material_override = current_material
-
-	# give the exit hover signal
+	rock.set_surface_override_material(1,current_material)
 	player.hover_on_swappable_object = false
 
 func handle_signal_for_position_swap():
@@ -83,7 +70,7 @@ func swap_position(player_position, object_position):
 	FMODRuntime.play_one_shot_path("event:/SFX/Swap/Swap")
 	state  = State.HARD
 	current_material = HARD_MATERIAl
-	#rock.material_override = current_material
+	rock.set_surface_override_material(1,current_material)
 	magic.emitting = true
 	start_timer_for(POST_SWAP_TIME)
 	
@@ -101,7 +88,7 @@ func back_so_default():
 	state = State.DESTROYABLE
 	magic.emitting = false
 	current_material = STANDAR_MATERIAl
-	#rock.material_override = current_material
+	rock.set_surface_override_material(1,current_material)
 	
 func start_timer_for(value:float):
 	magic_timer.set_wait_time(value)
