@@ -60,8 +60,9 @@ environment = ExtResource("1_ahusb")
 [node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("2_onms2")]
 transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 0, 0.5, 1)
 view = NodePath("../View")
-movement_speed = 300
+movement_speed = 400
 sword_damage = 50
+HURT_FORCE = 8000
 
 [node name="Marker" type="MeshInstance3D" parent="." groups=["decor"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.893314, 0.583551, 0)
@@ -82,6 +83,14 @@ current = true
 fov = 50.0
 
 [node name="StudioListener3D" type="StudioListener3D" parent="View/Camera"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
+script = null
 
 [node name="CameraFreezeTimer" type="Timer" parent="View/Camera"]
 one_shot = true
@@ -128,13 +137,14 @@ surface_material_override/0 = ExtResource("5_eq6da")
 shape = SubResource("BoxShape3D_kvofp")
 
 [node name="Boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clu5s")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, -4.70524)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.5, -15.0947)
 movement_speed = 3
 target = NodePath("../Player")
-MELEE_RANGE = 3.0
-JUMPING_RANGE = 7
-AIMING_TIME = 0.5
-PREPARE_JUMP_TIME = 0.4
+MELEE_RANGE = 5.0
+JUMPING_RANGE = 5
+AIMING_TIME = 0.25
+PREPARE_JUMP_TIME = 2.0
+JUMP_COOLDOWN = 7.0
 STUN_TIME = 3.0
 
 [node name="SwapObject" type="Node3D" parent="."]
