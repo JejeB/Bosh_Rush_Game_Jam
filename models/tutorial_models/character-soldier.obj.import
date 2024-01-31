@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://btontkbml7dte"
+path="res://.godot/imported/character-soldier.obj-90f785af3ac466af1318902346febb1d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/character-soldier.obj-90f785af3ac466af1318902346febb1d.mesh"]
+
+source_file="res://models/tutorial_models/character-soldier.obj"
+dest_files=["res://.godot/imported/character-soldier.obj-90f785af3ac466af1318902346febb1d.mesh", "res://.godot/imported/character-soldier.obj-90f785af3ac466af1318902346febb1d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

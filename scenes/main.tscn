@@ -46,11 +46,11 @@ font_size = 150
 outline_size = 4
 outline_color = Color(1, 0, 0, 1)
 
-[sub_resource type="SystemFont" id="SystemFont_16yup"]
+[sub_resource type="SystemFont" id="SystemFont_3jvc7"]
 font_names = PackedStringArray("URW Gothic")
 
 [sub_resource type="Theme" id="Theme_io7gs"]
-default_font = SubResource("SystemFont_16yup")
+default_font = SubResource("SystemFont_3jvc7")
 
 [node name="Main" type="Node3D"]
 

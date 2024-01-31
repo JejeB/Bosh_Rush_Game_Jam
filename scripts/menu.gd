@@ -1,6 +1,7 @@
 extends Control
 
 @onready var main_scene = "res://scenes/main.tscn"
+@onready var tuto_scene = "res://scenes/tutorial.tscn"
 @onready var mask_sprite: Sprite2D = $GridContainer/CenterContainer/MaskSprite
 @onready var animation_player: AnimationPlayer = $GridContainer/CenterContainer/AnimationPlayer
 @onready var mask_timer: Timer = $GridContainer/CenterContainer/MaskClickedTimer
@@ -27,3 +28,7 @@ func _on_start_game_button_down():
 # Animation is finished
 func _on_mask_clicked_timer_timeout():
 	animation_player.stop()
+
+
+func _on_tuto_button_button_down():
+	get_tree().change_scene_to_file(tuto_scene)

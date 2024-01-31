@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cayipby84161t"
+path="res://.godot/imported/bricks.obj-55e0156f9455b5e9159b8099aa90c3d8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bricks.obj-55e0156f9455b5e9159b8099aa90c3d8.mesh"]
+
+source_file="res://models/tutorial_models/bricks.obj"
+dest_files=["res://.godot/imported/bricks.obj-55e0156f9455b5e9159b8099aa90c3d8.mesh", "res://.godot/imported/bricks.obj-55e0156f9455b5e9159b8099aa90c3d8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

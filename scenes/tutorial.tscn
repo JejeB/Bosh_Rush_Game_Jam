@@ -1,0 +1,331 @@
+[gd_scene load_steps=29 format=3 uid="uid://5q1qlu23flg4"]
+
+[ext_resource type="PackedScene" uid="uid://c1dqbeag1cxkr" path="res://objects/first_platform.tscn" id="1_1aide"]
+[ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_fp412"]
+[ext_resource type="PackedScene" uid="uid://coebog4yvxamu" path="res://objects/swappable_object.tscn" id="2_6vjew"]
+[ext_resource type="Script" path="res://scripts/view.gd" id="3_p5273"]
+[ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="4_6x7pa"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="5_u2qwc"]
+[ext_resource type="FontFile" uid="uid://clh3ck04e0cbq" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="6_22t3j"]
+[ext_resource type="Texture2D" uid="uid://bik2dq12xgs27" path="res://ui_assets/boss_health_bar/left_decoration_health_bar_over.png" id="7_2xf23"]
+[ext_resource type="Texture2D" uid="uid://s2wj1v86o6i" path="res://ui_assets/boss_health_bar/health_bar_under(2).png" id="8_5rdob"]
+[ext_resource type="Texture2D" uid="uid://clbfjegw7uytd" path="res://ui_assets/boss_health_bar/health_bar_over_no_decoration.png" id="9_3g81v"]
+[ext_resource type="Texture2D" uid="uid://omitc1l8y6cg" path="res://ui_assets/boss_health_bar/health_bar_progress(2).png" id="10_ihl08"]
+[ext_resource type="Texture2D" uid="uid://cgqrfvtnr2tfa" path="res://ui_assets/boss_health_bar/right_decoration_health_bar_over.png" id="11_2hv35"]
+[ext_resource type="Texture2D" uid="uid://qhf3lm184gmp" path="res://ui_assets/player_health_bar/swappable_cooldown_final.png" id="12_pfcpx"]
+[ext_resource type="Texture2D" uid="uid://cnbasquae1c12" path="res://ui_assets/player_health_bar/health_bar_player_under.png" id="13_sr0mw"]
+[ext_resource type="Texture2D" uid="uid://b6rp4esf0id2c" path="res://ui_assets/player_health_bar/health_bar_player_normal.png" id="14_jo6fq"]
+[ext_resource type="Texture2D" uid="uid://n010nhgqhbwy" path="res://ui_assets/player_health_bar/health_bar_player_normal_progress.png" id="15_on1a5"]
+[ext_resource type="Texture2D" uid="uid://cj4f54vamwy4" path="res://ui_assets/player_health_bar/health_bar_player_decoration.png" id="16_l6lt0"]
+[ext_resource type="Texture2D" uid="uid://dv3f0gbj5w5kw" path="res://sprites/hurted.png" id="17_5d4qk"]
+[ext_resource type="Texture2D" uid="uid://ifbj2d6a3g4f" path="res://ui_assets/tutorial_hud/dialog.png" id="19_kk3lj"]
+[ext_resource type="ArrayMesh" uid="uid://btontkbml7dte" path="res://models/tutorial_models/character-soldier.obj" id="20_3l0ou"]
+[ext_resource type="FontFile" uid="uid://b5n1oj6xbu3wm" path="res://fonts/Aztec.ttf" id="20_3ynoi"]
+[ext_resource type="Script" path="res://scripts/TpNode.gd" id="20_bmdfs"]
+[ext_resource type="Script" path="res://scripts/debug_hud.gd" id="22_x5qcq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mfwe5"]
+font = ExtResource("6_22t3j")
+font_size = 50
+font_color = Color(0.623529, 0.894118, 0.768627, 1)
+outline_size = 2
+outline_color = Color(0, 0.439216, 0.756863, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_16yup"]
+font_names = PackedStringArray("URW Gothic")
+
+[sub_resource type="Theme" id="Theme_24jtq"]
+default_font = SubResource("SystemFont_16yup")
+
+[sub_resource type="LabelSettings" id="LabelSettings_8nvc2"]
+font = ExtResource("20_3ynoi")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vgiq7"]
+
+[node name="Tutorial" type="Node3D"]
+
+[node name="FirstPlatform" parent="." instance=ExtResource("1_1aide")]
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_fp412")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.422618, -0.694272, 0.582563, 0, 0.642788, 0.766044, -0.906308, 0.323744, -0.271654, 0, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.75
+
+[node name="View" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.707107, 0, 0.707106, 0, 1, 0, -0.707107, 0, 0.707106, 0, 0, 0)
+script = ExtResource("3_p5273")
+target = NodePath("../Player")
+distance = 11
+height = 14
+freeze_time = 0.3
+
+[node name="Camera" type="Camera3D" parent="View"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93346, 4.04577)
+current = true
+fov = 50.0
+
+[node name="StudioListener3D" type="StudioListener3D" parent="View/Camera"]
+
+[node name="CameraFreezeTimer" type="Timer" parent="View/Camera"]
+one_shot = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("4_6x7pa")]
+transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 0, 0.5, 1)
+view = NodePath("../View")
+movement_speed = 400
+sword_damage = 50
+HURT_FORCE = 8000
+
+[node name="GameHud" type="CanvasLayer" parent="."]
+script = ExtResource("5_u2qwc")
+cooldown_color = Color(0.258824, 0.537255, 0.933333, 0.968627)
+
+[node name="Boss" type="Control" parent="GameHud"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHud/Boss"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+alignment = 1
+
+[node name="BossNameLabel" type="Label" parent="GameHud/Boss/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("6_22t3j")
+theme_override_font_sizes/font_size = 100
+text = "TEZCATLIPOCA"
+label_settings = SubResource("LabelSettings_mfwe5")
+uppercase = true
+
+[node name="LifeBarHBox" type="HBoxContainer" parent="GameHud/Boss/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="LeftDecoration" type="TextureRect" parent="GameHud/Boss/VBoxContainer/LifeBarHBox"]
+layout_mode = 2
+texture = ExtResource("7_2xf23")
+
+[node name="BossLifeBar" type="TextureProgressBar" parent="GameHud/Boss/VBoxContainer/LifeBarHBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+step = 0.01
+value = 100.0
+texture_under = ExtResource("8_5rdob")
+texture_over = ExtResource("9_3g81v")
+texture_progress = ExtResource("10_ihl08")
+
+[node name="RightDecoration" type="TextureRect" parent="GameHud/Boss/VBoxContainer/LifeBarHBox"]
+layout_mode = 2
+texture = ExtResource("11_2hv35")
+
+[node name="Player" type="Control" parent="GameHud"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="LifeBarHBox" type="HBoxContainer" parent="GameHud/Player"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -100.0
+offset_right = 303.0
+offset_bottom = -2.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="SwappableInfo" type="TextureRect" parent="GameHud/Player/LifeBarHBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("12_pfcpx")
+
+[node name="PlayerLifeBar" type="TextureProgressBar" parent="GameHud/Player/LifeBarHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+step = 0.01
+value = 100.0
+texture_under = ExtResource("13_sr0mw")
+texture_over = ExtResource("14_jo6fq")
+texture_progress = ExtResource("15_on1a5")
+
+[node name="RightDecoration" type="TextureRect" parent="GameHud/Player/LifeBarHBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("16_l6lt0")
+
+[node name="VFX" type="Control" parent="GameHud"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="BloodTexture" type="TextureRect" parent="GameHud/VFX"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_5d4qk")
+expand_mode = 1
+
+[node name="BloodTime" type="Timer" parent="GameHud/VFX"]
+wait_time = 0.5
+
+[node name="DebugHud" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 3.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme = SubResource("Theme_24jtq")
+script = ExtResource("22_x5qcq")
+
+[node name="ListOfDebug" type="VBoxContainer" parent="DebugHud"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="BossStateDebug" type="HBoxContainer" parent="DebugHud/ListOfDebug"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugHud/ListOfDebug/BossStateDebug"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "BOSS STATE : "
+
+[node name="BossState" type="Label" parent="DebugHud/ListOfDebug/BossStateDebug"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "CHASE"
+
+[node name="SwapStateDebug" type="HBoxContainer" parent="DebugHud/ListOfDebug"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugHud/ListOfDebug/SwapStateDebug"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "PlayerSpell : "
+
+[node name="SwapLabel" type="Label" parent="DebugHud/ListOfDebug/SwapStateDebug"]
+modulate = Color(1, 1, 0.0941176, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Swap Ready"
+uppercase = true
+
+[node name="DialogHud" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="DialogHud"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="DialogHud/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("19_kk3lj")
+
+[node name="DialogLabel" type="Label" parent="DialogHud/CenterContainer"]
+layout_mode = 2
+text = "ZIZIZ"
+label_settings = SubResource("LabelSettings_8nvc2")
+horizontal_alignment = 1
+
+[node name="SwapObject" type="Node3D" parent="."]
+
+[node name="swappable_object5" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.09884, 0.565887, 3.75877)
+player = NodePath("../../Player")
+
+[node name="swappable_object2" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2.83211, 1.3191, -6.46889)
+player = NodePath("../../Player")
+
+[node name="swappable_object3" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.387863, 1.3191, -18.5719)
+player = NodePath("../../Player")
+
+[node name="swappable_object4" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4.37485, 1.3191, -10.9171)
+player = NodePath("../../Player")
+
+[node name="swappable_object6" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 6.99275, 1.3191, -26.3482)
+player = NodePath("../../Player")
+
+[node name="swappable_object7" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.2065, 0.607553, -35.0912)
+player = NodePath("../../Player")
+
+[node name="swappable_object8" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4.56317, 0.607553, -39.7213)
+player = NodePath("../../Player")
+
+[node name="TpNode" type="Node3D" parent="."]
+script = ExtResource("20_bmdfs")
+
+[node name="Character-soldier" type="MeshInstance3D" parent="TpNode"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.432464, 0.5, -43.1457)
+mesh = ExtResource("20_3l0ou")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="TpNode/Character-soldier"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TpNode/Character-soldier/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62993, 0)
+shape = SubResource("BoxShape3D_vgiq7")
+
+[connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
+[connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]
+[connection signal="spell_changed" from="Player" to="GameHud" method="_on_player_spell_changed"]
+[connection signal="spell_changed" from="Player" to="DebugHud" method="_on_player_spell_changed"]
+[connection signal="swap_positon" from="Player" to="View" method="_on_player_swap_positon"]
+[connection signal="timeout" from="GameHud/VFX/BloodTime" to="GameHud" method="_on_blood_time_timeout"]
+[connection signal="body_entered" from="TpNode/Character-soldier/Area3D" to="TpNode" method="_on_area_3d_body_entered"]

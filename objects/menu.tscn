@@ -146,4 +146,5 @@ wait_time = 0.6
 one_shot = true
 
 [connection signal="button_down" from="GridContainer/ButtonContainer/StartGame" to="." method="_on_start_game_button_down"]
+[connection signal="button_down" from="GridContainer/ButtonContainer/TutoButton" to="." method="_on_tuto_button_button_down"]
 [connection signal="timeout" from="GridContainer/CenterContainer/MaskClickedTimer" to="." method="_on_mask_clicked_timer_timeout"]
