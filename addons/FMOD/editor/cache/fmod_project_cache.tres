@@ -1,4 +1,4 @@
-[gd_resource type="ProjectCache" load_steps=19 format=3 uid="uid://hegkr861o77d"]
+[gd_resource type="ProjectCache" load_steps=22 format=3 uid="uid://hegkr861o77d"]
 
 [ext_resource type="BankAsset" uid="uid://bpnkmat20hvl2" path="res://addons/FMOD/editor/resources/banks/{d5552bb2-c55f-4580-b3c1-98923ee6800a}.tres" id="1_7drry"]
 [ext_resource type="BankAsset" uid="uid://df2yf2u11662g" path="res://addons/FMOD/editor/resources/banks/{4d480b66-b424-09c2-3588-126ccf158692}.tres" id="2_djv66"]
@@ -19,6 +19,30 @@
 [ext_resource type="EventAsset" uid="uid://4p07mvv6upxm" path="res://addons/FMOD/editor/resources/events/{30c85712-cfcd-4bca-a5eb-effb3906662e}.tres" id="13_maxj3"]
 [ext_resource type="EventAsset" uid="uid://3mv4mtn23y21" path="res://addons/FMOD/editor/resources/events/{9274ca95-8a0d-4eea-88a1-c96bf0eaeec7}.tres" id="17_trdyk"]
 
+[sub_resource type="EventAsset" id="EventAsset_n1uan"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Hero/Hero Grunt"
+guid = "{d79c65e6-48be-4341-89e0-81c69c8ae142}"
+name = "Hero Grunt"
+
+[sub_resource type="EventAsset" id="EventAsset_vu8xq"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Hero/PlayerDamage"
+guid = "{a50ecf5c-3785-4759-96a5-bc67ca90c53b}"
+name = "PlayerDamage"
+
+[sub_resource type="EventAsset" id="EventAsset_q6lxt"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Hero/SwordDamage"
+guid = "{f362bfe1-1d99-4089-8cc3-155ac6548266}"
+name = "SwordDamage"
+
 [resource]
 banks = {
 "{4d480b66-b424-09c2-3588-126ccf158692}": ExtResource("2_djv66"),
@@ -33,7 +57,10 @@ events = {
 "{9274ca95-8a0d-4eea-88a1-c96bf0eaeec7}": ExtResource("17_trdyk"),
 "{942ca59c-e2f4-4b49-9894-f0c698f1210d}": ExtResource("10_ch7xu"),
 "{a41875c2-dc02-493e-ad07-d48d1b63e474}": ExtResource("9_n4m7q"),
+"{a50ecf5c-3785-4759-96a5-bc67ca90c53b}": SubResource("EventAsset_vu8xq"),
 "{c36066ce-54c4-4a77-9bbc-5dc61e7fa633}": ExtResource("7_diacv"),
+"{d79c65e6-48be-4341-89e0-81c69c8ae142}": SubResource("EventAsset_n1uan"),
+"{f362bfe1-1d99-4089-8cc3-155ac6548266}": SubResource("EventAsset_q6lxt"),
 "{f887d8f5-c105-4503-86ca-871b7c9bf359}": ExtResource("5_oi55q")
 }
 busses = {
@@ -98,6 +125,12 @@ event_tree = [{
 }, {
 "children": [],
 "item_type": 1,
+"node_name": "Hero Grunt",
+"path": "event:/SFX/Hero/Hero Grunt",
+"resource": SubResource("EventAsset_n1uan")
+}, {
+"children": [],
+"item_type": 1,
 "node_name": "HeroFootsteps",
 "path": "event:/SFX/Hero/HeroFootsteps",
 "resource": ExtResource("6_ool0r")
@@ -110,9 +143,21 @@ event_tree = [{
 }, {
 "children": [],
 "item_type": 1,
+"node_name": "PlayerDamage",
+"path": "event:/SFX/Hero/PlayerDamage",
+"resource": SubResource("EventAsset_vu8xq")
+}, {
+"children": [],
+"item_type": 1,
 "node_name": "SwordAttack",
 "path": "event:/SFX/Hero/SwordAttack",
 "resource": ExtResource("12_pbkar")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "SwordDamage",
+"path": "event:/SFX/Hero/SwordDamage",
+"resource": SubResource("EventAsset_q6lxt")
 }],
 "item_type": 7,
 "node_name": "Hero",

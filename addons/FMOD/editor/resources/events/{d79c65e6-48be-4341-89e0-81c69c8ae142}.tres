@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://6e5yrsweju7r"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Hero/Hero Grunt"
+guid = "{d79c65e6-48be-4341-89e0-81c69c8ae142}"
+name = "Hero Grunt"

@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://unmp6u2e5251"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Hero/SwordDamage"
+guid = "{f362bfe1-1d99-4089-8cc3-155ac6548266}"
+name = "SwordDamage"

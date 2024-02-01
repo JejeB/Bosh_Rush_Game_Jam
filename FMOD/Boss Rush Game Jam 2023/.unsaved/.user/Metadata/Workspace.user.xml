@@ -10,8 +10,8 @@
 	</object>
 	<object class="ProjectSettings" id="{ec2ed540-55bf-4537-98e9-926e5f321603}">
 		<property name="openWindows">
-			<value>Audio Bin 1</value>
 			<value>Event Editor 1</value>
+			<value>Audio Bin 1</value>
 		</property>
 		<property name="windowLayout">
 			<value>AAAAAwAAAA4ATQBpAHgAZQByACAAMQAAAEIB2dDLAAMAAP//+IAAAADW/////wAABPT///sBAAAB9v///44AAATFAAAAAgIAAAAHgP//+IAAAADy/////wAABPQAAAAcAEUAdgBlAG4AdAAgAEUAZABpAHQAbwByACAAMQAAAEIB2dDLAAMAAP//+UQAAADW/////wAABPT///lEAAAA8v////8AAAT0AAAAAgAAAAAHgP//+UQAAADy/////wAABPQAAAAWAEEAdQBkAGkAbwAgAEIAaQBuACAAMQAAAEIB2dDLAAMAAAAAA7T///teAAAFQ////kkAAAO0///7egAABUP///5JAAAAAQAAAAAKAAAAA7T///t6AAAFQ////kk=</value>

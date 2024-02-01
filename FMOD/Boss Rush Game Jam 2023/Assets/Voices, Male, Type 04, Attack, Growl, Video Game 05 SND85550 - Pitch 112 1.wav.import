@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b12jnhoa485or"
+path="res://.godot/imported/Voices, Male, Type 04, Attack, Growl, Video Game 05 SND85550 - Pitch 112 1.wav-6ec60fc751dc2ca3e46b033c81ac2c1c.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/Voices, Male, Type 04, Attack, Growl, Video Game 05 SND85550 - Pitch 112 1.wav"
+dest_files=["res://.godot/imported/Voices, Male, Type 04, Attack, Growl, Video Game 05 SND85550 - Pitch 112 1.wav-6ec60fc751dc2ca3e46b033c81ac2c1c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

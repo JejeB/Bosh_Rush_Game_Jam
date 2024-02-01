@@ -140,6 +140,7 @@ func hurt(impact_position):
 		hurt_force = HURT_FORCE
 		hurt_timer.start()
 		update_hp(-10)
+		FMODRuntime.play_one_shot_path("event:/SFX/Hero/PlayerDamage")
 	
 func push_back(delta):
 	hurt_force -= HURT_DECELERATION
@@ -208,6 +209,7 @@ func attack_3_enable():
 func _on_area_3d_body_entered(body:Node3D):
 	if body.get_name() == "Boss":
 		body.hurted(-sword_damage)
+		FMODRuntime.play_one_shot_path("event:/SFX/Hero/SwordDamage")
 
 #---UTIL---
 func handle_movement(delta):
