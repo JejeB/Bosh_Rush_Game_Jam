@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{51ec0600-9b0c-4776-9f46-af0beffd9130}">
+		<property name="assetPath">
+			<value>User Interface, Alert, Notification, Negative, Error, Incorrect, Insufficient, Video Game 03 SND86850 1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.1099583333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4a5e4dcc-d504-4bec-9032-0bd161c570ee}</destination>
+		</relationship>
+	</object>
+</objects>

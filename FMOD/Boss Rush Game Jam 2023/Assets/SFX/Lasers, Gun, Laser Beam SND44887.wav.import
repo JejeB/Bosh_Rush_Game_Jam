@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bdh86m4s02oq3"
+path="res://.godot/imported/Lasers, Gun, Laser Beam SND44887.wav-0e4bd4e7755e4f38748a2a9931b284b0.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFX/Lasers, Gun, Laser Beam SND44887.wav"
+dest_files=["res://.godot/imported/Lasers, Gun, Laser Beam SND44887.wav-0e4bd4e7755e4f38748a2a9931b284b0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

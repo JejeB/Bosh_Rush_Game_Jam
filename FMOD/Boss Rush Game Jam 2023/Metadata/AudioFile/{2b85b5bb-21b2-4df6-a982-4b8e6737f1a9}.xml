@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2b85b5bb-21b2-4df6-a982-4b8e6737f1a9}">
+		<property name="assetPath">
+			<value>Footsteps, Human, Grass, Male, Leather Sole, Running, Stops SND11526 3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.22158333333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4a5e4dcc-d504-4bec-9032-0bd161c570ee}</destination>
+		</relationship>
+	</object>
+</objects>

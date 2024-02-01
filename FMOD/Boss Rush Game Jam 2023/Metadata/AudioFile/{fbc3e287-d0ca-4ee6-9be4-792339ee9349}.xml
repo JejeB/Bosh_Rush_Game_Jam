@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{fbc3e287-d0ca-4ee6-9be4-792339ee9349}">
+		<property name="assetPath">
+			<value>Pop Effect - Title 3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.26279166666666665</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4a5e4dcc-d504-4bec-9032-0bd161c570ee}</destination>
+		</relationship>
+	</object>
+</objects>

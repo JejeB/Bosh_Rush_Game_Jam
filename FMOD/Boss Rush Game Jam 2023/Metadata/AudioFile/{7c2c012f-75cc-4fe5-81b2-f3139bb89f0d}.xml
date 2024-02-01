@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7c2c012f-75cc-4fe5-81b2-f3139bb89f0d}">
+		<property name="assetPath">
+			<value>Footsteps, Human, Boots, Various Materials, Concrete, Grass, Light Wind, Prypiat Lake, Ukraine SND91020.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.52775000000000005</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4a5e4dcc-d504-4bec-9032-0bd161c570ee}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cci0pgv4rinyq"
+path="res://.godot/imported/SFXPlayer_FS2.mp3-1e65a980f79ab14f8586b6b54374c2bc.mp3str"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFX/SFXPlayer_FS2.mp3"
+dest_files=["res://.godot/imported/SFXPlayer_FS2.mp3-1e65a980f79ab14f8586b6b54374c2bc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

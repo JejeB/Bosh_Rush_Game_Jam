@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp1hn135pmenu"]
+[gd_scene load_steps=14 format=3 uid="uid://dp1hn135pmenu"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_lymtx"]
 [ext_resource type="Texture2D" uid="uid://yu84c3ro4nn8" path="res://ui_assets/menu/background.png" id="2_3wuy2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://vj4guy3bkiar" path="res://ui_assets/menu/tuto_button.png" id="6_4u8sl"]
 [ext_resource type="Texture2D" uid="uid://c4qiddl65d7kr" path="res://ui_assets/menu/tuto_button_hover.png" id="7_qs8aa"]
 [ext_resource type="Texture2D" uid="uid://0id13qd2k0tx" path="res://ui_assets/menu/MaskSprite.png" id="8_h1ttj"]
+[ext_resource type="EventAsset" uid="uid://5y7dd3gdlj6c" path="res://addons/FMOD/editor/resources/events/{a41875c2-dc02-493e-ad07-d48d1b63e474}.tres" id="9_cwptt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fu884"]
 font = ExtResource("2_r7hrc")
@@ -144,6 +145,11 @@ libraries = {
 [node name="MaskClickedTimer" type="Timer" parent="GridContainer/CenterContainer"]
 wait_time = 0.6
 one_shot = true
+
+[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="."]
+play_event = 1
+stop_event = 3
+event = ExtResource("9_cwptt")
 
 [connection signal="button_down" from="GridContainer/ButtonContainer/StartGame" to="." method="_on_start_game_button_down"]
 [connection signal="button_down" from="GridContainer/ButtonContainer/TutoButton" to="." method="_on_tuto_button_button_down"]
