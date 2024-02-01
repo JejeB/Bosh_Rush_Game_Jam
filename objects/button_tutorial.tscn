@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch3o6qoyxrc7t"]
+
+[ext_resource type="Script" path="res://scripts/button_tutorial.gd" id="1_l18di"]
+[ext_resource type="ArrayMesh" uid="uid://c5e76oiv0vcq0" path="res://models/tutorial_models/hex_sand.obj" id="3_q1wx5"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0drqn"]
+height = 0.287783
+
+[node name="ButtonTutorial" type="Area3D"]
+script = ExtResource("1_l18di")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388531, 0)
+shape = SubResource("CylinderShape3D_0drqn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="HexSand" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("3_q1wx5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

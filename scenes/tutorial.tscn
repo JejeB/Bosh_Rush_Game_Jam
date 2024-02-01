@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://5q1qlu23flg4"]
+[gd_scene load_steps=36 format=3 uid="uid://5q1qlu23flg4"]
 
 [ext_resource type="PackedScene" uid="uid://c1dqbeag1cxkr" path="res://objects/first_platform.tscn" id="1_1aide"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_fp412"]
@@ -18,11 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://n010nhgqhbwy" path="res://ui_assets/player_health_bar/health_bar_player_normal_progress.png" id="15_on1a5"]
 [ext_resource type="Texture2D" uid="uid://cj4f54vamwy4" path="res://ui_assets/player_health_bar/health_bar_player_decoration.png" id="16_l6lt0"]
 [ext_resource type="Texture2D" uid="uid://dv3f0gbj5w5kw" path="res://sprites/hurted.png" id="17_5d4qk"]
-[ext_resource type="Texture2D" uid="uid://ifbj2d6a3g4f" path="res://ui_assets/tutorial_hud/dialog.png" id="19_kk3lj"]
+[ext_resource type="Texture2D" uid="uid://vn7l0mrneyok" path="res://ui_assets/tutorial_hud/dialogboc.png" id="19_1akmc"]
 [ext_resource type="ArrayMesh" uid="uid://btontkbml7dte" path="res://models/tutorial_models/character-soldier.obj" id="20_3l0ou"]
 [ext_resource type="FontFile" uid="uid://b5n1oj6xbu3wm" path="res://fonts/Aztec.ttf" id="20_3ynoi"]
 [ext_resource type="Script" path="res://scripts/TpNode.gd" id="20_bmdfs"]
+[ext_resource type="Texture2D" uid="uid://b30lnt2naj58a" path="res://ui_assets/tutorial_hud/controls_help.png" id="21_shcim"]
 [ext_resource type="Script" path="res://scripts/debug_hud.gd" id="22_x5qcq"]
+[ext_resource type="PackedScene" uid="uid://ch3o6qoyxrc7t" path="res://objects/button_tutorial.tscn" id="24_uf6bu"]
+[ext_resource type="ArrayMesh" uid="uid://dewcnldbktuh2" path="res://models/tutorial_models/block.obj" id="25_720k1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mfwe5"]
 font = ExtResource("6_22t3j")
@@ -41,8 +44,25 @@ default_font = SubResource("SystemFont_16yup")
 font = ExtResource("20_3ynoi")
 font_size = 20
 font_color = Color(0, 0, 0, 1)
+outline_size = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vgiq7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gahem"]
+albedo_color = Color(0.717647, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88qc6"]
+albedo_color = Color(0.419608, 0.556863, 0.137255, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tu2eu"]
+size = Vector3(2.03809, 1, 0.455566)
+
+[sub_resource type="FogMaterial" id="FogMaterial_lteg6"]
+density = 10.0
+albedo = Color(1, 1, 0.690196, 1)
+emission = Color(0.886275, 0.615686, 0.164706, 1)
+height_falloff = 1e-05
+edge_fade = 1.21257
 
 [node name="Tutorial" type="Node3D"]
 
@@ -75,7 +95,7 @@ fov = 50.0
 one_shot = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("4_6x7pa")]
-transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 0, 0.5, 1)
+transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 7.86298, 0.5, 5.88477)
 view = NodePath("../View")
 movement_speed = 400
 sword_damage = 50
@@ -261,16 +281,17 @@ grow_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="DialogHud"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_top = -150.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="DialogHud/CenterContainer"]
 layout_mode = 2
-texture = ExtResource("19_kk3lj")
+texture = ExtResource("19_1akmc")
 
 [node name="DialogLabel" type="Label" parent="DialogHud/CenterContainer"]
 layout_mode = 2
@@ -278,10 +299,25 @@ text = "ZIZIZ"
 label_settings = SubResource("LabelSettings_8nvc2")
 horizontal_alignment = 1
 
+[node name="CenterContainer2" type="CenterContainer" parent="DialogHud"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="DialogHud/CenterContainer2"]
+visible = false
+layout_mode = 2
+texture = ExtResource("21_shcim")
+
 [node name="SwapObject" type="Node3D" parent="."]
 
 [node name="swappable_object5" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.09884, 0.565887, 3.75877)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.88425, 0.598516, 3.30763)
 player = NodePath("../../Player")
 
 [node name="swappable_object2" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
@@ -297,11 +333,11 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4.37485, 1.3191, -10.91
 player = NodePath("../../Player")
 
 [node name="swappable_object6" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 6.99275, 1.3191, -26.3482)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.04664, 1.5466, -25.8109)
 player = NodePath("../../Player")
 
 [node name="swappable_object7" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.2065, 0.607553, -35.0912)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.10775, 0.607553, -35.0912)
 player = NodePath("../../Player")
 
 [node name="swappable_object8" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
@@ -321,6 +357,30 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TpNode/Character-soldier/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62993, 0)
 shape = SubResource("BoxShape3D_vgiq7")
+
+[node name="ButtonTutorial" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.02186, -0.200387, 4.75297)
+
+[node name="ButtonTutorial" parent="ButtonTutorial" node_paths=PackedStringArray("gate_mesh") instance=ExtResource("24_uf6bu")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.15342, 0.0894247, 1.05301)
+HOVER_MATERIAL = SubResource("StandardMaterial3D_gahem")
+ACTIVATED_MATERIAL = SubResource("StandardMaterial3D_88qc6")
+gate_mesh = NodePath("../Wall")
+
+[node name="Wall" type="StaticBody3D" parent="ButtonTutorial"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonTutorial/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.19013, 1.07747, -0.544855)
+shape = SubResource("BoxShape3D_tu2eu")
+
+[node name="Block" type="MeshInstance3D" parent="ButtonTutorial/Wall/CollisionShape3D"]
+transform = Transform3D(1.9, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, -0.0204129, -0.377086, -0.167331)
+mesh = ExtResource("25_720k1")
+skeleton = NodePath("../../../..")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(100, 0, 0, 0, 10, 0, 0, 0, 100, -28.1768, -23.7284, -63.6558)
+material = SubResource("FogMaterial_lteg6")
 
 [connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]

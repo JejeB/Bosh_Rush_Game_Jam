@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ckalyrn6hntch"
+path="res://.godot/imported/rockC.obj-72ebddf4d9fc003719971cf93e231eae.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rockC.obj-72ebddf4d9fc003719971cf93e231eae.mesh"]
+
+source_file="res://models/tutorial_models/rockC.obj"
+dest_files=["res://.godot/imported/rockC.obj-72ebddf4d9fc003719971cf93e231eae.mesh", "res://.godot/imported/rockC.obj-72ebddf4d9fc003719971cf93e231eae.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

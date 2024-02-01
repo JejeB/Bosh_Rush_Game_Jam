@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1dqbeag1cxkr"]
+[gd_scene load_steps=18 format=3 uid="uid://c1dqbeag1cxkr"]
 
 [ext_resource type="ArrayMesh" uid="uid://dewcnldbktuh2" path="res://models/tutorial_models/block.obj" id="1_ve4yy"]
 [ext_resource type="ArrayMesh" uid="uid://cayipby84161t" path="res://models/tutorial_models/bricks.obj" id="2_1ydho"]
@@ -7,6 +7,12 @@
 [ext_resource type="ArrayMesh" uid="uid://v0tuis8ss3k8" path="res://models/tutorial_models/stairs-corner-inner.obj" id="4_ui5ke"]
 [ext_resource type="ArrayMesh" uid="uid://rpou25v78txk" path="res://models/tutorial_models/stairs.obj" id="5_qoh4k"]
 [ext_resource type="ArrayMesh" uid="uid://cr33ito1h4eby" path="res://models/tutorial_models/border-corner.obj" id="7_ica8v"]
+[ext_resource type="ArrayMesh" uid="uid://c8qvqu7i8k4b0" path="res://models/tutorial_models/column.obj" id="8_cwgsr"]
+[ext_resource type="ArrayMesh" uid="uid://djcaf320ow182" path="res://models/tutorial_models/treeFallLarge.obj" id="9_wq8xv"]
+[ext_resource type="ArrayMesh" uid="uid://dyn41kwp1cg56" path="res://models/tutorial_models/rockC.obj" id="9_yrc8g"]
+[ext_resource type="ArrayMesh" uid="uid://yhvk4fculywy" path="res://models/tutorial_models/rockB.obj" id="10_pderj"]
+[ext_resource type="ArrayMesh" uid="uid://fv86eu0w0m3f" path="res://models/tutorial_models/rockA.obj" id="11_86dbf"]
+[ext_resource type="ArrayMesh" uid="uid://b60cdtul1rn0d" path="res://models/tutorial_models/resourceStone.obj" id="13_yrc74"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ji4on"]
 
@@ -15,6 +21,9 @@ size = Vector3(20.0383, 1, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3j7xi"]
 radius = 0.802448
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tw04w"]
+size = Vector3(0.632812, 1.0177, 0.59194)
 
 [node name="FirstPlatform" type="Node3D"]
 
@@ -45,7 +54,7 @@ mesh = ExtResource("2_qamym")
 skeleton = NodePath("../..")
 
 [node name="Bricks" type="MeshInstance3D" parent="floor_decoration"]
-transform = Transform3D(0.896695, 0, 0.442649, 0, 1, 0, -0.442649, 0, 0.896695, -4.48317, 0.484507, 5.36115)
+transform = Transform3D(0.896695, 0, 0.442649, 0, 1, 0, -0.442649, 0, 0.896695, -7.43683, 0.484507, 5.60529)
 mesh = ExtResource("2_1ydho")
 skeleton = NodePath("../..")
 
@@ -115,17 +124,17 @@ mesh = ExtResource("2_5m8aw")
 skeleton = NodePath("../..")
 
 [node name="Floor-detail12" type="MeshInstance3D" parent="floor_decoration"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.76009, 0.5, 4.31164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.01699, 0.5, 4.31164)
 mesh = ExtResource("2_5m8aw")
 skeleton = NodePath("../..")
 
 [node name="Floor-detail13" type="MeshInstance3D" parent="floor_decoration"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.76009, 0.5, 3.25822)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.01699, 0.5, 3.25822)
 mesh = ExtResource("2_5m8aw")
 skeleton = NodePath("../..")
 
 [node name="Floor-detail14" type="MeshInstance3D" parent="floor_decoration"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.80382, 0.5, 3.69741)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.06072, 0.5, 3.69741)
 mesh = ExtResource("2_5m8aw")
 skeleton = NodePath("../..")
 
@@ -350,7 +359,7 @@ transform = Transform3D(0.999363, -0.0356844, 0, 0.0356844, 0.999363, 0, 0, 0, 1
 shape = SubResource("CylinderShape3D_3j7xi")
 
 [node name="platform4" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.95643, 0.807353, -20.1191)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.95643, 0.807353, -19.1527)
 
 [node name="Border-corner" type="MeshInstance3D" parent="platform4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3372, 0, -5.98853)
@@ -406,4 +415,417 @@ skeleton = NodePath("../..")
 [node name="Column-damaged2" type="MeshInstance3D" parent="floor_decoration2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30033, 0.5, -43.2014)
 mesh = ExtResource("2_qamym")
+skeleton = NodePath("../..")
+
+[node name="Walls_tuto" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19099, 1.00467, 6.59383)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19099, 1.00467, 5.9734)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19099, 1.00467, 5.36972)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19099, 1.00467, 4.76255)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19099, 1.00467, 4.14677)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.67864, 1.00467, 3.52617)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.67864, 1.00467, 2.91815)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.07789, 1.00467, 2.91815)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45179, 1.00467, 2.37256)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.83753, 1.00467, 2.37256)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25777, 1.00467, 2.37256)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.63656, 1.00467, 2.37256)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13216, 1.00467, 3.11166)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52728, 1.00467, 3.6744)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9027, 1.00467, 3.6744)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23855, 1.00467, 3.6744)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23855, 1.00467, 3.6744)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72927, 1.00467, 4.29829)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.09739, 1.00467, 4.29829)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D20" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.426522, 1.00467, 4.29829)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D21" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06119, 1.00467, 4.29829)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69188, 1.00467, 4.80457)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D23" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30814, 1.00467, 4.80457)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D24" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30814, 1.00467, 5.45134)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D25" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30814, 1.00467, 6.07425)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D26" type="CollisionShape3D" parent="Walls_tuto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30814, 1.00467, 6.70983)
+shape = SubResource("BoxShape3D_tw04w")
+
+[node name="Column" type="MeshInstance3D" parent="Walls_tuto/CollisionShape3D26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146933, -0.501903, 0.00419521)
+mesh = ExtResource("8_cwgsr")
+skeleton = NodePath("../../..")
+
+[node name="groundDecoration" type="Node3D" parent="."]
+
+[node name="TreeFallLarge" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.769858, -3.99117, 18.0845)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge2" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -25.8967, -3.99117, -19.4439)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge3" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -25.8967, -17.6686, -69.6376)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge4" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -25.8967, -17.6686, -84.3252)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge12" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 38.131, -17.6686, -61.1917)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge13" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -27.453, -17.6686, -38.7191)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge14" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 30.8218, -17.6686, -27.1781)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge15" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 6.22172, -29.4275, -27.1781)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge16" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 6.22172, -9.80486, 29.0484)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge17" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 22.3048, -5.94238, 20.9344)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge18" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -23.6079, 13.1393, 6.87673)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge5" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -18.4018, -17.6686, -74.8823)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge6" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -9.49185, -17.6686, -74.8823)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge7" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1.65736, -17.6686, -66.402)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge8" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 20.6196, -30.589, -25.5538)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge19" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 13.9467, -22.6001, -30.9485)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge10" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -3.86051, -30.589, -25.5538)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge11" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -7.11917, -21.985, -12.1003)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="TreeFallLarge9" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 20.6196, -18.8261, -34.9223)
+mesh = ExtResource("9_wq8xv")
+skeleton = NodePath("../..")
+
+[node name="RockC" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -2.32219, -1.54263, 14.3731)
+mesh = ExtResource("9_yrc8g")
+skeleton = NodePath("../..")
+
+[node name="RockB" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4.25998, -0.623075, 14.2175)
+mesh = ExtResource("10_pderj")
+skeleton = NodePath("../..")
+
+[node name="RockB6" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 9.42791, -6.96312, -9.59351)
+mesh = ExtResource("10_pderj")
+skeleton = NodePath("../..")
+
+[node name="RockB5" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(43.3013, 0, 25, 0, 50, 0, -25, 0, 43.3013, 14.119, -13.2737, 16.4576)
+mesh = ExtResource("10_pderj")
+skeleton = NodePath("../..")
+
+[node name="RockB4" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(51.423, 0, 61.2836, 0, 80, 0, -61.2836, 0, 51.423, -49.2749, -0.623075, -56.3495)
+mesh = ExtResource("10_pderj")
+skeleton = NodePath("../..")
+
+[node name="RockB7" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(-80, 0, -6.99382e-06, 0, 80, 0, 6.99382e-06, 0, -80, 21.2532, -8.86452, -94.3248)
+mesh = ExtResource("10_pderj")
+skeleton = NodePath("../..")
+
+[node name="RockB2" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -8.07889, -0.623075, -17.0628)
+mesh = ExtResource("10_pderj")
+skeleton = NodePath("../..")
+
+[node name="RockB3" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(-2.18557e-06, 0, 50, 0, 50, 0, -50, 0, -2.18557e-06, -22.8022, -7.73091, 6.43294)
+mesh = ExtResource("10_pderj")
+skeleton = NodePath("../..")
+
+[node name="RockA" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 40, 0, 0, 0, 10, 17.111, -5.39166, 3.60779)
+mesh = ExtResource("11_86dbf")
+skeleton = NodePath("../..")
+
+[node name="RockA3" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 40, 0, 0, 0, 10, -0.150309, -5.39166, -49.8453)
+mesh = ExtResource("11_86dbf")
+skeleton = NodePath("../..")
+
+[node name="RockA5" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 40, 0, 0, 0, 10, -11.8244, -12.7055, -32.7567)
+mesh = ExtResource("11_86dbf")
+skeleton = NodePath("../..")
+
+[node name="RockA4" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(17.5, 0, 0, 0, 70, 0, 0, 0, 17.5, 9.62916, -23.8782, -18.7023)
+mesh = ExtResource("11_86dbf")
+skeleton = NodePath("../..")
+
+[node name="RockA6" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(-7.64949e-07, 0, 17.5, 0, 70, 0, -17.5, 0, -7.64949e-07, -16.1193, -13.4732, -52.8698)
+mesh = ExtResource("11_86dbf")
+skeleton = NodePath("../..")
+
+[node name="RockA7" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(-7.64949e-07, 0, 17.5, 0, 70, 0, -17.5, 0, -7.64949e-07, -32.1389, -13.4732, -33.9713)
+mesh = ExtResource("11_86dbf")
+skeleton = NodePath("../..")
+
+[node name="RockA2" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(10, 0, 0, 0, 40, 0, 0, 0, 10, -25.7745, -10.2922, -20.0752)
+mesh = ExtResource("11_86dbf")
+skeleton = NodePath("../..")
+
+[node name="ResourceStone" type="MeshInstance3D" parent="groundDecoration"]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 20.3807, -13.3746, -51.2056)
+mesh = ExtResource("13_yrc74")
 skeleton = NodePath("../..")

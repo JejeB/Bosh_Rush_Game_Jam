@@ -84,7 +84,6 @@ func _on_stun_collision_body_entered(body):
 	if state == State.HARD and body.has_method("start_stun"):
 		body.start_stun()
 
-
 func _on_stun_collision_mouse_entered():
 	var distance = player.global_position.distance_to(self.global_position)
 	if distance <= hover_range :

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dfynsl84rbrk1"
+path="res://.godot/imported/hex_sand.obj-ace3ee1c237934e68866c5243441cd24.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hex_sand.obj-ace3ee1c237934e68866c5243441cd24.mesh"]
+
+source_file="res://models/tutorial_models/hex_sand.obj"
+dest_files=["res://.godot/imported/hex_sand.obj-ace3ee1c237934e68866c5243441cd24.mesh", "res://.godot/imported/hex_sand.obj-ace3ee1c237934e68866c5243441cd24.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
