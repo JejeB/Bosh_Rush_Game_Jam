@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://3p5la2tpfprt"
+path="res://.godot/imported/Beeps, Lofi, Game, Retro, 8 Bit, Jump 03 SND101241.wav-d590df7bce65cf476f2e94ed9ecf81e2.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFX/Beeps, Lofi, Game, Retro, 8 Bit, Jump 03 SND101241.wav"
+dest_files=["res://.godot/imported/Beeps, Lofi, Game, Retro, 8 Bit, Jump 03 SND101241.wav-d590df7bce65cf476f2e94ed9ecf81e2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

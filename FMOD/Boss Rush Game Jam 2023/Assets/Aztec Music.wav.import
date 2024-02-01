@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwlfb8ec4wva4"
+path="res://.godot/imported/Aztec Music.wav-0423e9f6c2c2b39daf58248c5d49ec52.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/Aztec Music.wav"
+dest_files=["res://.godot/imported/Aztec Music.wav-0423e9f6c2c2b39daf58248c5d49ec52.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

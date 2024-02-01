@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ciyfx03s4niin"
+path="res://.godot/imported/Magic, Shimmer, Spell, Pad, Shimmer, Sparkle, Ethereal, Calm, Idle 02 SND92471 3.wav-410faa87d1951d0091e20548b275a5fd.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFX/Magic, Shimmer, Spell, Pad, Shimmer, Sparkle, Ethereal, Calm, Idle 02 SND92471 3.wav"
+dest_files=["res://.godot/imported/Magic, Shimmer, Spell, Pad, Shimmer, Sparkle, Ethereal, Calm, Idle 02 SND92471 3.wav-410faa87d1951d0091e20548b275a5fd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

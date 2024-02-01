@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://g2428ti8sl31"
+path="res://.godot/imported/Footsteps, Human, Grass, Male, Leather Sole, Running, Stops SND11526 2.wav-7a14ced79b5169502d54746068eecdf8.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/Footsteps, Human, Grass, Male, Leather Sole, Running, Stops SND11526 2.wav"
+dest_files=["res://.godot/imported/Footsteps, Human, Grass, Male, Leather Sole, Running, Stops SND11526 2.wav-7a14ced79b5169502d54746068eecdf8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

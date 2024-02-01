@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://bjq6vytb6fw1w"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Boss/FS"
+guid = "{942ca59c-e2f4-4b49-9894-f0c698f1210d}"
+name = "FS"

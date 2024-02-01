@@ -126,20 +126,13 @@ shape = SubResource("CapsuleShape3D_gdq8c")
 
 [node name="Character" parent="." instance=ExtResource("2_sqo0v")]
 
-[node name="leg-left" parent="Character/character2/root" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.872931, 0.487844, 0, -0.487844, 0.872931, 0.125, 0.239, 0.077)
-
-[node name="leg-right" parent="Character/character2/root" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.837576, -0.546321, 0, 0.546321, 0.837576, -0.125, 0.229, -0.193)
-
-[node name="torso" parent="Character/character2/root" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, -1.80478e-15, 0.17625, -0.02375)
-
 [node name="arm-left" parent="Character/character2/root/torso" index="0"]
-transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0.3, 0.2, 0)
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.3, 0.2, 0)
 
 [node name="arm-right" parent="Character/character2/root/torso" index="1"]
-transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.3, 0.1445, 0)
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.3, 0.1445, 0)
+
+[node name="StudioEventEmitter3D" type="StudioEventEmitter3D" parent="Character/AnimationPlayer" index="0"]
 
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)

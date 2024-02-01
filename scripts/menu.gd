@@ -24,6 +24,7 @@ func _process(delta):
 # go to the main scene
 func _on_start_game_button_down():
 	get_tree().change_scene_to_file(main_scene)
+	FMODRuntime.play_one_shot_path("event:/SFX/UI/UIClick")
 
 # Animation is finished
 func _on_mask_clicked_timer_timeout():
@@ -32,3 +33,4 @@ func _on_mask_clicked_timer_timeout():
 
 func _on_tuto_button_button_down():
 	get_tree().change_scene_to_file(tuto_scene)
+	FMODRuntime.play_one_shot_path("event:/SFX/UI/UIClick")

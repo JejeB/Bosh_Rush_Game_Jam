@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5bqdtkuqytsd"
+path="res://.godot/imported/SFXPlayer_SwordHit1.mp3-63fbdb62fe2736ca55f65b38a975215a.mp3str"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFXPlayer_SwordHit1.mp3"
+dest_files=["res://.godot/imported/SFXPlayer_SwordHit1.mp3-63fbdb62fe2736ca55f65b38a975215a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
