@@ -26,10 +26,11 @@ signal player_initiated
 ## Resistance of the player to the push force
 @export var RESISTANCE:int = 20
 var HURT_DECELERATION = HURT_FORCE * 0.01 * RESISTANCE
+@export var POST_HURT_INVINCIBILITY:float = 0.5
 
 
 enum Swap_State {MOVEMENT, SWAP, COOLDOWN,HURT}
-enum State {STANDARD, HURT, ATTACK}
+enum State {STANDARD, HURT, ATTACK,INVINCIBLE}
 
 
 var movement_velocity: Vector3
@@ -54,6 +55,7 @@ var game_state: bool = true
 var hurt_direction:Vector3 = Vector3.ZERO
 var hurt_force
 
+var blink_effect:float = 0.
 
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
@@ -62,6 +64,7 @@ var hurt_force
 @onready var swap_cooldown_timer = $SwapCooldownTimer
 @onready var hurt_timer = $HurtTimer
 @onready var spell_indicator = $SpellIndicator
+@onready var invincible_timer = $InvincibilityTimer
 
 # Functions
 func _ready():
@@ -75,8 +78,13 @@ func _physics_process(delta):
 		handle_action(delta)
 		handle_controls(delta)
 		handle_effects()
+	elif state == State.INVINCIBLE:
+		handle_controls(delta)
+		handle_effects()
+		blink(delta)
 	elif state == State.HURT:
 		push_back(delta)
+		blink(delta)
 		
 	handle_gravity(delta)
 		
@@ -125,12 +133,13 @@ func update_hp(value:int):
 
 #--- HURT---
 func hurt(impact_position):
-	print("[PLAY] Player hurt")
-	hurt_direction = (position - impact_position).normalized()
-	state = State.HURT
-	hurt_force = HURT_FORCE
-	hurt_timer.start()
-	update_hp(-10)
+	if state != State.INVINCIBLE:
+		print("[PLAY] Player hurt")
+		hurt_direction = (position - impact_position).normalized()
+		state = State.HURT
+		hurt_force = HURT_FORCE
+		hurt_timer.start()
+		update_hp(-10)
 	
 func push_back(delta):
 	hurt_force -= HURT_DECELERATION
@@ -140,8 +149,23 @@ func push_back(delta):
 		movement_velocity = Vector3.ZERO
 
 func _on_hurt_timer_timeout():
+	state = State.INVINCIBLE
+	invincible_timer.set_wait_time(POST_HURT_INVINCIBILITY)
+	invincible_timer.start()
+
+func _on_invincibility_timer_timeout():
+	model.visible = true
 	state = State.STANDARD
 	
+func blink(delta):
+	if blink_effect > 0.15:
+		blink_effect =0.
+		if model.visible:
+			model.visible = false
+		else:
+			model.visible = true
+	blink_effect+=delta
+
 #---MELEE ATTACK---
 func start_melee_attack(delta):
 	state = State.ATTACK
@@ -220,3 +244,6 @@ func handle_gravity(delta):
 	gravity += 25 * delta
 	if gravity > 0 and is_on_floor():
 		gravity = 0
+
+
+

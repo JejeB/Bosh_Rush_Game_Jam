@@ -66,7 +66,7 @@ albedo_color = Color(0.372549, 0.266667, 0.145098, 1)
 environment = ExtResource("1_ahusb")
 
 [node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("2_onms2")]
-transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 1.2308, 0.5, 32.4133)
+transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, -37.6358, 0.5, 0)
 view = NodePath("../View")
 movement_speed = 400
 sword_damage = 50
@@ -114,7 +114,7 @@ surface_material_override/0 = ExtResource("5_eq6da")
 shape = SubResource("BoxShape3D_kvofp")
 
 [node name="Boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clu5s")]
-transform = Transform3D(3.10766, 0, 3.91695, 0, 5, 0, -3.91695, 0, 3.10766, -1.75999, 0.5, 6.02525)
+transform = Transform3D(-0.366278, 0, 4.98657, 0, 5, 0, -4.98657, 0, -0.366278, 0, 0.5, -15.0947)
 movement_speed = 3
 target = NodePath("../Player")
 MELEE_RANGE = 5.0
@@ -387,7 +387,6 @@ script = ExtResource("25_4gi0y")
 player = NodePath("../Player")
 
 [node name="Timer" type="Timer" parent="StoneSpawnner"]
-one_shot = true
 
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]
 [connection signal="player_initiated" from="Player" to="StoneSpawnner" method="_on_player_player_initiated"]

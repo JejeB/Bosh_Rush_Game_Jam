@@ -58,6 +58,8 @@ var game_state: bool = true
 var zone_attack_scene = preload("res://zone_attack.tscn")
 var zone_attack
 
+var blink_effect:float = 0.
+
 # Functions
 func _ready():
 	hp = max_hp
@@ -70,6 +72,8 @@ func _physics_process(delta):
 		handle_gravity(delta)
 		choose_action(delta)
 		handle_movement(delta)
+		if boss_state == State.STUN:
+			blink(delta)
 
 func choose_action(delta):
 	if boss_state == State.CHASE:
@@ -129,6 +133,15 @@ func start_stun():
 	animation.play("idle")
 	start_timer_for(STUN_TIME)
 	free_zone_attack()
+	
+func blink(delta):
+	if blink_effect > 0.15:
+		blink_effect =0.
+		if model.visible:
+			model.visible = false
+		else:
+			model.visible = true
+	blink_effect+=delta
 	
 # ---CHASE PLAYER---
 func chase_player():
@@ -211,6 +224,7 @@ func back_to_default_state():
 	state(State.CHASE)
 	animation.play("idle")
 	free_zone_attack()
+	model.visible = true
 
 # --- ZONE Attack---
 func init_zone_attack():
