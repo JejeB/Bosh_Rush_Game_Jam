@@ -99,3 +99,4 @@ func _on_stun_collision_body_entered(body):
 	print(body)
 	if state == State.HARD and body.has_method("start_stun"):
 		body.start_stun()
+
