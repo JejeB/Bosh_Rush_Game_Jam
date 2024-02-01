@@ -65,10 +65,10 @@ turbulence_noise_speed_random = 0.1
 [sub_resource type="QuadMesh" id="QuadMesh_jq5jb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mua45"]
-size = Vector3(0.324785, 1.005, 0.348755)
+size = Vector3(0.324785, 0.653989, 0.348755)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k25hv"]
-size = Vector3(3, 0.129913, 3)
+size = Vector3(1.43561, 0.964493, 1.60718)
 
 [node name="SwappableObject" type="StaticBody3D" groups=["swapable"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -93,7 +93,7 @@ draw_pass_1 = SubResource("QuadMesh_jq5jb")
 one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.0154224, 0.704685, 9.15527e-05)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.0154224, 0.441427, 9.15527e-05)
 shape = SubResource("BoxShape3D_mua45")
 
 [node name="rock" parent="." instance=ExtResource("3_xlw0x")]
@@ -102,10 +102,12 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 [node name="StunCollision" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StunCollision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0162997, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00790405, 0.43359, 0.0267334)
 shape = SubResource("BoxShape3D_k25hv")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="MagicTimer" to="." method="_on_magic_timer_timeout"]
 [connection signal="body_entered" from="StunCollision" to="." method="_on_stun_collision_body_entered"]
+[connection signal="mouse_entered" from="StunCollision" to="." method="_on_stun_collision_mouse_entered"]
+[connection signal="mouse_exited" from="StunCollision" to="." method="_on_stun_collision_mouse_exited"]

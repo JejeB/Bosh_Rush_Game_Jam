@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=36 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://omitc1l8y6cg" path="res://ui_assets/boss_health_bar/health_bar_progress(2).png" id="12_pui74"]
 [ext_resource type="Texture2D" uid="uid://bf24jaschky3j" path="res://ui_assets/replay_button/replay_button_normal(1).png" id="12_rjwxu"]
 [ext_resource type="Texture2D" uid="uid://dn8pjgrhai4p5" path="res://ui_assets/replay_button/button_replay_pressed(1).png" id="13_1itfd"]
-[ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://objects/cloud.tscn" id="13_drtpy"]
 [ext_resource type="Texture2D" uid="uid://cjxnqieglkyoh" path="res://ui_assets/replay_button/button_replay_hover(1).png" id="14_flgyp"]
 [ext_resource type="Texture2D" uid="uid://cgqrfvtnr2tfa" path="res://ui_assets/boss_health_bar/right_decoration_health_bar_over.png" id="14_rydei"]
 [ext_resource type="Texture2D" uid="uid://qhf3lm184gmp" path="res://ui_assets/player_health_bar/swappable_cooldown_final.png" id="15_lidip"]
@@ -24,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b6rp4esf0id2c" path="res://ui_assets/player_health_bar/health_bar_player_normal.png" id="16_uq0nh"]
 [ext_resource type="Texture2D" uid="uid://cj4f54vamwy4" path="res://ui_assets/player_health_bar/health_bar_player_decoration.png" id="17_5mmak"]
 [ext_resource type="Texture2D" uid="uid://dv3f0gbj5w5kw" path="res://sprites/hurted.png" id="20_uwp2t"]
+[ext_resource type="Script" path="res://scenes/StoneSpawnner.gd" id="25_4gi0y"]
 [ext_resource type="Script" path="res://scripts/debug_hud.gd" id="25_pkcod"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3rtad"]
@@ -52,13 +52,22 @@ font_names = PackedStringArray("URW Gothic")
 [sub_resource type="Theme" id="Theme_io7gs"]
 default_font = SubResource("SystemFont_3jvc7")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pon0k"]
+size = Vector3(1, 3, 80)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ohupq"]
+size = Vector3(1, 3, 80)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f3g8"]
+albedo_color = Color(0.372549, 0.266667, 0.145098, 1)
+
 [node name="Main" type="Node3D"]
 
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_ahusb")
 
 [node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("2_onms2")]
-transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 0, 0.5, 1)
+transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, -37.6358, 0.5, 0)
 view = NodePath("../View")
 movement_speed = 400
 sword_damage = 50
@@ -87,30 +96,6 @@ fov = 50.0
 [node name="CameraFreezeTimer" type="Timer" parent="View/Camera"]
 one_shot = true
 
-[node name="World" type="Node3D" parent="."]
-visible = false
-
-[node name="cube8" parent="World" instance=ExtResource("13_drtpy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5495, 12.5517, -2.666)
-
-[node name="cube9" parent="World" instance=ExtResource("13_drtpy")]
-transform = Transform3D(1.27593, -0.401864, 0.422933, 0.471408, 1.30937, -0.178025, -0.343721, 0.304009, 1.32582, 3.33538, 12.8158, -4.1932)
-
-[node name="cube10" parent="World" instance=ExtResource("13_drtpy")]
-transform = Transform3D(1.32811, 0.370441, 0.259369, -0.293866, 1.3186, -0.37854, -0.34372, 0.30401, 1.32582, -10.5752, 13.4825, -7.93707)
-
-[node name="cube11" parent="World" instance=ExtResource("13_drtpy")]
-transform = Transform3D(0.476646, 0.924607, 0.941422, -0.929853, 0.945559, -0.457882, -0.93624, -0.468385, 0.934042, -11.1815, 13.4825, 9.2812)
-
-[node name="cube12" parent="World" instance=ExtResource("13_drtpy")]
-transform = Transform3D(-1.02876, -0.695523, 0.652886, -0.929853, 0.945557, -0.457881, -0.213027, -0.768461, -1.15432, -10.9158, 14.2394, 11.515)
-
-[node name="cube13" parent="World" instance=ExtResource("13_drtpy")]
-transform = Transform3D(1.56209, -1.37982, 1.71508, 1.97375, 1.80907, -0.342241, -0.974547, 1.4522, 2.05595, -14.3045, 13.4825, -8.24191)
-
-[node name="cube14" parent="World" instance=ExtResource("13_drtpy")]
-transform = Transform3D(1.56209, -1.37982, 1.71508, 1.97375, 1.80907, -0.342241, -0.974547, 1.4522, 2.05595, -15.866, 13.4825, 7.83702)
-
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.422618, -0.694272, 0.582563, 0, 0.642788, 0.766044, -0.906308, 0.323744, -0.271654, 0, 0, 0)
 shadow_enabled = true
@@ -120,6 +105,7 @@ shadow_opacity = 0.75
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 0, 0)
 mesh = SubResource("BoxMesh_yohtx")
 surface_material_override/0 = ExtResource("5_eq6da")
 
@@ -140,6 +126,7 @@ JUMP_COOLDOWN = 7.0
 STUN_TIME = 3.0
 
 [node name="SwapObject" type="Node3D" parent="."]
+visible = false
 
 [node name="swappable_object2" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("9_enp3u")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 10.4389, 0.498065, 0)
@@ -400,7 +387,55 @@ theme_override_font_sizes/font_size = 25
 text = "Swap Ready"
 uppercase = true
 
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="West" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.201, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/West"]
+shape = SubResource("BoxShape3D_pon0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/West"]
+mesh = SubResource("BoxMesh_ohupq")
+surface_material_override/0 = SubResource("StandardMaterial3D_2f3g8")
+
+[node name="East" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6608, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/East"]
+shape = SubResource("BoxShape3D_pon0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/East"]
+mesh = SubResource("BoxMesh_ohupq")
+surface_material_override/0 = SubResource("StandardMaterial3D_2f3g8")
+
+[node name="North" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.946899, 1.5, -40.4385)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/North"]
+shape = SubResource("BoxShape3D_pon0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/North"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = SubResource("BoxMesh_ohupq")
+surface_material_override/0 = SubResource("StandardMaterial3D_2f3g8")
+
+[node name="North2" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.946899, 1.5, 39.9309)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/North2"]
+shape = SubResource("BoxShape3D_pon0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/North2"]
+mesh = SubResource("BoxMesh_ohupq")
+surface_material_override/0 = SubResource("StandardMaterial3D_2f3g8")
+
+[node name="StoneSpawnner" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("25_4gi0y")
+player = NodePath("../Player")
+
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]
+[connection signal="player_initiated" from="Player" to="StoneSpawnner" method="_on_player_player_initiated"]
 [connection signal="spell_changed" from="Player" to="GameHud" method="_on_player_spell_changed"]
 [connection signal="spell_changed" from="Player" to="DebugHud" method="_on_player_spell_changed"]
 [connection signal="swap_positon" from="Player" to="View" method="_on_player_swap_positon"]

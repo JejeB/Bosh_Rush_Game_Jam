@@ -16,14 +16,17 @@ enum State {DESTROYABLE,HARD}
 var state: int = State.DESTROYABLE
 
 var current_material
-
-func _ready():
+	
+	
+func init(pos:Vector3,play:Node):
 	# connect signal to swap position sended by player
+	position = pos
+	player = play
 	player.connect("swap_positon", handle_signal_for_position_swap)
 	# give the range decided for the hover to the spell indicator
 	player.spell_range = hover_range
 	current_material = STANDAR_MATERIAl
-	rock.set_surface_override_material(1,current_material)
+	#rock.set_surface_override_material(1,current_material)
 
 # for the mouse moving
 func input_event(_camera, event, _position, _normal, _shape_idx):
@@ -39,24 +42,6 @@ func input_event(_camera, event, _position, _normal, _shape_idx):
 		# Cooldown the spell for the player
 		player.swap_state_mode = player.Swap_State.COOLDOWN
 		player.swap_cooldown_timer.start()
-
-
-func _on_mouse_entered():
-	
-	var distance = player.global_position.distance_to(self.global_position)
-	
-	# range between the player and the object is in range
-	if distance <= hover_range :
-		rock.set_surface_override_material(1,HOVER_MATERIAL)
-		FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
-		
-		# give the enter hover signal
-		player.hover_on_swappable_object = true
-		player.swappable_object_position = self.get_position()
-
-func _on_mouse_exited():
-	rock.set_surface_override_material(1,current_material)
-	player.hover_on_swappable_object = false
 
 func handle_signal_for_position_swap():
 	# verify that the signal execute to the good object
@@ -96,6 +81,19 @@ func start_timer_for(value:float):
 
 
 func _on_stun_collision_body_entered(body):
-	print(body)
 	if state == State.HARD and body.has_method("start_stun"):
 		body.start_stun()
+
+
+func _on_stun_collision_mouse_entered():
+	var distance = player.global_position.distance_to(self.global_position)
+	if distance <= hover_range :
+		rock.set_surface_override_material(1,HOVER_MATERIAL)
+		FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
+		player.hover_on_swappable_object = true
+		player.swappable_object_position = self.get_position()
+
+
+func _on_stun_collision_mouse_exited():
+	rock.set_surface_override_material(1,current_material)
+	player.hover_on_swappable_object = false

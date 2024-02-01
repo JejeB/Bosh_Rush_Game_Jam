@@ -4,6 +4,7 @@ signal hp_changed
 signal spell_changed
 signal swap_positon
 signal player_dead
+signal player_initiated
 
 @export_subgroup("Components")
 @export var view: Node3D
@@ -65,6 +66,7 @@ var hurt_force
 # Functions
 func _ready():
 	hp = max_hp
+	player_initiated.emit()
 
 func _physics_process(delta):
 	# Handle functions
