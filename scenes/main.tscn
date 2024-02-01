@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=37 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dv3f0gbj5w5kw" path="res://sprites/hurted.png" id="20_uwp2t"]
 [ext_resource type="Script" path="res://scenes/StoneSpawnner.gd" id="25_4gi0y"]
 [ext_resource type="Script" path="res://scripts/debug_hud.gd" id="25_pkcod"]
+[ext_resource type="EventAsset" uid="uid://drmskm4wfjn78" path="res://addons/FMOD/editor/resources/events/{4ef5f11d-53da-4dff-aaf2-e2d497ada499}.tres" id="26_u0a4t"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3rtad"]
 radius = 0.1
@@ -390,6 +391,11 @@ player = NodePath("../Player")
 
 [node name="Timer" type="Timer" parent="StoneSpawnner"]
 one_shot = true
+
+[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="."]
+play_event = 1
+stop_event = 3
+event = ExtResource("26_u0a4t")
 
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]
 [connection signal="player_initiated" from="Player" to="StoneSpawnner" method="_on_player_player_initiated"]

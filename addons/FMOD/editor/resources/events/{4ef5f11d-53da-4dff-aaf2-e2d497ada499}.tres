@@ -1,0 +1,8 @@
+[gd_resource type="EventAsset" format=3 uid="uid://drmskm4wfjn78"]
+
+[resource]
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Music/Lvl1"
+guid = "{4ef5f11d-53da-4dff-aaf2-e2d497ada499}"
+name = "Lvl1"

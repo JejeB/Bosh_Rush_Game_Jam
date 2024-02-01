@@ -32,3 +32,4 @@ func reset_scene() -> void:
 
 func _on_texture_button_button_down():
 	reset_scene()
+	FMODRuntime.play_one_shot_path("event:/SFX/UI/UIClick")

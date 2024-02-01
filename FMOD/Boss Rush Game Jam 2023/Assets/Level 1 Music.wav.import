@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://jd1p4e4rlrge"
+path="res://.godot/imported/Level 1 Music.wav-93b3d396f42cfbbdabb10608c1032ade.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/Level 1 Music.wav"
+dest_files=["res://.godot/imported/Level 1 Music.wav-93b3d396f42cfbbdabb10608c1032ade.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
