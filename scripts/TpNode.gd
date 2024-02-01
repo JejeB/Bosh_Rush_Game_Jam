@@ -1,5 +1,8 @@
 extends Node3D
 
+@export var dialog:Array = ["Young warrior, the time has come.\n You have passed the rite of initiation with honor and strength.\n You have proven yourself worthy to face the great god,\n Tezcatlipoca, the Smoking Mirror, the Patron of mirrors, 
+hidden truths, and illusions."]
+
 @onready var boss_hud = $"../GameHud/Boss"
 @onready var dialog_hud = $"../DialogHud"
 @onready var label_container = $"../DialogHud/CenterContainer"
@@ -20,8 +23,7 @@ func _process(delta):
 
 
 func _on_area_3d_body_entered(body):
-	dialog_label.text = "Young warrior, the time has come.\n You have passed the rite of initiation with honor and strength.\n You have proven yourself worthy to face the great god,\n Tezcatlipoca, the Smoking Mirror, the Patron of mirrors, 
-hidden truths, and illusions."
+	dialog_label.text = dialog[0]
 	dialog_hud.show()
 	label_container.show()
 	state_dialog = true

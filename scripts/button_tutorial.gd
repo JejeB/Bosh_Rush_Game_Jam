@@ -3,6 +3,9 @@ extends Area3D
 @export var HOVER_MATERIAL:Material
 @export var ACTIVATED_MATERIAL:Material
 @export var gate_mesh:StaticBody3D
+@export var dialog:Array = ["Welcome, noble Aztec fighter! Prepare yourself for the battles ahead.\n You possess a unique power, one that will aid you in your quest to protect your people.\nThis power can be activated at any time with a simple press of 
+the space bar.....", "Behold! With this power, you have the ability to exchange places with stones.\n Utilize this power wisely, brave warrior. \nIt can be the key to escaping danger or setting up strategic positions.....", "Let us practice this power in a safe environment.\n Press the space bar now and try exchanging places with the nearest statue."]
+
 
 @onready var mesh = $HexSand
 @onready var timer = $Timer
@@ -16,8 +19,6 @@ var hollow_state = false
 var gate_state = false
 var dialog_count: int = 0
 
-var dialog:Array = ["Welcome, noble Aztec fighter! Prepare yourself for the battles ahead.\n You possess a unique power, one that will aid you in your quest to protect your people.\nThis power can be activated at any time with a simple press of 
-the space bar.....", "Behold! With this power, you have the ability to exchange places with stones.\n Utilize this power wisely, brave warrior. \nIt can be the key to escaping danger or setting up strategic positions.....", "Let us practice this power in a safe environment.\n Press the space bar now and try exchanging places with the nearest statue."]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -7,12 +7,12 @@
 [ext_resource type="ArrayMesh" uid="uid://v0tuis8ss3k8" path="res://models/tutorial_models/stairs-corner-inner.obj" id="4_ui5ke"]
 [ext_resource type="ArrayMesh" uid="uid://rpou25v78txk" path="res://models/tutorial_models/stairs.obj" id="5_qoh4k"]
 [ext_resource type="ArrayMesh" uid="uid://cr33ito1h4eby" path="res://models/tutorial_models/border-corner.obj" id="7_ica8v"]
-[ext_resource type="ArrayMesh" uid="uid://c8qvqu7i8k4b0" path="res://models/tutorial_models/column.obj" id="8_cwgsr"]
-[ext_resource type="ArrayMesh" uid="uid://djcaf320ow182" path="res://models/tutorial_models/treeFallLarge.obj" id="9_wq8xv"]
-[ext_resource type="ArrayMesh" uid="uid://dyn41kwp1cg56" path="res://models/tutorial_models/rockC.obj" id="9_yrc8g"]
-[ext_resource type="ArrayMesh" uid="uid://yhvk4fculywy" path="res://models/tutorial_models/rockB.obj" id="10_pderj"]
-[ext_resource type="ArrayMesh" uid="uid://fv86eu0w0m3f" path="res://models/tutorial_models/rockA.obj" id="11_86dbf"]
-[ext_resource type="ArrayMesh" uid="uid://b60cdtul1rn0d" path="res://models/tutorial_models/resourceStone.obj" id="13_yrc74"]
+[ext_resource type="ArrayMesh" uid="uid://rrudbdcuo0bp" path="res://models/tutorial_models/column.obj" id="8_cwgsr"]
+[ext_resource type="ArrayMesh" uid="uid://dgdg0s15nnpxo" path="res://models/tutorial_models/treeFallLarge.obj" id="9_wq8xv"]
+[ext_resource type="ArrayMesh" uid="uid://ckalyrn6hntch" path="res://models/tutorial_models/rockC.obj" id="9_yrc8g"]
+[ext_resource type="ArrayMesh" uid="uid://ctmyhvd1yqomu" path="res://models/tutorial_models/rockB.obj" id="10_pderj"]
+[ext_resource type="ArrayMesh" uid="uid://cmjrn4pra2tl2" path="res://models/tutorial_models/rockA.obj" id="11_86dbf"]
+[ext_resource type="ArrayMesh" uid="uid://bjqw66354gtl2" path="res://models/tutorial_models/resourceStone.obj" id="13_yrc74"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ji4on"]
 
