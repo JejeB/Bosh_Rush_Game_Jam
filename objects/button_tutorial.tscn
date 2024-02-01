@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ch3o6qoyxrc7t"]
 
 [ext_resource type="Script" path="res://scripts/button_tutorial.gd" id="1_l18di"]
-[ext_resource type="ArrayMesh" uid="uid://c5e76oiv0vcq0" path="res://models/tutorial_models/hex_sand.obj" id="3_q1wx5"]
+[ext_resource type="ArrayMesh" uid="uid://dfynsl84rbrk1" path="res://models/tutorial_models/hex_sand.obj" id="3_q1wx5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0drqn"]
 height = 0.287783
