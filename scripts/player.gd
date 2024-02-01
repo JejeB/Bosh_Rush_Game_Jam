@@ -191,7 +191,11 @@ func stop_melee_attack():
 	state = State.STANDARD
 	attack_sequence=1
 	animation_weapon.play("RESET")
-	
+
+func attack_1_enable():
+	state = State.STANDARD
+	attack_sequence = 1
+
 func attack_2_enable():
 	state = State.STANDARD
 	attack_sequence = 2

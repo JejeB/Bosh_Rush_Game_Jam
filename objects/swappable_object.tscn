@@ -68,7 +68,7 @@ turbulence_noise_speed_random = 0.1
 size = Vector3(0.324785, 0.653989, 0.348755)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k25hv"]
-size = Vector3(1.43561, 0.964493, 1.60718)
+size = Vector3(1.43561, 1.27302, 1.60718)
 
 [node name="SwappableObject" type="StaticBody3D" groups=["swapable"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -102,7 +102,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 [node name="StunCollision" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StunCollision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00790405, 0.43359, 0.0267334)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00790405, 0.587853, 0.0267334)
 shape = SubResource("BoxShape3D_k25hv")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

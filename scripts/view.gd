@@ -20,6 +20,9 @@ var camera_freeze: Camera_State = Camera_State.FOLLOW
 @onready var camera = $Camera
 @onready var camera_freeze_timer: Timer = $Camera/CameraFreezeTimer
 
+
+
+
 func _ready():
 	camera_rotation = rotation_degrees # Initial rotation
 	camera_freeze_timer.wait_time = freeze_time

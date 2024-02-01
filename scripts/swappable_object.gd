@@ -16,17 +16,23 @@ enum State {DESTROYABLE,HARD}
 var state: int = State.DESTROYABLE
 
 var current_material
-	
+var first_frame = true
+
+func _process(_delta):
+	if first_frame:
+		connect_and_init()
+		first_frame = false
 	
 func init(pos:Vector3,play:Node):
-	# connect signal to swap position sended by player
 	position = pos
 	player = play
+	connect_and_init()
+	
+
+func connect_and_init():
 	player.connect("swap_positon", handle_signal_for_position_swap)
-	# give the range decided for the hover to the spell indicator
 	player.spell_range = hover_range
 	current_material = STANDAR_MATERIAl
-	#rock.set_surface_override_material(1,current_material)
 
 # for the mouse moving
 func input_event(_camera, event, _position, _normal, _shape_idx):
@@ -85,12 +91,10 @@ func _on_stun_collision_body_entered(body):
 		body.start_stun()
 
 func _on_stun_collision_mouse_entered():
-	var distance = player.global_position.distance_to(self.global_position)
-	if distance <= hover_range :
-		rock.set_surface_override_material(1,HOVER_MATERIAL)
-		FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
-		player.hover_on_swappable_object = true
-		player.swappable_object_position = self.get_position()
+	rock.set_surface_override_material(1,HOVER_MATERIAL)
+	FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
+	player.hover_on_swappable_object = true
+	player.swappable_object_position = self.get_position()
 
 
 func _on_stun_collision_mouse_exited():

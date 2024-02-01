@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=36 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
+[ext_resource type="Script" path="res://scenes/Camera.gd" id="4_dysvp"]
 [ext_resource type="Script" path="res://scripts/view.gd" id="5_bg0fr"]
 [ext_resource type="Material" uid="uid://4osrpxngjhts" path="res://scenes/grasstiletexture.tres" id="5_eq6da"]
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="6_clu5s"]
@@ -89,6 +90,7 @@ freeze_time = 0.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93346, 4.04577)
 current = true
 fov = 50.0
+script = ExtResource("4_dysvp")
 
 [node name="StudioListener3D" type="StudioListener3D" parent="View/Camera"]
 
@@ -117,8 +119,8 @@ shape = SubResource("BoxShape3D_kvofp")
 transform = Transform3D(3.10766, 0, 3.91695, 0, 5, 0, -3.91695, 0, 3.10766, -1.75999, 0.5, 6.02525)
 movement_speed = 3
 target = NodePath("../Player")
-MELEE_RANGE = 5.0
-JUMPING_RANGE = 5
+MELEE_RANGE = 4.0
+JUMPING_RANGE = 6
 AIMING_TIME = 0.25
 PREPARE_JUMP_TIME = 2.0
 JUMP_COOLDOWN = 7.0
