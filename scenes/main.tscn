@@ -122,8 +122,7 @@ movement_speed = 3
 target = NodePath("../Player")
 MELEE_RANGE = 4.0
 JUMPING_RANGE = 6
-AIMING_TIME = 0.25
-PREPARE_JUMP_TIME = 2.0
+AIMING_TIME = 1.0
 JUMP_COOLDOWN = 7.0
 STUN_TIME = 3.0
 

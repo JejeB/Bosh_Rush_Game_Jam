@@ -23,8 +23,6 @@ enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP,STUN}
 @export var JUMPING_RANGE: int = 10
 ## The time before the jump when the boss is targeting the player in sec
 @export var AIMING_TIME:float = 1.5
-## The time just before the jump when the jump direction is locked
-@export var PREPARE_JUMP_TIME:float = 0.5
 ## Time elasped between 2 jumps in sec
 @export var JUMP_COOLDOWN:float = 5
 ## The distance of the dash done
@@ -57,6 +55,9 @@ var game_state: bool = true
 @onready var timer = $Timer
 @onready var boss_state: int = State.CHASE
 
+var last_pos:Vector3 = Vector3.ZERO
+var stuck_count:int = 0
+
 var zone_attack_scene = preload("res://zone_attack.tscn")
 var zone_attack
 
@@ -74,33 +75,31 @@ func _physics_process(delta):
 	handle_hp()
 	if game_state:
 		handle_gravity(delta)
-		choose_action(delta)
+		choose_action()
 		handle_movement(delta)
 		if boss_state == State.STUN:
 			blink(delta)
+	
 
-func choose_action(delta):
+func choose_action():
 	if boss_state == State.CHASE:
 		var distance:float = target.global_position.distance_to(self.global_position)
-		if distance < MELEE_RANGE:
+		if distance < MELEE_RANGE or isStuck(0.01):
 			start_melee_attack()
 		elif distance > JUMPING_RANGE and jump_ready:
 			start_jump_attack()
 		else :
 			chase_player()
-	elif boss_state == State.AIMING_PLAYER:
-		look_at(target.position,Vector3.UP,true)
 	elif boss_state == State.JUMPING:
 		var distance:float = jump_start_point.distance_to(self.global_position)
 		jump_on_player()
-		print(distance)
-		if distance > JUMPING_DISTANCE:
+		if distance > JUMPING_DISTANCE or isStuck(0.01):
 			movement_velocity = Vector3.ZERO
 			velocity = Vector3.ZERO
 			back_to_default_state()
-		
-	elif boss_state == State.PREPARE_JUMP:
+	elif boss_state == State.AIMING_PLAYER:
 		jump_path.visible = true
+	
 
 
 # ---JUMP---
@@ -124,7 +123,6 @@ func jump_on_player():
 
 # ---MELEE ATTACK---
 func start_melee_attack():
-	print("[PLAY] Boss melee attack")
 	animation.play(("idle"))
 	state(State.MELLE_ATTACK)
 	start_timer_for(1)
@@ -135,7 +133,6 @@ func start_melee_attack():
 
 # ---STUN---
 func start_stun():
-	print("[PLAY] Stun boss")
 	movement_velocity = Vector3.ZERO
 	velocity = Vector3.ZERO
 	state(State.STUN)
@@ -167,7 +164,6 @@ func handle_hp():
 		emit_signal("boss_dead", "YOU WIN")
 
 func hurted(damage:int):
-	print("[PLAY] Boss hurt")
 	update_hp(damage)
 	blood.emitting = true
 	
@@ -181,9 +177,6 @@ func _on_timer_timeout():
 	timer.stop()
 	if boss_state == State.AIMING_PLAYER:
 		jump_start_point = position
-		state(State.PREPARE_JUMP)
-		start_timer_for(PREPARE_JUMP_TIME)
-	elif boss_state == State.PREPARE_JUMP:
 		state(State.JUMPING)
 		FMODRuntime.play_one_shot_path("event:/SFX/Boss/BossRush", get_global_transform())
 	else :
@@ -231,11 +224,21 @@ func state(value:int):
 	state_changed.emit(State.keys()[value])
 
 func back_to_default_state():
-	print("[PLAY] Boss walking")
 	state(State.CHASE)
 	animation.play("idle")
 	free_zone_attack()
 	model.visible = true
+
+# If the boss is 3 time a the same position we assume that he's stuck	
+func isStuck(epsilon:float):
+	if position.distance_to(last_pos) < epsilon:
+		stuck_count+=1
+	last_pos = position
+	if stuck_count >=10:
+		stuck_count=0
+		return true
+	else:
+		return false
 
 # --- ZONE Attack---
 func init_zone_attack():
