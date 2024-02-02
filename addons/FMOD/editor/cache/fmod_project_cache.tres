@@ -13,26 +13,19 @@
 [ext_resource type="EventAsset" uid="uid://c6q7ue7587o8q" path="res://addons/FMOD/editor/resources/events/{c36066ce-54c4-4a77-9bbc-5dc61e7fa633}.tres" id="7_diacv"]
 [ext_resource type="BusAsset" uid="uid://byh07xd63igjw" path="res://addons/FMOD/editor/resources/busses/{09fa13d6-8f48-4e31-b434-3379f26b07d2}.tres" id="8_vthop"]
 [ext_resource type="EventAsset" uid="uid://drmskm4wfjn78" path="res://addons/FMOD/editor/resources/events/{4ef5f11d-53da-4dff-aaf2-e2d497ada499}.tres" id="9_bjtui"]
-[ext_resource type="EventAsset" path="res://addons/FMOD/editor/resources/events/{a41875c2-dc02-493e-ad07-d48d1b63e474}.tres" id="9_n4m7q"]
-[ext_resource type="EventAsset" path="res://addons/FMOD/editor/resources/events/{942ca59c-e2f4-4b49-9894-f0c698f1210d}.tres" id="10_ch7xu"]
+[ext_resource type="EventAsset" uid="uid://5y7dd3gdlj6c" path="res://addons/FMOD/editor/resources/events/{a41875c2-dc02-493e-ad07-d48d1b63e474}.tres" id="9_n4m7q"]
+[ext_resource type="EventAsset" uid="uid://bjq6vytb6fw1w" path="res://addons/FMOD/editor/resources/events/{942ca59c-e2f4-4b49-9894-f0c698f1210d}.tres" id="10_ch7xu"]
 [ext_resource type="EventAsset" uid="uid://2ayy6ljxns15" path="res://addons/FMOD/editor/resources/events/{df10e4b0-67eb-43de-bc40-9b26ec5017d8}.tres" id="11_t38w1"]
 [ext_resource type="EventAsset" uid="uid://1gw86rikurqi" path="res://addons/FMOD/editor/resources/events/{9094f18b-261b-425f-b928-b4640541109a}.tres" id="12_2q6k2"]
+[ext_resource type="EventAsset" uid="uid://b7lypukpx0txk" path="res://addons/FMOD/editor/resources/events/{97dff5bf-3c41-492b-ac0b-ee4344c5eff9}.tres" id="12_f2fxl"]
 [ext_resource type="EventAsset" uid="uid://b8jcx0j1gsg5w" path="res://addons/FMOD/editor/resources/events/{71da30dc-15fb-40a0-aad8-69440659c44e}.tres" id="12_pbkar"]
 [ext_resource type="EventAsset" uid="uid://6e5yrsweju7r" path="res://addons/FMOD/editor/resources/events/{d79c65e6-48be-4341-89e0-81c69c8ae142}.tres" id="13_665t2"]
 [ext_resource type="EventAsset" uid="uid://4p07mvv6upxm" path="res://addons/FMOD/editor/resources/events/{30c85712-cfcd-4bca-a5eb-effb3906662e}.tres" id="13_maxj3"]
 [ext_resource type="EventAsset" uid="uid://cnxgb7suucqei" path="res://addons/FMOD/editor/resources/events/{dbd45119-6ea9-4211-908e-92110a6a5fcd}.tres" id="14_gethm"]
 [ext_resource type="EventAsset" uid="uid://7y0vmo0ktfjd" path="res://addons/FMOD/editor/resources/events/{a50ecf5c-3785-4759-96a5-bc67ca90c53b}.tres" id="16_ce5n1"]
-[ext_resource type="EventAsset" path="res://addons/FMOD/editor/resources/events/{9274ca95-8a0d-4eea-88a1-c96bf0eaeec7}.tres" id="17_trdyk"]
+[ext_resource type="EventAsset" uid="uid://3mv4mtn23y21" path="res://addons/FMOD/editor/resources/events/{9274ca95-8a0d-4eea-88a1-c96bf0eaeec7}.tres" id="17_trdyk"]
 [ext_resource type="EventAsset" uid="uid://unmp6u2e5251" path="res://addons/FMOD/editor/resources/events/{f362bfe1-1d99-4089-8cc3-155ac6548266}.tres" id="18_sn5i6"]
 [ext_resource type="EventAsset" uid="uid://hpfrqmukp2hm" path="res://addons/FMOD/editor/resources/events/{fc87ebe6-295f-4786-8a7e-3aa018eac1cb}.tres" id="22_cdqg7"]
-
-[sub_resource type="EventAsset" id="EventAsset_ltp0b"]
-is_oneshot = true
-min_distance = 1.0
-max_distance = 20.0
-path = "event:/SFX/Boss/BossRush"
-guid = "{97dff5bf-3c41-492b-ac0b-ee4344c5eff9}"
-name = "BossRush"
 
 [resource]
 banks = {
@@ -48,7 +41,7 @@ events = {
 "{9094f18b-261b-425f-b928-b4640541109a}": ExtResource("12_2q6k2"),
 "{9274ca95-8a0d-4eea-88a1-c96bf0eaeec7}": ExtResource("17_trdyk"),
 "{942ca59c-e2f4-4b49-9894-f0c698f1210d}": ExtResource("10_ch7xu"),
-"{97dff5bf-3c41-492b-ac0b-ee4344c5eff9}": SubResource("EventAsset_ltp0b"),
+"{97dff5bf-3c41-492b-ac0b-ee4344c5eff9}": ExtResource("12_f2fxl"),
 "{a41875c2-dc02-493e-ad07-d48d1b63e474}": ExtResource("9_n4m7q"),
 "{a50ecf5c-3785-4759-96a5-bc67ca90c53b}": ExtResource("16_ce5n1"),
 "{c36066ce-54c4-4a77-9bbc-5dc61e7fa633}": ExtResource("7_diacv"),
@@ -111,7 +104,7 @@ event_tree = [{
 "item_type": 1,
 "node_name": "BossRush",
 "path": "event:/SFX/Boss/BossRush",
-"resource": SubResource("EventAsset_ltp0b")
+"resource": ExtResource("12_f2fxl")
 }, {
 "children": [],
 "item_type": 1,
