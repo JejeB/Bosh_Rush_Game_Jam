@@ -106,12 +106,15 @@ func start_jump_attack():
 	start_attack_timer_for(JUMP_COOLDOWN)
 	jump_ready = false
 	init_zone_attack()
+	FMODRuntime.play_one_shot_path("event:/SFX/Boss/DeathRay", get_global_transform())
+	
 	
 func jump_on_player():
 	jump_path.visible = false
 	animation.play("walk", 3)
 	particles_trail.emitting = true
 	movement_velocity = get_global_transform().basis.z * movement_speed * 50
+	FMODRuntime.play_one_shot_path("event:/SFX/Boss/BossRush", get_global_transform())
 
 # ---MELEE ATTACK---
 func start_melee_attack():
@@ -133,6 +136,7 @@ func start_stun():
 	animation.play("idle")
 	start_timer_for(STUN_TIME)
 	free_zone_attack()
+	FMODRuntime.play_one_shot_path("event:/SFX/Boss/TakeDamage", get_global_transform())
 	
 func blink(delta):
 	if blink_effect > 0.15:

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{f64eae18-21f5-406f-a0a2-82442ea59010}">
 		<property name="assetPath">
-			<value>Footsteps, Animal, Foley Stage, Heavy Animals Walking On Grass And Mud 04 SND73213 3.wav</value>
+			<value>SFX/Footsteps, Animal, Foley Stage, Heavy Animals Walking On Grass And Mud 04 SND73213 3.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

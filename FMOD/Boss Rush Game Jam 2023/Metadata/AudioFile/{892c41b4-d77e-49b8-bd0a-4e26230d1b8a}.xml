@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{892c41b4-d77e-49b8-bd0a-4e26230d1b8a}">
 		<property name="assetPath">
-			<value>User Interface, Click, Neutral, Select Tone 04 SND31027.wav</value>
+			<value>SFX/User Interface, Click, Neutral, Select Tone 04 SND31027.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

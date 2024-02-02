@@ -38,6 +38,7 @@ func _physics_process(delta):
 		dialog_label.text = dialog[dialog_count]
 		dialog_hud.show()
 		dialog_count += 1
+		FMODRuntime.play_one_shot_path("event:/SFX/UI/UIClick")
 		
 	if Input.is_action_just_pressed("click_gauche") and gate_state:
 		control_help.hide()

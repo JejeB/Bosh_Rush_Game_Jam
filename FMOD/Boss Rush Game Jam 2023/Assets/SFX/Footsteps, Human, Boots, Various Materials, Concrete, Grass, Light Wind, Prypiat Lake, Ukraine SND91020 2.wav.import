@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cv5e53oik2i3i"
+path="res://.godot/imported/Footsteps, Human, Boots, Various Materials, Concrete, Grass, Light Wind, Prypiat Lake, Ukraine SND91020 2.wav-3e37ca07d061dfabd7ff7916c61ed183.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFX/Footsteps, Human, Boots, Various Materials, Concrete, Grass, Light Wind, Prypiat Lake, Ukraine SND91020 2.wav"
+dest_files=["res://.godot/imported/Footsteps, Human, Boots, Various Materials, Concrete, Grass, Light Wind, Prypiat Lake, Ukraine SND91020 2.wav-3e37ca07d061dfabd7ff7916c61ed183.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

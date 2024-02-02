@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://celt8y4efdpd"
+path="res://.godot/imported/Fight, Impact, Designed, Anime, Magic, Attack, Shing 01 SND77195.wav-a2c41b3fe220af8fdfbd7d44be15c563.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFX/Fight, Impact, Designed, Anime, Magic, Attack, Shing 01 SND77195.wav"
+dest_files=["res://.godot/imported/Fight, Impact, Designed, Anime, Magic, Attack, Shing 01 SND77195.wav-a2c41b3fe220af8fdfbd7d44be15c563.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

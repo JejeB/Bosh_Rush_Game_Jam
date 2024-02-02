@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://1gw86rikurqi"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 8.8
+max_distance = 100.0
+path = "event:/SFX/Boss/DeathRay"
+guid = "{9094f18b-261b-425f-b928-b4640541109a}"
+name = "DeathRay"

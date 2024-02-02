@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{139224d5-fca9-4990-9c88-89d95fe749de}">
 		<property name="assetPath">
-			<value>User Interface, Alert, Notification, Video Game, Select, Click, Beep SND85304 - Pitch 81.wav</value>
+			<value>SFX/User Interface, Alert, Notification, Video Game, Select, Click, Beep SND85304 - Pitch 81.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

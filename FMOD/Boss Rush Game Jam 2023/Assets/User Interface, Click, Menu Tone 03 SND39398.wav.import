@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://xbachge8si7k"
+path="res://.godot/imported/User Interface, Click, Menu Tone 03 SND39398.wav-f1cc65ffc2310abd8d2cf21623de8ed5.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/User Interface, Click, Menu Tone 03 SND39398.wav"
+dest_files=["res://.godot/imported/User Interface, Click, Menu Tone 03 SND39398.wav-f1cc65ffc2310abd8d2cf21623de8ed5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

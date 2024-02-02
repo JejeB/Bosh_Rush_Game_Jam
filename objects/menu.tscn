@@ -146,7 +146,7 @@ libraries = {
 wait_time = 0.6
 one_shot = true
 
-[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="."]
+[node name="Menu_Music" type="StudioEventEmitter2D" parent="."]
 play_event = 1
 stop_event = 3
 event = ExtResource("9_cwptt")

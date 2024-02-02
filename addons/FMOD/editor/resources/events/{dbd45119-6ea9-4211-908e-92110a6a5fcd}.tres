@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://cnxgb7suucqei"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 8.6
+max_distance = 100.0
+path = "event:/SFX/Boss/TakeDamage"
+guid = "{dbd45119-6ea9-4211-908e-92110a6a5fcd}"
+name = "TakeDamage"

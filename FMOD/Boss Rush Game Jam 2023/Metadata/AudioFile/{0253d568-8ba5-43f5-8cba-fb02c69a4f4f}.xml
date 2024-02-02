@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{0253d568-8ba5-43f5-8cba-fb02c69a4f4f}">
 		<property name="assetPath">
-			<value>Weapons, Sword, Swing Fast, Whoosh, Metal SND34535 - Pitch 55.wav</value>
+			<value>SFX/Weapons, Sword, Swing Fast, Whoosh, Metal SND34535 - Pitch 55.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

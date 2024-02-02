@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{7c2c012f-75cc-4fe5-81b2-f3139bb89f0d}">
 		<property name="assetPath">
-			<value>Footsteps, Human, Boots, Various Materials, Concrete, Grass, Light Wind, Prypiat Lake, Ukraine SND91020.wav</value>
+			<value>SFX/Footsteps, Human, Boots, Various Materials, Concrete, Grass, Light Wind, Prypiat Lake, Ukraine SND91020.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c83tvtevc6gm4"
+path="res://.godot/imported/Player_Sword_Swing_1.wav-f596eb587cc17f16768195de48cd6d8f.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFX/Player_Sword_Swing_1.wav"
+dest_files=["res://.godot/imported/Player_Sword_Swing_1.wav-f596eb587cc17f16768195de48cd6d8f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

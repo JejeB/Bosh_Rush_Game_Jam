@@ -20,6 +20,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("click_gauche") and state_dialog:
 		get_tree().change_scene_to_file(main_scene)
+		FMODRuntime.play_one_shot_path("event:/SFX/UI/TutGuy")
 
 
 func _on_area_3d_body_entered(body):

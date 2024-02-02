@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{6a6dc652-2c6b-4f0d-9af9-af2b9110f2a6}">
 		<property name="assetPath">
-			<value>Voices, Male, Type 04, Attack, Growl, Video Game 05 SND85550 - Pitch 112 1.wav</value>
+			<value>SFX/Voices, Male, Type 04, Attack, Growl, Video Game 05 SND85550 - Pitch 112 1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://5q1qlu23flg4"]
+[gd_scene load_steps=37 format=3 uid="uid://5q1qlu23flg4"]
 
 [ext_resource type="PackedScene" uid="uid://c1dqbeag1cxkr" path="res://objects/first_platform.tscn" id="1_1aide"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_fp412"]
@@ -63,6 +63,13 @@ albedo = Color(1, 1, 0.690196, 1)
 emission = Color(0.886275, 0.615686, 0.164706, 1)
 height_falloff = 1e-05
 edge_fade = 1.21257
+
+[sub_resource type="EventAsset" id="EventAsset_lrogb"]
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/Music/Tutorial"
+guid = "{df10e4b0-67eb-43de-bc40-9b26ec5017d8}"
+name = "Tutorial"
 
 [node name="Tutorial" type="Node3D"]
 
@@ -381,6 +388,11 @@ skeleton = NodePath("../../../..")
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(100, 0, 0, 0, 10, 0, 0, 0, 100, -28.1768, -23.7284, -63.6558)
 material = SubResource("FogMaterial_lteg6")
+
+[node name="Tutorial_Music" type="StudioEventEmitter2D" parent="."]
+play_event = 1
+stop_event = 3
+event = SubResource("EventAsset_lrogb")
 
 [connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]

@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://hpfrqmukp2hm"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/UI/TutGuy"
+guid = "{fc87ebe6-295f-4786-8a7e-3aa018eac1cb}"
+name = "TutGuy"

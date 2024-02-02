@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{51ec0600-9b0c-4776-9f46-af0beffd9130}">
 		<property name="assetPath">
-			<value>User Interface, Alert, Notification, Negative, Error, Incorrect, Insufficient, Video Game 03 SND86850 1.wav</value>
+			<value>SFX/User Interface, Alert, Notification, Negative, Error, Incorrect, Insufficient, Video Game 03 SND86850 1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

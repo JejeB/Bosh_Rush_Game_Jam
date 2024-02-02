@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://brg51x0gs7e38"
+path="res://.godot/imported/Weapons, Sword, Swing Fast, Whoosh, Metal SND34535 - Pitch 55.wav-72de43b0eede27ab93d01018ce8723d1.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFX/Weapons, Sword, Swing Fast, Whoosh, Metal SND34535 - Pitch 55.wav"
+dest_files=["res://.godot/imported/Weapons, Sword, Swing Fast, Whoosh, Metal SND34535 - Pitch 55.wav-72de43b0eede27ab93d01018ce8723d1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

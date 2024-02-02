@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b0n4w5qc0kths"
+path="res://.godot/imported/DSGNStngr_WATER - Organic Water Impact A 03.wav-7d54e991cf2b40a5b32aa70645b86745.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/DSGNStngr_WATER - Organic Water Impact A 03.wav"
+dest_files=["res://.godot/imported/DSGNStngr_WATER - Organic Water Impact A 03.wav-7d54e991cf2b40a5b32aa70645b86745.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -150,7 +150,7 @@ func push_back(delta):
 		movement_velocity = Vector3.ZERO
 
 func _on_hurt_timer_timeout():
-	state = State.INVINCIBLE
+	state = State.INVINCIBLE 
 	invincible_timer.set_wait_time(POST_HURT_INVINCIBILITY)
 	invincible_timer.start()
 
@@ -187,6 +187,8 @@ func play_anim(attack_name:String):
 	animation_weapon.stop()
 	animation_weapon.play(attack_name,anim_speed)
 	print("[PLAY] PLayer melee "+ attack_name)
+	FMODRuntime.play_one_shot_path("event:/SFX/Hero/SwordAttack")
+	
 		
 func stop_melee_attack():
 	state = State.STANDARD

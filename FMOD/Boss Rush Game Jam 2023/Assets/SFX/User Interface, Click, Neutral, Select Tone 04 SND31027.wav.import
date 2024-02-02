@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c0h08k63hrhlh"
+path="res://.godot/imported/User Interface, Click, Neutral, Select Tone 04 SND31027.wav-89f30d8139696d4048b725eb1f489354.sample"
+
+[deps]
+
+source_file="res://FMOD/Boss Rush Game Jam 2023/Assets/SFX/User Interface, Click, Neutral, Select Tone 04 SND31027.wav"
+dest_files=["res://.godot/imported/User Interface, Click, Neutral, Select Tone 04 SND31027.wav-89f30d8139696d4048b725eb1f489354.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

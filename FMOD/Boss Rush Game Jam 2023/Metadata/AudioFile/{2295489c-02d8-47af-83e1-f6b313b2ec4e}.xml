@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{2295489c-02d8-47af-83e1-f6b313b2ec4e}">
 		<property name="assetPath">
-			<value>Fight, Impact, Designed, Anime, Magic, Attack, Shing 01 SND77195.wav</value>
+			<value>SFX/Fight, Impact, Designed, Anime, Magic, Attack, Shing 01 SND77195.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
