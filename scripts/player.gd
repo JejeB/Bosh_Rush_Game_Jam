@@ -94,9 +94,10 @@ func _physics_process(delta):
 # Handle the action when you press your spell or sword
 func handle_action(_delta):
 	if Input.is_action_just_released("swap_button") :
-			spell_indicator.visible = false
-			if hover_on_swappable_object and swap_state_mode != Swap_State.COOLDOWN:
-				start_swap()
+		spell_indicator.visible = false
+		print("realse swap")
+		if hover_on_swappable_object and swap_state_mode != Swap_State.COOLDOWN:
+			start_swap()
 	if Input.is_action_just_pressed("swap_button"):
 			prepare_swap()
 	if Input.is_action_just_pressed("right_click"):
@@ -134,7 +135,6 @@ func update_hp(value:int):
 #--- HURT---
 func hurt(impact_position):
 	if state != State.INVINCIBLE:
-		print("[PLAY] Player hurt")
 		hurt_direction = (position - impact_position).normalized()
 		state = State.HURT
 		hurt_force = HURT_FORCE
@@ -186,7 +186,6 @@ func play_anim(attack_name:String):
 	animation_weapon.clear_queue()
 	animation_weapon.stop()
 	animation_weapon.play(attack_name,anim_speed)
-	print("[PLAY] PLayer melee "+ attack_name)
 	FMODRuntime.play_one_shot_path("event:/SFX/Hero/SwordAttack")
 	
 		

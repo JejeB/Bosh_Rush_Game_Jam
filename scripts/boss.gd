@@ -28,7 +28,9 @@ enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP,STUN}
 ## Time elasped between 2 jumps in sec
 @export var JUMP_COOLDOWN:float = 5
 ## The distance of the dash done
-@export var JUMPING_DISTANCE = 0.5
+@export var JUMPING_DISTANCE:float = 20.
+
+var JUMP_SPEED:int = 50
 
 @export_subgroup("STUNT")
 ## Time of the stun in sec
@@ -64,6 +66,8 @@ var blink_effect:float = 0.
 func _ready():
 	hp = max_hp
 	back_to_default_state()
+	jump_path.mesh.set_height(JUMPING_DISTANCE)
+	jump_path.position = Vector3(0,0.5,JUMPING_DISTANCE/2)
 
 func _physics_process(delta):
 	# Handle functions
@@ -89,7 +93,10 @@ func choose_action(delta):
 	elif boss_state == State.JUMPING:
 		var distance:float = jump_start_point.distance_to(self.global_position)
 		jump_on_player()
+		print(distance)
 		if distance > JUMPING_DISTANCE:
+			movement_velocity = Vector3.ZERO
+			velocity = Vector3.ZERO
 			back_to_default_state()
 		
 	elif boss_state == State.PREPARE_JUMP:
@@ -98,7 +105,6 @@ func choose_action(delta):
 
 # ---JUMP---
 func start_jump_attack():
-	print("[PLAY] prepare jump attack")
 	movement_velocity = Vector3.ZERO
 	animation.play("idle")
 	state(State.AIMING_PLAYER)
@@ -113,8 +119,8 @@ func jump_on_player():
 	jump_path.visible = false
 	animation.play("walk", 3)
 	particles_trail.emitting = true
-	movement_velocity = get_global_transform().basis.z * movement_speed * 50
-	FMODRuntime.play_one_shot_path("event:/SFX/Boss/BossRush", get_global_transform())
+	movement_velocity = get_global_transform().basis.z * movement_speed * JUMP_SPEED
+	
 
 # ---MELEE ATTACK---
 func start_melee_attack():
@@ -179,6 +185,7 @@ func _on_timer_timeout():
 		start_timer_for(PREPARE_JUMP_TIME)
 	elif boss_state == State.PREPARE_JUMP:
 		state(State.JUMPING)
+		FMODRuntime.play_one_shot_path("event:/SFX/Boss/BossRush", get_global_transform())
 	else :
 		back_to_default_state()
 
@@ -233,7 +240,7 @@ func back_to_default_state():
 # --- ZONE Attack---
 func init_zone_attack():
 	zone_attack = zone_attack_scene.instantiate()
-	zone_attack.set_scale(Vector3(1,1,1)*MELEE_RANGE * 1/scale.x)
+	zone_attack.set_scale(Vector3(1,1,1)*MELEE_RANGE)
 	add_child(zone_attack)
 	
 func free_zone_attack():
