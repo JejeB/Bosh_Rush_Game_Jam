@@ -71,9 +71,11 @@ var blink_effect:float = 0.
 func _ready():
 	hp = max_hp
 	player_initiated.emit()
+	swapp_effect.visible = false
 
 func _physics_process(delta):
 	if game_state:
+		
 		# Handle functions
 		handle_hp()
 		if state == State.STANDARD:
@@ -96,8 +98,6 @@ func _physics_process(delta):
 # Handle the action when you press your spell or sword
 func handle_action(_delta):
 	if Input.is_action_just_released("swap_button") :
-		spell_indicator.visible = false
-		print("realse swap")
 		if hover_on_swappable_object and swap_state_mode != Swap_State.COOLDOWN:
 			start_swap()
 	if Input.is_action_just_pressed("swap_button"):
@@ -113,6 +113,7 @@ func set_hoover(value:bool):
 	
 
 func start_swap():
+	swapp_effect.visible = false
 	swap_state_mode = Swap_State.SWAP
 	emit_signal("swap_positon")
 	swap_state_mode = Swap_State.COOLDOWN
@@ -235,6 +236,8 @@ func handle_movement(delta):
 	
 	# Handle animation(s)
 func handle_effects():
+	if Input.is_action_just_released("swap_button") :
+		spell_indicator.visible = false
 	particles_trail.emitting = false
 	if is_on_floor():
 		if abs(velocity.x) > 1 or abs(velocity.z) > 1:

@@ -95,11 +95,12 @@ func _on_stun_collision_body_entered(body):
 		body.start_stun()
 
 func _on_stun_collision_mouse_entered():
-	#rock.set_surface_override_material(1,HOVER_MATERIAL)
-	FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
-	player.set_hoover(true)
-	player.swappable_object_position = self.get_position()
-	swap_effect.visible = true
+	var distance = player.global_position.distance_to(self.global_position)
+	if distance <= hover_range :
+		FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
+		player.set_hoover(true)
+		player.swappable_object_position = self.get_position()
+		swap_effect.visible = true
 
 func _on_stun_collision_mouse_exited():
 	#rock.set_surface_override_material(1,current_material)
