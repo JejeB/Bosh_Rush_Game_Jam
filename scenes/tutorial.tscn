@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://5q1qlu23flg4"]
+[gd_scene load_steps=50 format=3 uid="uid://5q1qlu23flg4"]
 
 [ext_resource type="PackedScene" uid="uid://c1dqbeag1cxkr" path="res://objects/first_platform.tscn" id="1_1aide"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_fp412"]
@@ -28,6 +28,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dewcnldbktuh2" path="res://models/tutorial_models/block.obj" id="25_720k1"]
 [ext_resource type="ArrayMesh" uid="uid://ccr8t0akpam4g" path="res://models/tutorial_models/grassLarge.obj" id="27_4xxsf"]
 [ext_resource type="Script" path="res://scripts/BushCuttingTutorial.gd" id="27_balrv"]
+[ext_resource type="Texture2D" uid="uid://bq02qdwep2736" path="res://sprites/magic_05.png" id="29_xf0rb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mfwe5"]
 font = ExtResource("6_22t3j")
@@ -84,6 +85,52 @@ size = Vector3(3.45993, 1.45557, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ubk4p"]
 size = Vector3(3, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbqny"]
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("29_xf0rb")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_t7ew8"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m2fps"]
+gradient = SubResource("Gradient_t7ew8")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_n3bj0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.60757, 0.778947), 0.0, 0.0, 0, 0, Vector2(0.932271, 0.0210526), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_25hd3"]
+curve = SubResource("Curve_n3bj0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rotf0"]
+lifetime_randomness = 0.36
+direction = Vector3(1, 1, 0)
+initial_velocity_min = -5.0
+initial_velocity_max = 5.0
+angular_velocity_min = 720.0
+angular_velocity_max = 1440.0
+gravity = Vector3(0, 0, 0)
+damping_max = 2.0
+scale_min = 0.02
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_25hd3")
+color = Color(0.407843, 0.764706, 0.643137, 1)
+color_ramp = SubResource("GradientTexture1D_m2fps")
+turbulence_enabled = true
+turbulence_noise_strength = 0.36
+turbulence_noise_scale = 0.69
+turbulence_noise_speed = Vector3(0, 5, 0)
+turbulence_noise_speed_random = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_qsn0x"]
 
 [node name="Tutorial" type="Node3D"]
 
@@ -433,6 +480,18 @@ mesh = ExtResource("27_4xxsf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BushCuttingTutorial/ActivationArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05957, 1.05869, 0.613888)
 shape = SubResource("BoxShape3D_ubk4p")
+
+[node name="CutParticles" type="GPUParticles3D" parent="BushCuttingTutorial"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.663532, -0.445499)
+material_override = SubResource("StandardMaterial3D_hbqny")
+cast_shadow = 0
+emitting = false
+amount = 100
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rotf0")
+draw_pass_1 = SubResource("QuadMesh_qsn0x")
 
 [connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]

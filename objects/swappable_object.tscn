@@ -31,7 +31,7 @@ particles_anim_loop = false
 [sub_resource type="Gradient" id="Gradient_i811e"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_m2fps"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x55h1"]
 gradient = SubResource("Gradient_i811e")
 use_hdr = true
 
@@ -39,7 +39,7 @@ use_hdr = true
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.60757, 0.778947), 0.0, 0.0, 0, 0, Vector2(0.932271, 0.0210526), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_25hd3"]
+[sub_resource type="CurveTexture" id="CurveTexture_g0afp"]
 curve = SubResource("Curve_l2834")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_np56g"]
@@ -53,9 +53,9 @@ gravity = Vector3(0, 0, 0)
 damping_max = 2.0
 scale_min = 0.02
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_25hd3")
+scale_curve = SubResource("CurveTexture_g0afp")
 color = Color(0.882353, 0.490196, 0.941176, 1)
-color_ramp = SubResource("GradientTexture1D_m2fps")
+color_ramp = SubResource("GradientTexture1D_x55h1")
 turbulence_enabled = true
 turbulence_noise_strength = 0.36
 turbulence_noise_scale = 0.69

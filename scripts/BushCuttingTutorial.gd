@@ -7,6 +7,7 @@ extends Node3D
 @onready var dialog_hud = $"../DialogHud"
 @onready var dialog_label = $"../DialogHud/CenterContainer/DialogLabel"
 @onready var dialog_center = $"../DialogHud/CenterContainer"
+@onready var cut_particles = $CutParticles
 
 var player_is_in_area = false
 
@@ -32,3 +33,4 @@ func _on_activation_area_body_entered(body):
 func _on_activation_area_area_entered(area: Area3D):
 	if area.is_in_group('player_sword'):
 		bush_object.queue_free()
+		cut_particles.emitting = true
