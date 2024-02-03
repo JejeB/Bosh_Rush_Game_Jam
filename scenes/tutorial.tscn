@@ -106,7 +106,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("4_6x7pa")]
-transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 7.86298, 0.5, 5.88477)
+transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 8.16382, 0.500002, 5.99326)
 view = NodePath("../View")
 movement_speed = 400
 sword_damage = 50

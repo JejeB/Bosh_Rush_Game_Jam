@@ -3,8 +3,7 @@ extends Area3D
 @export var HOVER_MATERIAL:Material
 @export var ACTIVATED_MATERIAL:Material
 @export var gate_mesh:StaticBody3D
-@export var dialog:Array = ["Welcome, noble Aztec fighter! Prepare yourself for the battles ahead.\n You possess a unique power, one that will aid you in your quest to protect your people.\nThis power can be activated at any time with a simple press of 
-the space bar.....", "Behold! With this power, you have the ability to exchange places with stones.\n Utilize this power wisely, brave warrior. \nIt can be the key to escaping danger or setting up strategic positions.....", "Let us practice this power in a safe environment.\n Press the space bar now and try exchanging places with the nearest statue."]
+@export var dialog:Array = ["Welcome, noble Aztec fighter! \nUse your powers to open the gate! \nPress <SPACEBAR> while highlighting your target with the <MOUSE>"]
 
 
 @onready var mesh = $HexSand
@@ -59,5 +58,5 @@ func _on_area_entered(area):
 		gate_mesh.position.y = gate_mesh.position.y - 2
 		timer.stop()
 		gate_state = true
-		dialog_label.text = "Excellent! You have mastered the art of stone transformation. \nUse it to evade enemy attacks, disrupt formations, or even set up unexpected ambushes."
+		dialog_label.text = "Excellent! You opened the door! \nNow, use your abilities to cross the chasum."
 		dialog_center.show()

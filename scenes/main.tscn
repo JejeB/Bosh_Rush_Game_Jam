@@ -88,6 +88,7 @@ environment = ExtResource("1_ahusb")
 transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, 1.2308, 0.5, 32.4133)
 view = NodePath("../View")
 movement_speed = 400
+max_hp = 50
 sword_damage = 50
 HURT_FORCE = 8000
 

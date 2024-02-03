@@ -1,7 +1,6 @@
 extends Node3D
 
-@export var dialog:Array = ["Young warrior, the time has come.\n You have passed the rite of initiation with honor and strength.\n You have proven yourself worthy to face the great god,\n Tezcatlipoca, the Smoking Mirror, the Patron of mirrors, 
-hidden truths, and illusions."]
+@export var dialog:Array = ["Young warrior, the time has come.\nWe need your powers to save our land from destruction at the claws of\nTezcatlipoca, the Smoking Mirror.\nQuickly! I will take you to his lair. Good Luck!"]
 
 @onready var boss_hud = $"../GameHud/Boss"
 @onready var dialog_hud = $"../DialogHud"
