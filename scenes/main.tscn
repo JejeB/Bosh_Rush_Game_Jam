@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=57 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Texture2D" uid="uid://bqq1twwybriuv" path="res://sprites/photo-panoramique-3-pucelles-grenoble-041018.jpg" id="1_0m66n"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
@@ -30,7 +30,15 @@
 [ext_resource type="EventAsset" uid="uid://drmskm4wfjn78" path="res://addons/FMOD/editor/resources/events/{4ef5f11d-53da-4dff-aaf2-e2d497ada499}.tres" id="26_u0a4t"]
 [ext_resource type="ArrayMesh" uid="uid://dgrl31kp3w70j" path="res://meshes/rocks/formationLarge_stone.obj" id="26_vfhlv"]
 [ext_resource type="ArrayMesh" uid="uid://dfqr42r5uvx0s" path="res://meshes/rocks/formation_stone.obj" id="27_c8cve"]
+[ext_resource type="ArrayMesh" uid="uid://nwyqjf1gum3h" path="res://models/tutorial_models/tree.obj" id="29_j0wqr"]
+[ext_resource type="ArrayMesh" uid="uid://dgdg0s15nnpxo" path="res://models/tutorial_models/treeFallLarge.obj" id="30_eub6k"]
 [ext_resource type="PackedScene" uid="uid://ctdtaebo1jh0b" path="res://meshes/statue.glb" id="30_qkcgq"]
+[ext_resource type="ArrayMesh" uid="uid://su747tti8rgc" path="res://models/tutorial_models/campfire.obj" id="31_hb2dg"]
+[ext_resource type="ArrayMesh" uid="uid://rpou25v78txk" path="res://models/tutorial_models/stairs.obj" id="31_pkwsv"]
+[ext_resource type="ArrayMesh" uid="uid://bxqkuxmq202op" path="res://models/tutorial_models/floor-detail.obj" id="32_ipq44"]
+[ext_resource type="ArrayMesh" uid="uid://bjqw66354gtl2" path="res://models/tutorial_models/resourceStone.obj" id="34_5otps"]
+[ext_resource type="ArrayMesh" uid="uid://bfwk0m3dguh08" path="res://models/tutorial_models/fence.obj" id="35_1qmwc"]
+[ext_resource type="ArrayMesh" uid="uid://bhoxmfvvu7es7" path="res://models/tutorial_models/column-damaged.obj" id="36_5kra2"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u8oad"]
 panorama = ExtResource("1_0m66n")
@@ -46,13 +54,15 @@ sky = SubResource("Sky_m5doi")
 ambient_light_source = 2
 ambient_light_color = Color(0.898039, 0.886275, 0.992157, 1)
 ambient_light_energy = 1.1
-volumetric_fog_density = 0.0166
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0017
 volumetric_fog_albedo = Color(0.623529, 0.858824, 1, 1)
 volumetric_fog_emission = Color(0.87451, 0.898039, 1, 1)
-volumetric_fog_emission_energy = 0.1
+volumetric_fog_emission_energy = 0.01
 volumetric_fog_gi_inject = 0.0
 volumetric_fog_detail_spread = 1.7411
 volumetric_fog_ambient_inject = 0.89
+volumetric_fog_sky_affect = 0.379
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3rtad"]
 radius = 0.1
@@ -106,6 +116,12 @@ size = Vector3(1, 3, 80)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f3g8"]
 albedo_color = Color(0.372549, 0.266667, 0.145098, 1)
+
+[sub_resource type="FogMaterial" id="FogMaterial_30v7j"]
+albedo = Color(0.627451, 0.709804, 0.819608, 1)
+emission = Color(0.996078, 0.996078, 0.996078, 1)
+height_falloff = 0.00029857
+edge_fade = 0.0176777
 
 [node name="Main" type="Node3D"]
 
@@ -448,6 +464,93 @@ mesh = ExtResource("26_vfhlv")
 transform = Transform3D(-1, 0, -1.21229e-07, 0, 0.490728, 0, 8.74228e-08, 0, -1.38669, 0.682945, -0.563441, 15.9771)
 mesh = ExtResource("27_c8cve")
 
+[node name="Decoration" type="Node3D" parent="Walls/West"]
+
+[node name="Tree" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.19072, -0.374693, 2.57449)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree8" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.25627, -0.374693, 13.027)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree9" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -5.54012, 1.10116, 22.1095)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree10" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -2.00757, 0.692854, -38.1841)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree2" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.19072, -1.38618, -4.67056)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree11" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.6065, 1.05516, 34.8881)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree3" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -8.01322, -0.469393, -17.8162)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree4" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7.08788, -0.742489, -21.9273)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree5" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -5.93765, -0.742489, -22.87)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree6" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -5.93765, 0.0390792, -27.8832)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="Tree7" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.34973, 0.0981441, -29.9447)
+mesh = ExtResource("29_j0wqr")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -13.5051, -5.85833, 30.8372)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge2" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, -9.46946, -8.51504, -38.8001)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge3" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.38568, 0.102365, -5.05235)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge4" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.38568, 0.763435, -8.13755)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge5" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.61052, -0.972078, -1.49104)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge6" type="MeshInstance3D" parent="Walls/West/Decoration"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.2606, -1.70971, 17.565)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
 [node name="East" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6608, 1.5, 0)
 
@@ -749,6 +852,197 @@ mesh = ExtResource("27_c8cve")
 [node name="FormationStone8" type="MeshInstance3D" parent="Walls/South/fallcliff"]
 transform = Transform3D(-0.554408, 9.16051e-15, 1.20131e-07, 2.1186e-15, -0.79906, 6.00656e-08, 9.69358e-08, 6.9856e-08, 0.68707, 0.903576, 0.510367, 3.66357)
 mesh = ExtResource("27_c8cve")
+
+[node name="Decoration" type="Node3D" parent="Walls/South"]
+
+[node name="Stairs" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.24705, -1.83575, 2.73618)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs2" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.24705, -1.83575, 1.7616)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs3" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.91629, -2.197, 2.75733)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs4" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.91629, -2.197, 1.78274)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs5" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.56053, -2.52781, 2.75733)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs6" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.56053, -2.52781, 1.78274)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs7" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.26653, -2.84707, 2.75733)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs8" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.26653, -2.84707, 1.78274)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs9" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.0053, -3.16306, 2.75733)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs10" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.0053, -3.16306, 1.78274)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs11" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.78321, -3.50351, 2.75732)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Stairs12" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.78321, -3.50351, 1.78274)
+mesh = ExtResource("31_pkwsv")
+skeleton = NodePath("../../../..")
+
+[node name="Campfire" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 3.03562, -1.30676, -6.77557)
+mesh = ExtResource("31_hb2dg")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.1238, -1.27638, -6.80405)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail4" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.43941, -1.27638, 2.72395)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail5" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.43941, -1.27638, 1.7396)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail6" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.45241, -1.27638, 2.72395)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail7" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.45241, -1.27638, 1.7396)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail8" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.46214, -1.27638, 2.72395)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail9" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.46214, -1.27638, 1.7396)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail10" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.523808, -1.27638, 2.72395)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail11" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.523808, -1.27638, 1.7396)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail12" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.173447, -1.27638, 2.72395)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail13" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.173447, -1.27638, 1.7396)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail2" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.1238, -1.27638, -5.73316)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="Floor-detail3" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.16163, -1.27638, -6.24779)
+mesh = ExtResource("32_ipq44")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-3.0598e-07, 0, 7, 0, 7, 0, -7, 0, -3.0598e-07, 12.029, -6.61935, -16.9322)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge3" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 9.74409, -6.58566, 0.326734)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge4" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 11.8363, -5.76706, 2.84443)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge5" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 8.66211, -4.5874, 5.64523)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="TreeFallLarge2" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-3.0598e-07, 0, 7, 0, 7, 0, -7, 0, -3.0598e-07, 9.74056, -8.00161, 32.9038)
+mesh = ExtResource("30_eub6k")
+skeleton = NodePath("../../../..")
+
+[node name="ResourceStone" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 70, 0, -10, 0, -4.37114e-07, 5.42495, -5.97094, 3.3848)
+mesh = ExtResource("34_5otps")
+skeleton = NodePath("../../../..")
+
+[node name="ResourceStone2" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 70, 0, -10, 0, -4.37114e-07, 6.74556, -7.47153, 0.759461)
+mesh = ExtResource("34_5otps")
+skeleton = NodePath("../../../..")
+
+[node name="ResourceStone3" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 70, 0, -10, 0, -4.37114e-07, 6.74556, -9.16629, 3.32244)
+mesh = ExtResource("34_5otps")
+skeleton = NodePath("../../../..")
+
+[node name="Fence" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(7, 0, 0, 0, 10, 0, 0, 0, 10, 5.57967, -5.76839, -1.24831)
+mesh = ExtResource("35_1qmwc")
+skeleton = NodePath("../../../..")
+
+[node name="Column-damaged" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.205471, -1.33676, 0.800615)
+mesh = ExtResource("36_5kra2")
+skeleton = NodePath("../../../..")
+
+[node name="Column-damaged2" type="MeshInstance3D" parent="Walls/South/Decoration"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.325916, -1.33676, 3.55999)
+mesh = ExtResource("36_5kra2")
+skeleton = NodePath("../../../..")
+
+[node name="FogVolume" type="FogVolume" parent="Walls"]
+transform = Transform3D(80, 0, 0, 0, 10, 0, 0, 0, 80, 0, -11.8124, 0)
+material = SubResource("FogMaterial_30v7j")
 
 [node name="StoneSpawnner" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("25_4gi0y")
