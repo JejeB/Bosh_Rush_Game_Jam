@@ -1,98 +1,78 @@
 shader_type spatial;
+render_mode cull_disabled, unshaded;
 
-render_mode cull_disabled, vertex_lighting;
+uniform float wind_speed = 0.2;
+uniform float wind_strength = 2.0;
+// How big, in world space, is the noise texture
+// wind will tile every wind_texture_tile_size
+uniform float wind_texture_tile_size = 20.0;
+uniform float wind_vertical_strength = 0.3;
+uniform vec2 wind_horizontal_direction = vec2(1.0,0.5);
 
-group_uniforms properties;
-uniform float specular : hint_range(0.0, 1.0);
-uniform float roughness : hint_range(0.0, 1.0);
-uniform float metallic : hint_range(0.0, 1.0);
-uniform vec2 fadeout_envelope;
+uniform sampler2D color_ramp ;
+// we need a tiling noise here!
+uniform sampler2D wind_noise ;
 
-group_uniforms color;
-uniform vec3 top_color : source_color;
-uniform vec3 bottom_color : source_color;
-uniform vec3 noise_color : source_color;
+uniform vec3 character_position;
+uniform float character_radius = 3.0;
+uniform sampler2D character_distance_falloff_curve ;
+uniform float character_push_strength = 1.0;
 
-group_uniforms maps;
-uniform sampler2D foliage_texture;
-uniform sampler2D heightmap_normals : hint_normal;
-uniform float heightmap_scale;
-uniform sampler2D color_noise;
-uniform float color_noise_scale;
-uniform float color_noise_intensity : hint_range(0.0, 1.0);
+varying float debug_wind;
 
-group_uniforms wind;
-uniform bool wind;
-uniform sampler2D wind_noise;
-uniform float wind_scale = 1.0;
-uniform float wind_intensity = 1.0;
-uniform float wind_speed = 1.0;
-uniform float wind_darken : hint_range(0.0, 1.0);
+void vertex() {
+	
+	vec3 world_vert = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 
-varying vec2 heightmap_position;
-varying vec3 vert_normal;
+	vec2 normalized_wind_direction = normalize(wind_horizontal_direction);
+	vec2 world_uv = world_vert.xz / wind_texture_tile_size + normalized_wind_direction * TIME * wind_speed;
+	// we displace only the top part of the mesh
+	// note that this means that the mesh needs to have UV in a way that the bottom of UV space
+	// is at the top of the mesh
+	float displacement_affect = (1.0 - UV.y);
+	float wind_noise_intensity = (textureLod(wind_noise, world_uv , 0.0).r - 0.5);
 
-const mat4 dither = mat4(
-	vec4(0.0625, 0.5625, 0.1875,  0.6875),
-	vec4(0.8125, 0.3125, 0.9375,  0.4375),
-	vec4(0.25, 0.75, 0.125, 0.625),
-	vec4(1.0, 0.5, 0.875,  0.375));
+	// We convert the direction of the wind into vertex space from world space
+	// if we used it directly in vertex space, rotated blades of grass wouldn't behave properly
+	vec2 vert_space_horizontal_dir = (inverse(MODEL_MATRIX) * vec4(wind_horizontal_direction, 0.0,0.0)).xy;
+	vert_space_horizontal_dir = normalize(vert_space_horizontal_dir);
+	
+	vec3 bump_wind = vec3(
+		wind_noise_intensity * vert_space_horizontal_dir.x,
+		1.0 - wind_noise_intensity,
+		wind_noise_intensity * vert_space_horizontal_dir.y 
+	);
+	normalize(bump_wind);
+	bump_wind *= vec3(
+		wind_strength,
+		wind_vertical_strength,
+		wind_strength
+	);
+	VERTEX += bump_wind * displacement_affect;
+	
+	// At the moment the blades are pushed away in a perfectly circular manner.
+	// We could distort the distance to the character based on a noise, to break a bit the
+	// circular shape. We could distort the falloff by sampling in a noise based on the xz coordinates.
+	// The task is left to the reader
+	
+	vec3 dir_to_character = character_position - MODEL_MATRIX[3].xyz;
+	// uncomment the following line to have a horizontal only character push
+//	dir_to_character.y = 0.0;
+	float distance_to_character = length(dir_to_character);
+	float falloff = 1.0 - smoothstep(0.0, 1.0, distance_to_character/character_radius);
+	// Because we operate in vertex space, we need to convert the direction to the character
+	// in vertex space. Otherwise, it wouldn't work for rotated blades of grass.
+	// comment the next line to observe how the blades are not all facing away from the character.
+	dir_to_character = (inverse(MODEL_MATRIX) * vec4(dir_to_character, 0.0)).xyz;
+	dir_to_character = normalize(dir_to_character);
 
-vec3 unpack_normal(vec4 rgba) {
-	vec3 n = rgba.xzy * 2.0 - vec3(1.0);
-	n.z *= -1.0;
-	return n;
-}
-
-float getValue(int x, int y) {
-	return dither[x][y];
-}
-
-float remap(float value, float istart, float istop, float ostart, float ostop) {
-    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
+	// sample the curve based on how far we are from the character, in normalized coordinates
+	float falloff_curve = texture(character_distance_falloff_curve, vec2(falloff)).x;
+	// direction to character is inverted because we want to point away from it
+	VERTEX += normalize(-dir_to_character) * falloff_curve * character_push_strength * displacement_affect;
+	
 }
 
 void fragment() {
-	NORMAL = (VIEW_MATRIX * (MODEL_MATRIX * vec4(vert_normal, 0.0))).xyz;
-	
-	float limit = getValue(int(FRAGCOORD.x) % 4, int(FRAGCOORD.y) % 4);
-	
-	ALPHA = texture(foliage_texture, UV).a;
-	if (COLOR.a < limit - 0.001) {
-		discard;
-	}
-	
-	ALPHA_SCISSOR_THRESHOLD = 0.7;
-
-	float color_noise_at_position = mix(0, texture(color_noise, heightmap_position * color_noise_scale).r, color_noise_intensity);
-	
-	vec3 base_color = mix(top_color, bottom_color, UV.y);
-	vec3 mixed_color = mix(base_color, noise_color, color_noise_at_position);
-	
-	float wind_darkening = mix(1.0, texture(wind_noise, heightmap_position * wind_scale + vec2(TIME * wind_speed)).r, wind_darken);
-	if (!wind) { wind_darkening = 1.0; }
-	ALBEDO = mixed_color * texture(foliage_texture, UV).rgb * wind_darkening;
-//	ALBEDO = vec3(COLOR.a);
-	SPECULAR = specular;
-	ROUGHNESS = roughness;
-	METALLIC = metallic;
-}
-
-void vertex() {
-	float heightmap_size = float(textureSize(heightmap_normals, 0).x);
-	heightmap_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz * (1.0 / (heightmap_scale * heightmap_size)) + vec2(0.5);
-	
-	if (wind) {
-		float wind_intensity_at_position = texture(wind_noise, heightmap_position * wind_scale + vec2(TIME * wind_speed)).r * wind_intensity;
-		float wind_offset = mix(wind_intensity_at_position, 0.0, UV.y);
-		VERTEX.x += wind_offset;
-	}
-	
-	vec3 world_position = (MODEL_MATRIX * vec4(VERTEX, 1)).xyz;
-	float camera_distance = distance(world_position, INV_VIEW_MATRIX[3].xyz);
-	float fadeout = clamp(remap(camera_distance, fadeout_envelope.x, fadeout_envelope.y, 1, 0), 0, 1);
-	COLOR.a = fadeout;
-	
-	vert_normal = unpack_normal(texture(heightmap_normals, heightmap_position));
-	NORMAL = vert_normal;
+	ALBEDO = texture(color_ramp, vec2(1.0 - UV.y, 0)).rgb ;
 }

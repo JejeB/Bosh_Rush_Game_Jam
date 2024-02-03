@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cryswshvb08lm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0l4rj"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_0l4rj")
