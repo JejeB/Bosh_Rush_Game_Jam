@@ -734,6 +734,22 @@ mesh = ExtResource("26_vfhlv")
 transform = Transform3D(-1, 0, -1.21229e-07, 0, 0.490728, 0, 8.74228e-08, 0, -1.38669, 0.682945, -0.563441, 15.9771)
 mesh = ExtResource("27_c8cve")
 
+[node name="FormationStone5" type="MeshInstance3D" parent="Walls/South/fallcliff"]
+transform = Transform3D(-0.554408, 0, -6.00659e-08, 0, 0.799059, 0, 4.84679e-08, 0, -0.68707, 0.682941, -5.32907, -11.2568)
+mesh = ExtResource("27_c8cve")
+
+[node name="FormationStone6" type="MeshInstance3D" parent="Walls/South/fallcliff"]
+transform = Transform3D(-0.554408, 0, -6.00659e-08, 0, 0.799059, 0, 4.84679e-08, 0, -0.68707, 0.682941, -5.32907, 0.481245)
+mesh = ExtResource("27_c8cve")
+
+[node name="FormationStone7" type="MeshInstance3D" parent="Walls/South/fallcliff"]
+transform = Transform3D(-0.554408, 9.16051e-15, 1.20131e-07, 2.1186e-15, -0.79906, 6.00656e-08, 9.69358e-08, 6.9856e-08, 0.68707, 0.903576, 0.510367, -1.65985)
+mesh = ExtResource("27_c8cve")
+
+[node name="FormationStone8" type="MeshInstance3D" parent="Walls/South/fallcliff"]
+transform = Transform3D(-0.554408, 9.16051e-15, 1.20131e-07, 2.1186e-15, -0.79906, 6.00656e-08, 9.69358e-08, 6.9856e-08, 0.68707, 0.903576, 0.510367, 3.66357)
+mesh = ExtResource("27_c8cve")
+
 [node name="StoneSpawnner" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("25_4gi0y")
 player = NodePath("../Player")
@@ -751,6 +767,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75197, 1, 39.9856)
 
 [node name="statue2" parent="." instance=ExtResource("30_qkcgq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9314, 1, 39.5452)
+
+[node name="FormationStone3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -4.70819, -3.73208, 48.8977)
+mesh = ExtResource("27_c8cve")
+
+[node name="FormationStone4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.02857, -8.74228e-08, 0, 1.77343e-07, -1, 0, 0, 0, 1, 11.2505, -3.73208, 48.8977)
+mesh = ExtResource("27_c8cve")
+
+[node name="FormationStone6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.88286, -8.74228e-08, 0, 2.52027e-07, -1, 0, 0, 0, 1.833, 14.8015, -3.73208, 60.1616)
+mesh = ExtResource("27_c8cve")
+
+[node name="FormationLargeStone" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.31853, -22.1335, -7.01194, 57.251)
+mesh = ExtResource("26_vfhlv")
+
+[node name="FormationStone5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2.45714, 0.223448, 40.1243)
+mesh = ExtResource("27_c8cve")
 
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]
 [connection signal="player_initiated" from="Player" to="StoneSpawnner" method="_on_player_player_initiated"]
