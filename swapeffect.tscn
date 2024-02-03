@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b61k2v1cej3dx"]
+
+[ext_resource type="Shader" path="res://swapeffect.gdshader" id="1_m62m1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vwoik"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tuixx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vy0fa"]
+render_priority = 0
+shader = ExtResource("1_m62m1")
+shader_parameter/col_distance_scale = 1.0
+shader_parameter/col_near = Color(0.545098, 0.72549, 0.980392, 1)
+shader_parameter/col_far = Color(0.423529, 0.831373, 0, 1)
+shader_parameter/emission_boost = 1.0
+shader_parameter/sphere_radius = 0.5
+shader_parameter/noise_scale = 1.0
+shader_parameter/detail = 4
+shader_parameter/rough = 0.5
+shader_parameter/inflate = 0.1
+shader_parameter/smooth_fac = 0.2
+shader_parameter/step_mult = 1.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_vwoik")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0585123, 0)
+mesh = SubResource("BoxMesh_tuixx")
+surface_material_override/0 = SubResource("ShaderMaterial_vy0fa")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=21 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ffboj"]
 [ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_nero3"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_0c7wt"]
 [ext_resource type="ArrayMesh" uid="uid://dl51dxrhonkrb" path="res://models/knife_sharp.obj" id="3_wr2yh"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_mvhqy"]
+[ext_resource type="Shader" path="res://swapeffect.gdshader" id="4_vbki5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
@@ -371,6 +372,25 @@ _data = {
 "knife_3": SubResource("Animation_p6exl")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_as8ww"]
+render_priority = 0
+shader = ExtResource("4_vbki5")
+shader_parameter/col_distance_scale = 8.0
+shader_parameter/col_near = Color(0.235294, 0.72549, 0.839216, 1)
+shader_parameter/col_far = Color(0, 0, 0, 1)
+shader_parameter/emission_boost = 2.0
+shader_parameter/sphere_radius = 0.4
+shader_parameter/noise_scale = 3.0
+shader_parameter/detail = 6
+shader_parameter/rough = 0.5
+shader_parameter/inflate = 0.1
+shader_parameter/smooth_fac = 0.75
+shader_parameter/step_mult = 0.26
+
+[sub_resource type="BoxMesh" id="BoxMesh_2uy2n"]
+material = SubResource("ShaderMaterial_as8ww")
+size = Vector3(1.5, 1, 1.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7stj"]
 diffuse_mode = 2
 specular_mode = 2
@@ -436,6 +456,10 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_dgagd")
 }
+
+[node name="Swapeffect" type="MeshInstance3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25474, 0)
+mesh = SubResource("BoxMesh_2uy2n")
 
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)

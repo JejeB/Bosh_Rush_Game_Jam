@@ -11,12 +11,16 @@ extends Node3D
 @onready var rock : MeshInstance3D = $rock/Cube_002
 @onready var magic : GPUParticles3D = $MagicParticles
 @onready var magic_timer : Timer = $MagicTimer
+@onready var swap_effect = $SwapEffect
 
 enum State {DESTROYABLE,HARD}
 var state: int = State.DESTROYABLE
 
 var current_material
 var first_frame = true
+
+func _ready():
+	swap_effect.visible = false
 
 func _process(_delta):
 	if first_frame:
@@ -91,12 +95,13 @@ func _on_stun_collision_body_entered(body):
 		body.start_stun()
 
 func _on_stun_collision_mouse_entered():
-	rock.set_surface_override_material(1,HOVER_MATERIAL)
+	#rock.set_surface_override_material(1,HOVER_MATERIAL)
 	FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
-	player.hover_on_swappable_object = true
+	player.set_hoover(true)
 	player.swappable_object_position = self.get_position()
-
+	swap_effect.visible = true
 
 func _on_stun_collision_mouse_exited():
-	rock.set_surface_override_material(1,current_material)
-	player.hover_on_swappable_object = false
+	#rock.set_surface_override_material(1,current_material)
+	player.set_hoover(false)
+	swap_effect.visible = false

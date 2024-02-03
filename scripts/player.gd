@@ -65,6 +65,7 @@ var blink_effect:float = 0.
 @onready var hurt_timer = $HurtTimer
 @onready var spell_indicator = $SpellIndicator
 @onready var invincible_timer = $InvincibilityTimer
+@onready var swapp_effect = $Character/Swapeffect
 
 # Functions
 func _ready():
@@ -106,6 +107,11 @@ func handle_action(_delta):
 
 
 #---SWAP---
+func set_hoover(value:bool):
+	hover_on_swappable_object = value
+	swapp_effect.visible = value
+	
+
 func start_swap():
 	swap_state_mode = Swap_State.SWAP
 	emit_signal("swap_positon")
