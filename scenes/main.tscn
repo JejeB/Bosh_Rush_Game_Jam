@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=38 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_ahusb"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
@@ -30,6 +30,10 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3rtad"]
 radius = 0.1
 height = 0.2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mtaev"]
+frequency = 0.02
+fractal_octaves = 4
 
 [sub_resource type="BoxMesh" id="BoxMesh_yohtx"]
 
@@ -86,6 +90,8 @@ target = NodePath("../Player")
 distance = 11
 height = 14
 freeze_time = 0.3
+noise = SubResource("FastNoiseLite_mtaev")
+shake_time = 0.3
 
 [node name="Camera" type="Camera3D" parent="View"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93346, 4.04577)
@@ -96,6 +102,10 @@ script = ExtResource("4_dysvp")
 [node name="StudioListener3D" type="StudioListener3D" parent="View/Camera"]
 
 [node name="CameraFreezeTimer" type="Timer" parent="View/Camera"]
+one_shot = true
+
+[node name="ShakeTimer" type="Timer" parent="View/Camera"]
+wait_time = 0.2
 one_shot = true
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
@@ -402,6 +412,8 @@ event = ExtResource("26_u0a4t")
 [connection signal="spell_changed" from="Player" to="DebugHud" method="_on_player_spell_changed"]
 [connection signal="swap_positon" from="Player" to="View" method="_on_player_swap_positon"]
 [connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
+[connection signal="timeout" from="View/Camera/ShakeTimer" to="View" method="_on_shake_timer_timeout"]
+[connection signal="hp_changed" from="Boss" to="View" method="_on_boss_hp_changed"]
 [connection signal="hp_changed" from="Boss" to="GameHud" method="_on_boss_hp_changed"]
 [connection signal="state_changed" from="Boss" to="DebugHud" method="_on_boss_state_changed"]
 [connection signal="timeout" from="GameHud/VFX/BloodTime" to="GameHud" method="_on_blood_time_timeout"]
