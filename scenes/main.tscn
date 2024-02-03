@@ -116,6 +116,7 @@ environment = SubResource("Environment_j3jaf")
 transform = Transform3D(-0.000733197, 0, -1, 0, 1, 0, 1, 0, -0.000733197, -0.0457501, 0.5, 35.3145)
 view = NodePath("../View")
 movement_speed = 400
+max_hp = 50
 sword_damage = 50
 HURT_FORCE = 8000
 

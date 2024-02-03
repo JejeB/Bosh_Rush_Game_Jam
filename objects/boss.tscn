@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bxmetb2b5dqqk" path="res://meshes/dragon/dragon7.glb" id="7_bj6rs"]
 [ext_resource type="Material" uid="uid://ep37frxjh6ob" path="res://meshes/zone_attack.tres" id="7_r5jpn"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
-radius = 0.331013
-height = 1.62125
+[sub_resource type="BoxShape3D" id="BoxShape3D_fo30o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7stj"]
 diffuse_mode = 2
@@ -121,10 +119,11 @@ bottom_radius = 0.2
 [node name="Boss" type="CharacterBody3D" groups=["boss"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("1_fbayf")
+AIMING_TIME = 2.0
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 1.99415, 0)
-shape = SubResource("CapsuleShape3D_gdq8c")
+transform = Transform3D(3, 0, 0, 0, -2.16627e-07, -4, 0, 4.95585, -1.74846e-07, -0.00413322, 2.4508, 1.27397)
+shape = SubResource("BoxShape3D_fo30o")
 
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
@@ -147,7 +146,7 @@ scale_amount_min = 0.75
 scale_amount_curve = SubResource("Curve_xh1e2")
 
 [node name="AttackHitbox" type="Node3D" parent="."]
-transform = Transform3D(1.42907, 0, 0, 0, 0.211577, 0, 0, 0, 1.23744, 0, 0.273964, 0.0692814)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00678849, 2.59897)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AttackHitbox"]
@@ -181,15 +180,24 @@ wait_time = 1.5
 [node name="AttackTime" type="Timer" parent="."]
 
 [node name="Blood" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.980278, 0.197623, 0, -0.197623, 0.980278, 0, 0.389741, 0)
+transform = Transform3D(0.0935349, 0.975981, 0.196757, -0.995616, 0.0916902, 0.0184847, 0, -0.197623, 0.980278, -0.0283713, 3.89324, 4.50217)
 emitting = false
-lifetime = 0.2
+lifetime = 0.3
 one_shot = true
+explosiveness = 0.75
+randomness = 0.5
+lifetime_randomness = 0.5
 mesh = SubResource("PrismMesh_8c2ue")
 direction = Vector3(1, 1, 1)
-spread = 27.0
-initial_velocity_min = 3.0
-initial_velocity_max = 10.0
+spread = 50.0
+flatness = 0.5
+initial_velocity_min = 7.0
+initial_velocity_max = 12.0
+angular_velocity_min = 200.0
+angular_velocity_max = 800.0
+radial_accel_min = 50.0
+radial_accel_max = 100.0
+angle_max = 359.0
 hue_variation_min = -0.15
 
 [node name="JumpPath" type="MeshInstance3D" parent="."]
