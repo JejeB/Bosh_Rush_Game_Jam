@@ -107,12 +107,13 @@ _data = {
 "stun": SubResource("Animation_k11fa")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p43up"]
-albedo_color = Color(0.784314, 0.188235, 0.172549, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cx211"]
+albedo_color = Color(0.745098, 0.286275, 0.313726, 1)
 
-[sub_resource type="PrismMesh" id="PrismMesh_8c2ue"]
-material = SubResource("StandardMaterial3D_p43up")
-left_to_right = 1.2
+[sub_resource type="PrismMesh" id="PrismMesh_y4je5"]
+material = SubResource("StandardMaterial3D_cx211")
+left_to_right = -0.1
+size = Vector3(0.3, 1, 0.1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_iayhs"]
 top_radius = 0.2
@@ -183,13 +184,19 @@ wait_time = 1.5
 [node name="Blood" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.980278, 0.197623, 0, -0.197623, 0.980278, 0, 0.389741, 0)
 emitting = false
-lifetime = 0.2
+amount = 10
+lifetime = 0.34
 one_shot = true
-mesh = SubResource("PrismMesh_8c2ue")
+speed_scale = 1.53
+mesh = SubResource("PrismMesh_y4je5")
 direction = Vector3(1, 1, 1)
 spread = 27.0
 initial_velocity_min = 3.0
-initial_velocity_max = 10.0
+initial_velocity_max = 18.23
+angular_velocity_min = -106.66
+angular_velocity_max = 65.19
+linear_accel_min = 3.29
+linear_accel_max = 3.29
 hue_variation_min = -0.15
 
 [node name="JumpPath" type="MeshInstance3D" parent="."]
