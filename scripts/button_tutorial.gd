@@ -4,7 +4,7 @@ extends Area3D
 @export var ACTIVATED_MATERIAL:Material
 @export var gate_mesh:StaticBody3D
 @export var dialog:Array = ["Welcome, noble Aztec fighter! \nUse your powers to open the gate! \nPress <SPACEBAR> while highlighting your target with the <MOUSE>"]
-
+@export var blink_time : float = 0.5
 
 @onready var mesh = $HexSand
 @onready var timer = $Timer
@@ -24,6 +24,7 @@ func _ready():
 	dialog_label.text = dialog[dialog_count]
 	dialog_hud.show()
 	dialog_count += 1
+	timer.wait_time = blink_time
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

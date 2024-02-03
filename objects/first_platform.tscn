@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c1dqbeag1cxkr"]
+[gd_scene load_steps=23 format=3 uid="uid://c1dqbeag1cxkr"]
 
 [ext_resource type="ArrayMesh" uid="uid://dewcnldbktuh2" path="res://models/tutorial_models/block.obj" id="1_ve4yy"]
 [ext_resource type="ArrayMesh" uid="uid://cayipby84161t" path="res://models/tutorial_models/bricks.obj" id="2_1ydho"]
@@ -28,6 +28,9 @@ radius = 0.802448
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tw04w"]
 size = Vector3(0.632812, 1.0177, 0.59194)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5c1b0"]
+size = Vector3(0.629517, 1, 2.04688)
 
 [node name="FirstPlatform" type="Node3D"]
 
@@ -462,12 +465,22 @@ shape = SubResource("BoxShape3D_ji4on")
 [node name="floor_decoration2" type="Node3D" parent="."]
 
 [node name="Column-damaged" type="MeshInstance3D" parent="floor_decoration2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85631, 0.5, -43.2014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00488, 0.5, -43.3467)
+mesh = ExtResource("2_qamym")
+skeleton = NodePath("../..")
+
+[node name="Column-damaged4" type="MeshInstance3D" parent="floor_decoration2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00488, 0.5, -42.6118)
 mesh = ExtResource("2_qamym")
 skeleton = NodePath("../..")
 
 [node name="Column-damaged2" type="MeshInstance3D" parent="floor_decoration2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30033, 0.5, -43.2014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.71718, 0.5, -43.3643)
+mesh = ExtResource("2_qamym")
+skeleton = NodePath("../..")
+
+[node name="Column-damaged3" type="MeshInstance3D" parent="floor_decoration2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.71718, 0.5, -42.7046)
 mesh = ExtResource("2_qamym")
 skeleton = NodePath("../..")
 
@@ -1256,7 +1269,21 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.30563, 0.5, -1.81887
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.52457, 0.5, -1.81887)
 
 [node name="statue3" parent="groundDecoration" instance=ExtResource("17_nio43")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.72477, 0.5, -43.2497)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.55425, 0.5, -41.9614)
 
 [node name="statue4" parent="groundDecoration" instance=ExtResource("17_nio43")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.0592415, 0.5, -43.2497)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.161518, 0.5, -42.06)
+
+[node name="Walls_for_Cut_right" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89924, 1.01636, -42.1489)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_for_Cut_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104309, 0, -0.523438)
+shape = SubResource("BoxShape3D_5c1b0")
+
+[node name="Walls_for_Cut_left" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8258, 1.01636, -42.1489)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_for_Cut_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104309, 0, -0.523438)
+shape = SubResource("BoxShape3D_5c1b0")

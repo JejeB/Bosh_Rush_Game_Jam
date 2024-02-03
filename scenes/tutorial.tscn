@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://5q1qlu23flg4"]
+[gd_scene load_steps=41 format=3 uid="uid://5q1qlu23flg4"]
 
 [ext_resource type="PackedScene" uid="uid://c1dqbeag1cxkr" path="res://objects/first_platform.tscn" id="1_1aide"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_fp412"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://scripts/debug_hud.gd" id="22_x5qcq"]
 [ext_resource type="PackedScene" uid="uid://ch3o6qoyxrc7t" path="res://objects/button_tutorial.tscn" id="24_uf6bu"]
 [ext_resource type="ArrayMesh" uid="uid://dewcnldbktuh2" path="res://models/tutorial_models/block.obj" id="25_720k1"]
+[ext_resource type="ArrayMesh" uid="uid://ccr8t0akpam4g" path="res://models/tutorial_models/grassLarge.obj" id="27_4xxsf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mfwe5"]
 font = ExtResource("6_22t3j")
@@ -47,6 +48,7 @@ font_color = Color(0, 0, 0, 1)
 outline_size = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vgiq7"]
+size = Vector3(1, 1, 0.939941)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gahem"]
 albedo_color = Color(0.717647, 0, 1, 1)
@@ -56,6 +58,10 @@ albedo_color = Color(0.419608, 0.556863, 0.137255, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tu2eu"]
 size = Vector3(2.03809, 1, 0.455566)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_282j0"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.741176, 0.482353, 0.247059, 1)
 
 [sub_resource type="FogMaterial" id="FogMaterial_lteg6"]
 density = 10.0
@@ -70,6 +76,12 @@ max_distance = 20.0
 path = "event:/Music/Tutorial"
 guid = "{df10e4b0-67eb-43de-bc40-9b26ec5017d8}"
 name = "Tutorial"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pom76"]
+size = Vector3(3.45993, 1.45557, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ubk4p"]
+size = Vector3(2.05957, 1, 1)
 
 [node name="Tutorial" type="Node3D"]
 
@@ -359,14 +371,14 @@ player = NodePath("../../Player")
 script = ExtResource("20_bmdfs")
 
 [node name="Character-soldier" type="MeshInstance3D" parent="TpNode"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.432464, 0.5, -43.1457)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0387799, 0.5, -43.1457)
 mesh = ExtResource("20_3l0ou")
 skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="TpNode/Character-soldier"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TpNode/Character-soldier/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62993, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0095059, 0.59107, -0.00670433)
 shape = SubResource("BoxShape3D_vgiq7")
 
 [node name="ButtonTutorial" type="Node3D" parent="."]
@@ -377,6 +389,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.15342, 0.0894247, 1.
 HOVER_MATERIAL = SubResource("StandardMaterial3D_gahem")
 ACTIVATED_MATERIAL = SubResource("StandardMaterial3D_88qc6")
 gate_mesh = NodePath("../Wall")
+blink_time = 0.3
 
 [node name="Wall" type="StaticBody3D" parent="ButtonTutorial"]
 
@@ -388,6 +401,7 @@ shape = SubResource("BoxShape3D_tu2eu")
 transform = Transform3D(1.9, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, -0.0204129, -0.377086, -0.167331)
 mesh = ExtResource("25_720k1")
 skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_282j0")
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(100, 0, 0, 0, 10, 0, 0, 0, 100, -28.1768, -23.7284, -63.6558)
@@ -397,6 +411,25 @@ material = SubResource("FogMaterial_lteg6")
 play_event = 1
 stop_event = 3
 event = SubResource("EventAsset_lrogb")
+
+[node name="BushCuttingTutorial" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -41.3661)
+
+[node name="BushObject" type="StaticBody3D" parent="BushCuttingTutorial"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BushCuttingTutorial/BushObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0582733, 1.28007, 0)
+shape = SubResource("BoxShape3D_pom76")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BushCuttingTutorial/BushObject/CollisionShape3D"]
+transform = Transform3D(7, 0, 0, 0, -1.74846e-07, -4, 0, 4, -1.74846e-07, -0.0139655, -0.227783, -0.31979)
+mesh = ExtResource("27_4xxsf")
+
+[node name="ActivationArea" type="Area3D" parent="BushCuttingTutorial"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BushCuttingTutorial/ActivationArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529785, 1.05869, 0.613888)
+shape = SubResource("BoxShape3D_ubk4p")
 
 [connection signal="timeout" from="View/Camera/CameraFreezeTimer" to="View" method="_on_camera_freeze_timer_timeout"]
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]
