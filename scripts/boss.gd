@@ -46,8 +46,8 @@ var hp: int
 var game_state: bool = true
 
 @onready var particles_trail = $ParticlesTrail
-@onready var model = $Character
-@onready var animation = $Character/AnimationPlayer
+@onready var model = $dragon6
+#@onready var animation = $Character/AnimationPlayer
 @onready var blood = $Blood
 @onready var jump_path = $JumpPath
 
@@ -105,7 +105,7 @@ func choose_action():
 # ---JUMP---
 func start_jump_attack():
 	movement_velocity = Vector3.ZERO
-	animation.play("idle")
+	#animation.play("idle")
 	state(State.AIMING_PLAYER)
 	start_timer_for(AIMING_TIME)
 	start_attack_timer_for(JUMP_COOLDOWN)
@@ -116,14 +116,14 @@ func start_jump_attack():
 	
 func jump_on_player():
 	jump_path.visible = false
-	animation.play("walk", 3)
+	#animation.play("walk", 3)
 	particles_trail.emitting = true
 	movement_velocity = get_global_transform().basis.z * movement_speed * JUMP_SPEED
 	
 
 # ---MELEE ATTACK---
 func start_melee_attack():
-	animation.play(("idle"))
+	#animation.play(("idle"))
 	state(State.MELLE_ATTACK)
 	start_timer_for(1)
 	movement_velocity = Vector3.ZERO
@@ -136,7 +136,7 @@ func start_stun():
 	movement_velocity = Vector3.ZERO
 	velocity = Vector3.ZERO
 	state(State.STUN)
-	animation.play("idle")
+	#animation.play("idle")
 	start_timer_for(STUN_TIME)
 	free_zone_attack()
 	FMODRuntime.play_one_shot_path("event:/SFX/Boss/TakeDamage", get_global_transform())
@@ -152,7 +152,7 @@ func blink(delta):
 	
 # ---CHASE PLAYER---
 func chase_player():
-	animation.play("walk", 0.5)
+	#animation.play("walk", 0.5)
 	particles_trail.emitting = true
 	movement_velocity = position.direction_to(target.position) * movement_speed
 
@@ -225,7 +225,7 @@ func state(value:int):
 
 func back_to_default_state():
 	state(State.CHASE)
-	animation.play("idle")
+	#animation.play("idle")
 	free_zone_attack()
 	model.visible = true
 

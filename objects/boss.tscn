@@ -1,16 +1,16 @@
 [gd_scene load_steps=22 format=3 uid="uid://440rqsqg6bur"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_fbayf"]
-[ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_sqo0v"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_6f5u1"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_fgork"]
 [ext_resource type="Material" uid="uid://cjxpohja4fnf0" path="res://meshes/white.tres" id="5_kr85j"]
 [ext_resource type="Material" uid="uid://cqvccxqvantrc" path="res://meshes/blue.tres" id="6_a64pn"]
+[ext_resource type="PackedScene" uid="uid://bxmetb2b5dqqk" path="res://meshes/dragon/dragon7.glb" id="7_bj6rs"]
 [ext_resource type="Material" uid="uid://ep37frxjh6ob" path="res://meshes/zone_attack.tres" id="7_r5jpn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
-radius = 0.47069
-height = 1.0
+radius = 0.331013
+height = 1.62125
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7stj"]
 diffuse_mode = 2
@@ -123,21 +123,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("1_fbayf")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.99415, 0)
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 1.99415, 0)
 shape = SubResource("CapsuleShape3D_gdq8c")
-
-[node name="Character" parent="." instance=ExtResource("2_sqo0v")]
-
-[node name="character2" parent="Character" index="0"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-
-[node name="arm-left" parent="Character/character2/root/torso" index="0"]
-transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.3, 0.2, 0)
-
-[node name="arm-right" parent="Character/character2/root/torso" index="1"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.3, 0.1445, 0)
-
-[node name="StudioEventEmitter3D" type="StudioEventEmitter3D" parent="Character/AnimationPlayer" index="0"]
 
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
@@ -210,7 +197,8 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 mesh = SubResource("CylinderMesh_iayhs")
 surface_material_override/0 = ExtResource("7_r5jpn")
 
+[node name="dragon6" parent="." instance=ExtResource("7_bj6rs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0870476, 0.554699, -0.0460336)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AttackTime" to="." method="_on_attack_time_timeout"]
-
-[editable path="Character"]
