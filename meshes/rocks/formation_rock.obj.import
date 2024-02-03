@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cgi8l5j13o5pn"
+path="res://.godot/imported/formation_rock.obj-d8a500b695a4ff58de4d987e6c5e5434.mesh"
+
+[deps]
+
+files=["res://.godot/imported/formation_rock.obj-d8a500b695a4ff58de4d987e6c5e5434.mesh"]
+
+source_file="res://meshes/rocks/formation_rock.obj"
+dest_files=["res://.godot/imported/formation_rock.obj-d8a500b695a4ff58de4d987e6c5e5434.mesh", "res://.godot/imported/formation_rock.obj-d8a500b695a4ff58de4d987e6c5e5434.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

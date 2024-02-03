@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bd8rte00y1rvi"
+path="res://.godot/imported/stone_smallFlatB.obj-4bd98782cc86f760111e12b0b22a322c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stone_smallFlatB.obj-4bd98782cc86f760111e12b0b22a322c.mesh"]
+
+source_file="res://meshes/rocks/stone_smallFlatB.obj"
+dest_files=["res://.godot/imported/stone_smallFlatB.obj-4bd98782cc86f760111e12b0b22a322c.mesh", "res://.godot/imported/stone_smallFlatB.obj-4bd98782cc86f760111e12b0b22a322c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

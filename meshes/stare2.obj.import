@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://djbvsnyxbijbc"
+path="res://.godot/imported/stare2.obj-d0d4270696c5a2a677cc14137fd4fd5e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stare2.obj-d0d4270696c5a2a677cc14137fd4fd5e.mesh"]
+
+source_file="res://meshes/stare2.obj"
+dest_files=["res://.godot/imported/stare2.obj-d0d4270696c5a2a677cc14137fd4fd5e.mesh", "res://.godot/imported/stare2.obj-d0d4270696c5a2a677cc14137fd4fd5e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
