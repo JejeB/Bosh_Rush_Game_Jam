@@ -72,8 +72,8 @@ func _ready():
 
 func _physics_process(delta):
 	# Handle functions
-	handle_hp()
 	if game_state:
+		handle_hp()
 		handle_gravity(delta)
 		choose_action()
 		handle_movement(delta)
@@ -161,6 +161,7 @@ func chase_player():
 func handle_hp():
 	if hp <= 0:
 		game_state = false
+		target.game_state = false
 		emit_signal("boss_dead", "YOU WIN")
 
 func hurted(damage:int):

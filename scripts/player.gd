@@ -72,23 +72,24 @@ func _ready():
 	player_initiated.emit()
 
 func _physics_process(delta):
-	# Handle functions
-	handle_hp()
-	if state == State.STANDARD:
-		handle_action(delta)
-		handle_controls(delta)
-		handle_effects()
-	elif state == State.INVINCIBLE:
-		handle_controls(delta)
-		handle_effects()
-		blink(delta)
-	elif state == State.HURT:
-		push_back(delta)
-		blink(delta)
+	if game_state:
+		# Handle functions
+		handle_hp()
+		if state == State.STANDARD:
+			handle_action(delta)
+			handle_controls(delta)
+			handle_effects()
+		elif state == State.INVINCIBLE:
+			handle_controls(delta)
+			handle_effects()
+			blink(delta)
+		elif state == State.HURT:
+			push_back(delta)
+			blink(delta)
+			
+		handle_gravity(delta)
 		
-	handle_gravity(delta)
-		
-	handle_movement(delta)
+		handle_movement(delta)
 		
 
 # Handle the action when you press your spell or sword

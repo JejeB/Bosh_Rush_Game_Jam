@@ -328,7 +328,7 @@ texture = ExtResource("21_shcim")
 [node name="SwapObject" type="Node3D" parent="."]
 
 [node name="swappable_object5" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.88425, 0.598516, 3.30763)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.37539, 0.598516, 4.90883)
 player = NodePath("../../Player")
 
 [node name="swappable_object2" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
