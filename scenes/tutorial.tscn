@@ -344,7 +344,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4.37485, 1.3191, -10.91
 player = NodePath("../../Player")
 
 [node name="swappable_object6" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.04664, 1.5466, -25.8109)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.04664, 1.2829, -25.8109)
 player = NodePath("../../Player")
 
 [node name="swappable_object7" parent="SwapObject" node_paths=PackedStringArray("player") instance=ExtResource("2_6vjew")]
