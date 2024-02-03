@@ -138,7 +138,7 @@
 	</object>
 	<object class="EventSound" id="{72593a6c-f471-467a-9d46-e79adb91160a}">
 		<property name="start">
-			<value>0.625</value>
+			<value>0.58202972113502938</value>
 		</property>
 		<property name="length">
 			<value>2.3125</value>

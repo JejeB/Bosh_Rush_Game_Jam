@@ -1,9 +1,10 @@
 [gd_resource type="EventAsset" format=3 uid="uid://b7lypukpx0txk"]
 
 [resource]
+is_3d = true
 is_oneshot = true
-min_distance = 1.0
-max_distance = 20.0
+min_distance = 9.4
+max_distance = 100.0
 path = "event:/SFX/Boss/BossRush"
 guid = "{97dff5bf-3c41-492b-ac0b-ee4344c5eff9}"
 name = "BossRush"
