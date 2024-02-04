@@ -1,395 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=13 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ffboj"]
-[ext_resource type="PackedScene" uid="uid://c0e27836xgmhi" path="res://objects/character.tscn" id="2_nero3"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_0c7wt"]
-[ext_resource type="ArrayMesh" uid="uid://dl51dxrhonkrb" path="res://models/knife_sharp.obj" id="3_wr2yh"]
+[ext_resource type="PackedScene" uid="uid://ccka7bny56lv6" path="res://objects/playermesh.tscn" id="4_h1gcy"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://meshes/dust.res" id="4_mvhqy"]
 [ext_resource type="Shader" path="res://swapeffect.gdshader" id="4_vbki5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
 height = 1.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uat0u"]
-size = Vector3(1, 4.75729, 1)
-
-[sub_resource type="Animation" id="Animation_cmffe"]
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character/character2/root/torso/sword:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.835681, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Character/character2/root/torso/sword:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.494853, -0.0331964, 0.145849)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Character/character2/root/torso/sword/Area3D/SwordCollision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Character/character2/root/torso/sword/Area3D:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Character/character2/root/torso/sword/Area3D:monitorable")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_nwyhw"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character/character2/root/torso/sword:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.494853, 0.537632, 0.587031)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Character/character2/root/torso/sword:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.835681, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Character/character2/root/torso/sword/Area3D/SwordCollision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_sfj7p"]
-resource_name = "knife"
-length = 0.8
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character/character2/root/torso/sword:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.1, 0.12, 0.56, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.835681, 0, 0), Vector3(0.587687, -2.94903, -1.32751), Vector3(0.280186, -1.56956, -1.64975), Vector3(0.064893, -0.000447088, -1.59493), Vector3(0.064893, -0.000447088, -1.59493), Vector3(0.835681, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Character/character2/root/torso/sword:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.1, 0.12, 0.56, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.494853, 0.56615, 0.610553), Vector3(-1.13798, 0.316011, -0.0300113), Vector3(0.0256766, -0.098161, 1.20434), Vector3(1.25409, 0.108057, 0.246527), Vector3(1.25409, 0.108057, 0.246527), Vector3(-0.494853, 0.56615, 0.610553)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Character/character2/root/torso/sword/Area3D/SwordCollision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.24, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"attack_2_enable"
-}, {
-"args": [],
-"method": &"stop_melee_attack"
-}]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Character/character2/root/torso/sword/Area3D:monitoring")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Character/character2/root/torso/sword/Area3D:monitorable")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.12),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_q8ovm"]
-resource_name = "knife_2"
-length = 0.8
-loop_mode = 1
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character/character2/root/torso/sword:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12, 0.16, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.064893, -0.000447088, -1.59493), Vector3(0.064893, -0.000447088, -1.59493), Vector3(-0.00803388, -1.57016, -1.60683), Vector3(-0.109638, -3.13469, -1.5955), Vector3(-0.109638, -3.13469, -1.5955), Vector3(0.835681, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Character/character2/root/torso/sword:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12, 0.16, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1.25409, 0.108057, 0.246527), Vector3(1.25409, 0.108057, 0.246527), Vector3(0.00512159, 0.0308917, 1.12853), Vector3(-1.19606, 0.127688, 0.0221463), Vector3(-1.19606, 0.127688, 0.0221463), Vector3(-0.494853, 0.56615, 0.610553)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Character/character2/root/torso/sword/Area3D/SwordCollision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.16),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.28, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"attack_3_enable"
-}, {
-"args": [],
-"method": &"stop_melee_attack"
-}]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Character/character2/root/torso/sword/Area3D:monitoring")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.16),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Character/character2/root/torso/sword/Area3D:monitorable")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.16),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_p6exl"]
-resource_name = "knife_3"
-length = 0.8
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character/character2/root/torso/sword:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.14, 0.2, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.109638, -3.13469, -1.5955), Vector3(0.624597, -2.99547, 0.0917201), Vector3(0.624597, -2.99547, 0.0917201), Vector3(-1.23523, -1.409, -1.91943), Vector3(-1.23523, -1.409, -1.91943), Vector3(0.835681, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Character/character2/root/torso/sword:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.14, 0.2, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.19606, 0.127688, 0.0221463), Vector3(-0.0229309, 1.65533, -0.248162), Vector3(-0.0229309, 1.65533, -0.248162), Vector3(-0.0658329, -0.000832796, 1.878), Vector3(-0.0658329, -0.000832796, 1.878), Vector3(-0.494853, 0.56615, 0.610553)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Character/character2/root/torso/sword/Area3D/SwordCollision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.14, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.34, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"attack_1_enable"
-}, {
-"args": [],
-"method": &"stop_melee_attack"
-}]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Character/character2/root/torso/sword/Area3D:monitoring")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(-0.02, 0, 0.14, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [false, false, true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Character/character2/root/torso/sword/Area3D:monitorable")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgagd"]
-_data = {
-"RESET": SubResource("Animation_cmffe"),
-"idle": SubResource("Animation_nwyhw"),
-"knife": SubResource("Animation_sfj7p"),
-"knife_2": SubResource("Animation_q8ovm"),
-"knife_3": SubResource("Animation_p6exl")
-}
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_as8ww"]
-render_priority = 0
-shader = ExtResource("4_vbki5")
-shader_parameter/col_distance_scale = 8.0
-shader_parameter/col_near = Color(0.235294, 0.72549, 0.839216, 1)
-shader_parameter/col_far = Color(0, 0, 0, 1)
-shader_parameter/emission_boost = 2.0
-shader_parameter/sphere_radius = 0.4
-shader_parameter/noise_scale = 3.0
-shader_parameter/detail = 6
-shader_parameter/rough = 0.5
-shader_parameter/inflate = 0.1
-shader_parameter/smooth_fac = 0.75
-shader_parameter/step_mult = 0.26
-
-[sub_resource type="BoxMesh" id="BoxMesh_2uy2n"]
-material = SubResource("ShaderMaterial_as8ww")
-size = Vector3(1.5, 1, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7stj"]
 diffuse_mode = 2
@@ -411,55 +30,31 @@ inner_radius = 0.98
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.666667, 0.780392, 1, 0)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_as8ww"]
+render_priority = 0
+shader = ExtResource("4_vbki5")
+shader_parameter/col_distance_scale = 8.0
+shader_parameter/col_near = Color(0.235294, 0.72549, 0.839216, 1)
+shader_parameter/col_far = Color(0, 0, 0, 1)
+shader_parameter/emission_boost = 2.0
+shader_parameter/sphere_radius = 0.4
+shader_parameter/noise_scale = 3.0
+shader_parameter/detail = 6
+shader_parameter/rough = 0.5
+shader_parameter/inflate = 0.1
+shader_parameter/smooth_fac = 0.75
+shader_parameter/step_mult = 0.26
+
+[sub_resource type="BoxMesh" id="BoxMesh_2uy2n"]
+material = SubResource("ShaderMaterial_as8ww")
+size = Vector3(1.5, 1, 1.5)
+
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("1_ffboj")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 shape = SubResource("CapsuleShape3D_gdq8c")
-
-[node name="Character" parent="." instance=ExtResource("2_nero3")]
-
-[node name="leg-left" parent="Character/character2/root" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.17625, -0.02375)
-
-[node name="leg-right" parent="Character/character2/root" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.17625, -0.02375)
-
-[node name="torso" parent="Character/character2/root" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -1.80478e-15, 0.17625, -0.02375)
-
-[node name="arm-left" parent="Character/character2/root/torso" index="0"]
-transform = Transform3D(0.707106, 0.707106, 0, -0.707106, 0.707106, 0, 0, 0, 1, 0.3, 0.2, 0)
-
-[node name="arm-right" parent="Character/character2/root/torso" index="1"]
-transform = Transform3D(0.707106, -0.707106, 0, 0.707106, 0.707106, 0, 0, 0, 1, -0.3, 0.1445, 0)
-
-[node name="antenna" parent="Character/character2/root/torso" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0.6, 0)
-
-[node name="sword" type="MeshInstance3D" parent="Character/character2/root/torso" index="3"]
-transform = Transform3D(8.00003, 0, 0, 0, 20.1202, -5.93406, 0, 22.2527, 5.36541, -0.494853, -0.0331964, 0.145849)
-mesh = ExtResource("3_wr2yh")
-
-[node name="Area3D" type="Area3D" parent="Character/character2/root/torso/sword" groups=["player_sword"]]
-monitoring = false
-monitorable = false
-
-[node name="SwordCollision" type="CollisionShape3D" parent="Character/character2/root/torso/sword/Area3D"]
-transform = Transform3D(0.02, -7.45058e-09, 9.8953e-10, 5.82077e-11, 0.0199998, -2.79397e-09, -1.10595e-09, 2.6077e-07, 0.02, -0.00135548, 0.0211697, 0.0048188)
-shape = SubResource("BoxShape3D_uat0u")
-
-[node name="AnimationWeapon" type="AnimationPlayer" parent="Character"]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_dgagd")
-}
-
-[node name="Swapeffect" type="MeshInstance3D" parent="Character"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25474, 0)
-mesh = SubResource("BoxMesh_2uy2n")
 
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
@@ -498,7 +93,38 @@ one_shot = true
 [node name="InvincibilityTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="body_entered" from="Character/character2/root/torso/sword/Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="Character" parent="." instance=ExtResource("4_h1gcy")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Character/metarig_001" index="0"]
+bones/0/position = Vector3(5.27356e-17, 1.48344, -0.0746701)
+bones/0/rotation = Quaternion(0.187293, 0.346333, 0.0211167, 0.918982)
+bones/1/rotation = Quaternion(-0.0877397, 0.16369, -0.0370734, 0.981903)
+bones/2/rotation = Quaternion(0.0404106, 8.9532e-09, 7.20049e-09, 0.999183)
+bones/3/rotation = Quaternion(-0.0527651, -0.344358, 0.0673246, 0.934934)
+bones/4/rotation = Quaternion(-0.0658267, -0.122361, -0.0826726, 0.986843)
+bones/5/rotation = Quaternion(-0.876606, 0.00410239, -0.00651411, 0.481147)
+bones/6/rotation = Quaternion(-0.306122, 0.00745673, -0.00191259, 0.951961)
+bones/7/rotation = Quaternion(-0.167605, 0.00765295, -0.000832488, 0.985824)
+bones/8/rotation = Quaternion(-0.0623581, 0.0728327, -0.962727, 0.25291)
+bones/9/rotation = Quaternion(0.570741, -0.0568121, 0.0487714, 0.817709)
+bones/10/rotation = Quaternion(-0.192772, 0.0147409, -0.0186454, 0.980956)
+bones/11/rotation = Quaternion(-0.0117591, 0.0890978, 0.953973, 0.286111)
+bones/12/rotation = Quaternion(0.663996, 0.0506044, -0.0551857, 0.743978)
+bones/13/rotation = Quaternion(0.0372317, -0.120052, 0.0335503, 0.991502)
+bones/14/rotation = Quaternion(0.844508, 0.058091, -0.403884, 0.346857)
+bones/15/rotation = Quaternion(0.358928, 0.00787272, 0.021804, 0.933077)
+bones/16/rotation = Quaternion(-0.628725, -0.0174041, -0.0352832, 0.776632)
+bones/17/rotation = Quaternion(0.78873, -0.200392, 0.302665, 0.496127)
+bones/18/rotation = Quaternion(0.366124, -0.0136867, -0.0256071, 0.930113)
+bones/19/rotation = Quaternion(-0.556841, 0.0192175, 0.00862862, 0.830352)
+
+[node name="Swapeffect" type="MeshInstance3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25474, 0)
+visible = false
+mesh = SubResource("BoxMesh_2uy2n")
+skeleton = NodePath("../..")
+
 [connection signal="timeout" from="SwapCooldownTimer" to="." method="_on_swap_cooldown_timer_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

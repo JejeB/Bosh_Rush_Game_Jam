@@ -25,16 +25,18 @@ func _ready():
 func _process(_delta):
 	if first_frame:
 		connect_and_init()
+		player.connect("swap_positon", handle_signal_for_position_swap)
 		first_frame = false
 	
 func init(pos:Vector3,play:Node):
 	position = pos
 	player = play
+	player.connect("swap_positon", handle_signal_for_position_swap)
 	connect_and_init()
 	
 
 func connect_and_init():
-	player.connect("swap_positon", handle_signal_for_position_swap)
+	
 	player.spell_range = hover_range
 	current_material = STANDAR_MATERIAl
 
@@ -96,7 +98,7 @@ func _on_stun_collision_body_entered(body):
 
 func _on_stun_collision_mouse_entered():
 	var distance = player.global_position.distance_to(self.global_position)
-	if distance <= hover_range :
+	if distance <= hover_range:
 		FMODRuntime.play_one_shot_path("event:/SFX/Swap/SwapHover")
 		player.set_hoover(true)
 		player.swappable_object_position = self.get_position()

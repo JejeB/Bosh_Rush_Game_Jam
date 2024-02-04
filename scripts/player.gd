@@ -60,7 +60,6 @@ var blink_effect:float = 0.
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
-@onready var animation_weapon = $Character/AnimationWeapon
 @onready var swap_cooldown_timer = $SwapCooldownTimer
 @onready var hurt_timer = $HurtTimer
 @onready var spell_indicator = $SpellIndicator
@@ -111,6 +110,8 @@ func set_hoover(value:bool):
 	hover_on_swappable_object = value
 	swapp_effect.visible = value
 	
+func swap_activate():
+	return Input.is_action_pressed("swap_button")
 
 func start_swap():
 	swapp_effect.visible = false
@@ -183,24 +184,24 @@ func start_melee_attack(delta):
 
 func play_good_anim():
 	if attack_sequence == 1:
-		play_anim("knife")
+		play_anim("blue attack 1")
 	elif attack_sequence == 2:
-		play_anim("knife_2")
+		play_anim("blue attack 2")
 	elif attack_sequence == 3:
-		play_anim("knife_3")
+		play_anim("blue attack 3")
 
 func play_anim(attack_name:String):
-	var anim_speed:float = 0.5
-	animation_weapon.clear_queue()
-	animation_weapon.stop()
-	animation_weapon.play(attack_name,anim_speed)
+	var anim_speed:float = 1
+	animation.clear_queue()
+	animation.stop()
+	animation.play(attack_name,anim_speed)
 	FMODRuntime.play_one_shot_path("event:/SFX/Hero/SwordAttack")
 	
 		
 func stop_melee_attack():
 	state = State.STANDARD
 	attack_sequence=1
-	animation_weapon.play("RESET")
+	animation.play("idle")
 
 func attack_1_enable():
 	state = State.STANDARD
@@ -234,18 +235,17 @@ func handle_movement(delta):
 		get_tree().reload_current_scene()
 	previously_floored = is_on_floor()
 	
-	# Handle animation(s)
 func handle_effects():
 	if Input.is_action_just_released("swap_button") :
 		spell_indicator.visible = false
 	particles_trail.emitting = false
 	if is_on_floor():
 		if abs(velocity.x) > 1 or abs(velocity.z) > 1:
-			animation.play("walk", 0.5)
+			animation.play("blue run", 2)
 			particles_trail.emitting = true
 			FMODRuntime.play_one_shot_path("event:/SFX/Hero/HeroFootsteps")
 		else:
-			animation.play("idle", 0.5)
+			animation.play("idle", 2)
 			FMODRuntime.play_one_shot_path("event:/SFX/Hero/HeroFootstepsStop")
 
 # old function to Handle movement input with keyboard
