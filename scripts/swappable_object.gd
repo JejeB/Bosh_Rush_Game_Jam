@@ -31,12 +31,10 @@ func _process(_delta):
 func init(pos:Vector3,play:Node):
 	position = pos
 	player = play
-	player.connect("swap_positon", handle_signal_for_position_swap)
 	connect_and_init()
 	
 
 func connect_and_init():
-	
 	player.spell_range = hover_range
 	current_material = STANDAR_MATERIAl
 
