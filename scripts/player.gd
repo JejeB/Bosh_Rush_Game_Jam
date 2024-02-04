@@ -74,7 +74,6 @@ func _ready():
 
 func _physics_process(delta):
 	if game_state:
-		
 		# Handle functions
 		handle_hp()
 		if state == State.STANDARD:
@@ -183,6 +182,7 @@ func start_melee_attack(delta):
 	movement_velocity = Vector3.ZERO
 
 func play_good_anim():
+	print("PLAY "+ str(attack_sequence))
 	if attack_sequence == 1:
 		play_anim("blue attack 1")
 	elif attack_sequence == 2:
@@ -199,11 +199,13 @@ func play_anim(attack_name:String):
 	
 		
 func stop_melee_attack():
+	print("STOOP")
 	state = State.STANDARD
 	attack_sequence=1
 	animation.play("idle")
 
 func attack_1_enable():
+	print("Attack 1")
 	state = State.STANDARD
 	attack_sequence = 1
 
@@ -239,13 +241,13 @@ func handle_effects():
 	if Input.is_action_just_released("swap_button") :
 		spell_indicator.visible = false
 	particles_trail.emitting = false
-	if is_on_floor():
+	if is_on_floor() && state != State.ATTACK:
 		if abs(velocity.x) > 1 or abs(velocity.z) > 1:
-			animation.play("blue run", 2)
+			animation.play("blue run", 1)
 			particles_trail.emitting = true
 			FMODRuntime.play_one_shot_path("event:/SFX/Hero/HeroFootsteps")
 		else:
-			animation.play("idle", 2)
+			animation.play("idle", 1)
 			FMODRuntime.play_one_shot_path("event:/SFX/Hero/HeroFootstepsStop")
 
 # old function to Handle movement input with keyboard
