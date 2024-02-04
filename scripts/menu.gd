@@ -1,6 +1,6 @@
 extends Control
 
-@onready var main_scene = "res://scenes/cut_scene.tscn"
+@onready var main_scene = "res://scenes/main.tscn"
 @onready var tuto_scene = "res://scenes/tutorial.tscn"
 @onready var mask_sprite: Sprite2D = $GridContainer/CenterContainer/MaskSprite
 @onready var animation_player: AnimationPlayer = $GridContainer/CenterContainer/AnimationPlayer
