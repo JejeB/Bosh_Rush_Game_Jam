@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Boss Rush Game Jam"
+config/version="0.1"
 run/main_scene="res://objects/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.92549, 0.92549, 0.960784, 1)
