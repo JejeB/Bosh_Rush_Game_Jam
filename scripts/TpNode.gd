@@ -6,7 +6,7 @@ extends Node3D
 @onready var dialog_hud = $"../DialogHud"
 @onready var label_container = $"../DialogHud/CenterContainer"
 @onready var dialog_label = $"../DialogHud/CenterContainer/DialogLabel"
-@onready var main_scene = "res://scenes/main.tscn"
+@onready var main_scene = "res://scenes/cut_scene.tscn"
 
 var state_dialog = false
 

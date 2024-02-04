@@ -47,7 +47,7 @@ var game_state: bool = true
 
 @onready var particles_trail = $ParticlesTrail
 @onready var model = $dragon6
-#@onready var animation = $Character/AnimationPlayer
+#@onready var animation = $AttackHitbox/AnimationPlayer
 @onready var blood = $Blood
 @onready var jump_path = $JumpPath
 
@@ -60,6 +60,7 @@ var stuck_count:int = 0
 
 var zone_attack_scene = preload("res://zone_attack.tscn")
 var zone_attack
+var zone_attack_cut_scene :bool = true
 
 var blink_effect:float = 0.
 
@@ -243,9 +244,10 @@ func isStuck(epsilon:float):
 
 # --- ZONE Attack---
 func init_zone_attack():
-	zone_attack = zone_attack_scene.instantiate()
-	zone_attack.set_scale(Vector3(1,1,1)*MELEE_RANGE)
-	add_child(zone_attack)
+	if zone_attack_cut_scene :
+		zone_attack = zone_attack_scene.instantiate()
+		zone_attack.set_scale(Vector3(1,1,1)*MELEE_RANGE)
+		add_child(zone_attack)
 	
 func free_zone_attack():
 	if zone_attack!=null:

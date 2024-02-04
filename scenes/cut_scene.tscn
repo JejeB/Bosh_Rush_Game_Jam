@@ -1,10 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://sa2m6ex60hcw"]
+[gd_scene load_steps=35 format=3 uid="uid://sa2m6ex60hcw"]
 
 [ext_resource type="Texture2D" uid="uid://bqq1twwybriuv" path="res://sprites/photo-panoramique-3-pucelles-grenoble-041018.jpg" id="1_qcpm4"]
 [ext_resource type="Material" uid="uid://4osrpxngjhts" path="res://scenes/grasstiletexture.tres" id="5_qocyi"]
 [ext_resource type="ArrayMesh" uid="uid://b7eo6urtgmq2" path="res://meshes/grass.obj" id="6_aamqr"]
 [ext_resource type="ArrayMesh" uid="uid://bd8rte00y1rvi" path="res://meshes/rocks/stone_smallFlatB.obj" id="7_th05j"]
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="8_8d6vx"]
+[ext_resource type="Script" path="res://scripts/CinemaCamera.gd" id="18_x8lid"]
+[ext_resource type="FontFile" uid="uid://clh3ck04e0cbq" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="19_i5rjb"]
 [ext_resource type="ArrayMesh" uid="uid://dgrl31kp3w70j" path="res://meshes/rocks/formationLarge_stone.obj" id="27_71s4m"]
 [ext_resource type="ArrayMesh" uid="uid://dfqr42r5uvx0s" path="res://meshes/rocks/formation_stone.obj" id="28_i42kn"]
 [ext_resource type="ArrayMesh" uid="uid://nwyqjf1gum3h" path="res://models/tutorial_models/tree.obj" id="29_vyvc2"]
@@ -75,8 +77,7 @@ emission = Color(0.996078, 0.996078, 0.996078, 1)
 height_falloff = 0.00029857
 edge_fade = 0.0176777
 
-[sub_resource type="Animation" id="Animation_igdhc"]
-resource_name = "camera_cut_scene"
+[sub_resource type="Animation" id="Animation_eq2h7"]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -88,7 +89,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-33.2518, 5.77554, -23.9935)]
+"values": [Vector3(-7.553, 2.381, -3.458)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -112,7 +113,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -2.09214, 0)]
+"values": [Vector3(0, 0.66148, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -124,7 +125,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-33.4955, 0.906829, -28.2988)]
+"values": [Vector3(-12.955, 0.907, -10.861)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -136,7 +137,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-35.0416, 0.5, -30.0582)]
+"values": [Vector3(-15.969, 0.5, -12.609)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -162,9 +163,42 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera:fov")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [30.0]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"boss_display_hide_attack_zone"
+}, {
+"args": [],
+"method": &"add_boss_name"
+}, {
+"args": [],
+"method": &"begin_combat"
+}]
+}
 
-[sub_resource type="Animation" id="Animation_eq2h7"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_igdhc"]
+resource_name = "camera_cut_scene"
+length = 8.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -172,10 +206,10 @@ tracks/0/path = NodePath("Camera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2.5, 2.6, 3, 3.1, 4, 4.1, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-33.2518, 5.77554, -23.9935)]
+"values": [Vector3(-33.2518, 5.77554, -23.9935), Vector3(-33.2518, 5.77554, -23.9935), Vector3(-31.1749, 5.77554, -22.2068), Vector3(-32.7378, 0.819905, -24.1107), Vector3(-32.3612, 0.819905, -24.1107), Vector3(-25.0087, 0.819905, -18.299), Vector3(-20.3726, 0.819905, -15.4588), Vector3(-12.4917, 2.38109, -6.72378), Vector3(-11.0649, 2.38109, -5.41138), Vector3(-7.55318, 2.38109, -3.45816)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -184,10 +218,10 @@ tracks/1/path = NodePath("Camera:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2.5, 2.6, 3, 3.1, 4, 4.1, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1)]
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -196,10 +230,10 @@ tracks/2/path = NodePath("Camera:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2.5, 2.6, 3, 3.1, 4, 4.1, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, -2.09214, 0)]
+"values": [Vector3(0, -2.09214, 0), Vector3(0, -2.09214, 0), Vector3(0, -2.09214, 0), Vector3(0, -2.09214, 0), Vector3(0, -2.09214, 0), Vector3(0, 0.661326, 0), Vector3(0, 0.661326, 0), Vector3(0, 0.661326, 0), Vector3(0, 0.661326, 0), Vector3(0, 0.661326, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -208,10 +242,10 @@ tracks/3/path = NodePath("../Target:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 6, 6.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-33.4955, 0.906829, -28.2988)]
+"values": [Vector3(-33.4955, 0.906829, -28.2988), Vector3(-30.0855, 0.906829, -22.9591), Vector3(-28.0086, 0.906829, -21.1724), Vector3(-26.2305, 0.906829, -20.8319), Vector3(-21.5945, 0.906829, -17.9918), Vector3(-17.6869, 0.906829, -13.873), Vector3(-16.4668, 0.906829, -12.8141), Vector3(-12.955, 0.906829, -10.8608)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -220,10 +254,10 @@ tracks/4/path = NodePath("../Boss:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 6, 6.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-35.0416, 0.5, -30.0582)]
+"values": [Vector3(-35.0416, 0.5, -30.0582), Vector3(-33.0993, 0.5, -24.7071), Vector3(-31.0223, 0.5, -22.9204), Vector3(-29.2442, 0.5, -22.5799), Vector3(-24.6082, 0.5, -19.7398), Vector3(-20.7006, 0.5, -15.621), Vector3(-19.4805, 0.5, -14.5621), Vector3(-15.9687, 0.5, -12.6089)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -232,10 +266,10 @@ tracks/5/path = NodePath("../Boss:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 6, 6.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.792047, 0)]
+"values": [Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -244,10 +278,36 @@ tracks/6/path = NodePath("../Boss:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 6, 6.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1)]
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera:fov")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 4.1, 6, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [75.0, 100.0, 75.0, 30.0]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"boss_display_hide_attack_zone"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_toj2w"]
@@ -255,6 +315,13 @@ _data = {
 "RESET": SubResource("Animation_eq2h7"),
 "camera_cut_scene": SubResource("Animation_igdhc")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1268"]
+font = ExtResource("19_i5rjb")
+font_size = 250
+font_color = Color(0.836897, 0.875579, 0.928551, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node3D"]
 
@@ -946,10 +1013,10 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2.4571
 mesh = ExtResource("28_i42kn")
 
 [node name="Target" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4955, 0.906829, -28.2988)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.955, 0.907, -10.861)
 
 [node name="Boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_8d6vx")]
-transform = Transform3D(0.702389, 0, 0.711792, 0, 1, 0, -0.711792, 0, 0.702389, -35.0416, 0.5, -30.0582)
+transform = Transform3D(0.70239, 0, 0.711793, 0, 1, 0, -0.711793, 0, 0.70239, -15.969, 0.5, -12.609)
 movement_speed = 3
 target = NodePath("../Target")
 MELEE_RANGE = 5.0
@@ -959,11 +1026,39 @@ JUMP_COOLDOWN = 7.0
 STUN_TIME = 3.0
 
 [node name="CinemaCamera" type="Node3D" parent="."]
+script = ExtResource("18_x8lid")
 
 [node name="Camera" type="Camera3D" parent="CinemaCamera"]
-transform = Transform3D(-0.498049, 0, -0.867149, 0, 1, 0, 0.867149, 0, -0.498049, -33.2518, 5.77554, -23.9935)
+transform = Transform3D(0.789084, 0, 0.614285, 0, 1, 0, -0.614285, 0, 0.789084, -7.553, 2.381, -3.458)
+fov = 30.0
 
 [node name="CameraAnimation" type="AnimationPlayer" parent="CinemaCamera"]
 libraries = {
 "": SubResource("AnimationLibrary_toj2w")
 }
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BossLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -852.0
+offset_top = -250.0
+offset_right = 852.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "TEZCATLIPOCA"
+label_settings = SubResource("LabelSettings_f1268")
+
+[connection signal="animation_finished" from="CinemaCamera/CameraAnimation" to="CinemaCamera" method="_on_camera_animation_animation_finished"]
