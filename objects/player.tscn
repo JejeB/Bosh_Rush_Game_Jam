@@ -50,7 +50,7 @@ material = SubResource("ShaderMaterial_as8ww")
 size = Vector3(1.5, 1, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qs7r7"]
-size = Vector3(0.221161, 5.35072, 0.763824)
+size = Vector3(0.221161, 3.28376, 0.763824)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ffboj")
@@ -106,9 +106,9 @@ bones/1/rotation = Quaternion(-0.0877397, 0.16369, -0.0370734, 0.981903)
 bones/2/rotation = Quaternion(0.0404106, 8.9532e-09, 7.20049e-09, 0.999183)
 bones/3/rotation = Quaternion(-0.0527651, -0.344358, 0.0673246, 0.934934)
 bones/4/rotation = Quaternion(-0.0658267, -0.122361, -0.0826726, 0.986843)
-bones/5/rotation = Quaternion(-0.876606, 0.00410239, -0.00651411, 0.481147)
-bones/6/rotation = Quaternion(-0.306122, 0.00745673, -0.00191259, 0.951961)
-bones/7/rotation = Quaternion(-0.167605, 0.00765295, -0.000832488, 0.985824)
+bones/5/rotation = Quaternion(-0.833055, 1.13535e-09, -1.95696e-07, 0.55319)
+bones/6/rotation = Quaternion(-0.224974, -1.98902e-09, -4.98334e-08, 0.974365)
+bones/7/rotation = Quaternion(-0.0840949, 1.31372e-09, -2.10953e-08, 0.996458)
 bones/8/rotation = Quaternion(-0.0623581, 0.0728327, -0.962727, 0.25291)
 bones/9/rotation = Quaternion(0.570741, -0.0568121, 0.0487714, 0.817709)
 bones/10/rotation = Quaternion(-0.192772, 0.0147409, -0.0186454, 0.980956)
@@ -121,10 +121,11 @@ bones/14/scale = Vector3(1, 1, 1)
 bones/15/rotation = Quaternion(0.358928, 0.00787272, 0.021804, 0.933077)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/rotation = Quaternion(-0.628725, -0.0174041, -0.0352832, 0.776632)
-bones/17/rotation = Quaternion(0.996866, -0.0301062, 0.00423716, 0.073039)
+bones/17/rotation = Quaternion(0.78873, -0.200392, 0.302665, 0.496127)
 bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(0.0342507, -0.00434292, -0.0287085, 0.998991)
+bones/18/rotation = Quaternion(0.366124, -0.0136867, -0.0256071, 0.930113)
 bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(-0.556841, 0.0192175, 0.00862862, 0.830352)
 bones/19/scale = Vector3(1, 1, 1)
 
 [node name="Swapeffect" type="MeshInstance3D" parent="Character"]
@@ -134,12 +135,14 @@ mesh = SubResource("BoxMesh_2uy2n")
 skeleton = NodePath("../..")
 
 [node name="SwordNode" type="Node3D" parent="Character"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62728, 1.76208, 0.544307)
+transform = Transform3D(0.983719, 0.141741, -0.110481, -0.148078, 0.987639, -0.0513941, 0.101831, 0.0669172, 0.992549, 0.674923, 1.94706, 0.605783)
 
 [node name="Area3D" type="Area3D" parent="Character/SwordNode" groups=["player_sword"]]
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Character/SwordNode/Area3D"]
-transform = Transform3D(0.593759, 0.410087, 0.6923, -0.638641, 0.763564, 0.0954359, -0.489478, -0.498796, 0.715271, 0.977242, 2.04583, -0.678213)
+transform = Transform3D(0.593759, 0.410087, 0.6923, -0.638642, 0.763564, 0.0954359, -0.489479, -0.498796, 0.715271, 0.553425, 1.2567, -0.162717)
 shape = SubResource("BoxShape3D_qs7r7")
 disabled = true
 

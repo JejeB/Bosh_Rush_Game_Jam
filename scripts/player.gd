@@ -89,8 +89,8 @@ func _physics_process(delta):
 			blink(delta)
 			
 		handle_gravity(delta)
-		
-		handle_movement(delta)
+		if state != State.ATTACK:
+			handle_movement(delta)
 		
 
 # Handle the action when you press your spell or sword
@@ -177,6 +177,7 @@ func blink(delta):
 
 #---MELEE ATTACK---
 func start_melee_attack(delta):
+	
 	state = State.ATTACK
 	play_good_anim()
 	movement_velocity = Vector3.ZERO
