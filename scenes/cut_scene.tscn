@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://sa2m6ex60hcw"]
+[gd_scene load_steps=36 format=3 uid="uid://sa2m6ex60hcw"]
 
 [ext_resource type="Texture2D" uid="uid://bqq1twwybriuv" path="res://sprites/photo-panoramique-3-pucelles-grenoble-041018.jpg" id="1_qcpm4"]
 [ext_resource type="Material" uid="uid://4osrpxngjhts" path="res://scenes/grasstiletexture.tres" id="5_qocyi"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="8_8d6vx"]
 [ext_resource type="Script" path="res://scripts/CinemaCamera.gd" id="18_x8lid"]
 [ext_resource type="FontFile" uid="uid://clh3ck04e0cbq" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="19_i5rjb"]
+[ext_resource type="PackedScene" uid="uid://dlqheynf75ul8" path="res://meshes/dragon/dragon7.tscn" id="20_2pmb7"]
 [ext_resource type="ArrayMesh" uid="uid://dgrl31kp3w70j" path="res://meshes/rocks/formationLarge_stone.obj" id="27_71s4m"]
 [ext_resource type="ArrayMesh" uid="uid://dfqr42r5uvx0s" path="res://meshes/rocks/formation_stone.obj" id="28_i42kn"]
 [ext_resource type="ArrayMesh" uid="uid://nwyqjf1gum3h" path="res://models/tutorial_models/tree.obj" id="29_vyvc2"]
@@ -182,11 +183,14 @@ tracks/8/path = NodePath(".")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.1, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"boss_display_hide_attack_zone"
+}, {
+"args": [],
+"method": &"display_area_effect"
 }, {
 "args": [],
 "method": &"add_boss_name"
@@ -1060,5 +1064,9 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "TEZCATLIPOCA"
 label_settings = SubResource("LabelSettings_f1268")
+
+[node name="dragon7" parent="." instance=ExtResource("20_2pmb7")]
+transform = Transform3D(0.702153, 0, -0.712026, 0, 1, 0, 0.712026, 0, 0.702153, -15.969, 1.07094, -12.507)
+visible = false
 
 [connection signal="animation_finished" from="CinemaCamera/CameraAnimation" to="CinemaCamera" method="_on_camera_animation_animation_finished"]

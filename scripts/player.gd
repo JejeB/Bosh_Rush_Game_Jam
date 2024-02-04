@@ -265,4 +265,3 @@ func handle_gravity(delta):
 		gravity = 0
 
 
-

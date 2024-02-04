@@ -4,6 +4,7 @@ extends Node3D
 @onready var boss: CharacterBody3D = $"../Boss"
 @onready var control_node: Control = $"../Control"
 @onready var main_scene = "res://scenes/main.tscn"
+@onready var dragon_area: Node3D = $"../dragon7"
 
 enum State {PLAY, STOP, TRANSITION}
 
@@ -11,6 +12,7 @@ var cinema_state = State.PLAY
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	dragon_area.visible = false
 	boss.jump_path.visible = false
 	animation.play("camera_cut_scene")
 
@@ -28,3 +30,7 @@ func boss_display_hide_attack_zone():
 	
 func begin_combat():
 	get_tree().change_scene_to_file(main_scene)
+
+func display_area_effect():
+	boss.visible = false
+	dragon_area.visible = true

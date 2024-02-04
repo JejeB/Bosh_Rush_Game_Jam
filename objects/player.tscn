@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=14 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ffboj"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_0c7wt"]
@@ -49,6 +49,9 @@ shader_parameter/step_mult = 0.26
 material = SubResource("ShaderMaterial_as8ww")
 size = Vector3(1.5, 1, 1.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qs7r7"]
+size = Vector3(0.221161, 5.35072, 0.763824)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ffboj")
 
@@ -97,21 +100,28 @@ one_shot = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Character/metarig_001" index="0"]
-bones/5/rotation = Quaternion(-0.833055, -1.77112e-14, -1.98616e-07, 0.55319)
-bones/6/rotation = Quaternion(-0.224974, -4.14503e-15, -5.36381e-08, 0.974365)
-bones/7/rotation = Quaternion(-0.0840949, -3.25702e-24, -2.00498e-08, 0.996458)
-bones/8/rotation = Quaternion(-0.0198124, 0.0938115, -0.723663, 0.683461)
-bones/9/rotation = Quaternion(0.142623, -0.0726654, 0.0180554, 0.986941)
-bones/10/rotation = Quaternion(-0.00343127, 0.0109415, -0.0211005, 0.999712)
-bones/11/rotation = Quaternion(-0.0198125, -0.0938117, 0.723663, 0.683461)
-bones/12/rotation = Quaternion(0.142623, 0.0726655, -0.0180554, 0.986941)
+bones/0/position = Vector3(5.27356e-17, 1.48344, -0.0746701)
+bones/0/rotation = Quaternion(0.187293, 0.346333, 0.0211167, 0.918982)
+bones/1/rotation = Quaternion(-0.0877397, 0.16369, -0.0370734, 0.981903)
+bones/2/rotation = Quaternion(0.0404106, 8.9532e-09, 7.20049e-09, 0.999183)
+bones/3/rotation = Quaternion(-0.0527651, -0.344358, 0.0673246, 0.934934)
+bones/4/rotation = Quaternion(-0.0658267, -0.122361, -0.0826726, 0.986843)
+bones/5/rotation = Quaternion(-0.876606, 0.00410239, -0.00651411, 0.481147)
+bones/6/rotation = Quaternion(-0.306122, 0.00745673, -0.00191259, 0.951961)
+bones/7/rotation = Quaternion(-0.167605, 0.00765295, -0.000832488, 0.985824)
+bones/8/rotation = Quaternion(-0.0623581, 0.0728327, -0.962727, 0.25291)
+bones/9/rotation = Quaternion(0.570741, -0.0568121, 0.0487714, 0.817709)
+bones/10/rotation = Quaternion(-0.192772, 0.0147409, -0.0186454, 0.980956)
+bones/11/rotation = Quaternion(-0.0117591, 0.0890978, 0.953973, 0.286111)
+bones/12/rotation = Quaternion(0.663996, 0.0506044, -0.0551857, 0.743978)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.00343126, -0.0109415, 0.0211005, 0.999712)
-bones/14/rotation = Quaternion(0.996866, 0.0301062, -0.00423716, 0.073039)
+bones/13/rotation = Quaternion(0.0372317, -0.120052, 0.0335503, 0.991502)
+bones/14/rotation = Quaternion(0.844508, 0.058091, -0.403884, 0.346857)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(0.0342507, 0.00434292, 0.0287085, 0.998991)
+bones/15/rotation = Quaternion(0.358928, 0.00787272, 0.021804, 0.933077)
 bones/15/scale = Vector3(1, 1, 1)
-bones/16/rotation = Quaternion(-0.593276, -0.0113852, -0.0307256, 0.804332)
+bones/16/rotation = Quaternion(-0.628725, -0.0174041, -0.0352832, 0.776632)
+>>>>>>> 3369262b45e18d1d37118b122b2a4ebdd0a2e666
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(0.996866, -0.0301062, 0.00423716, 0.073039)
 bones/17/scale = Vector3(1, 1, 1)
@@ -126,8 +136,19 @@ visible = false
 mesh = SubResource("BoxMesh_2uy2n")
 skeleton = NodePath("../..")
 
+[node name="SwordNode" type="Node3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62728, 1.76208, 0.544307)
+
+[node name="Area3D" type="Area3D" parent="Character/SwordNode" groups=["player_sword"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character/SwordNode/Area3D"]
+transform = Transform3D(0.593759, 0.410087, 0.6923, -0.638641, 0.763564, 0.0954359, -0.489478, -0.498796, 0.715271, 0.977242, 2.04583, -0.678213)
+shape = SubResource("BoxShape3D_qs7r7")
+disabled = true
+
 [connection signal="timeout" from="SwapCooldownTimer" to="." method="_on_swap_cooldown_timer_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="body_entered" from="Character/SwordNode/Area3D" to="." method="_on_area_3d_body_entered"]
 
 [editable path="Character"]
