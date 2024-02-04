@@ -33,7 +33,7 @@ _subresources={
 "animations": {
 "blue attack 1": {
 "save_to_file/enabled": true,
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://meshes/player/attack1.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -1832,7 +1832,7 @@ _subresources={
 },
 "blue attack 2": {
 "save_to_file/enabled": true,
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://meshes/player/attack2.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -3631,7 +3631,7 @@ _subresources={
 },
 "blue attack 3": {
 "save_to_file/enabled": true,
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://meshes/player/attack 3.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -5430,7 +5430,7 @@ _subresources={
 },
 "blue run": {
 "save_to_file/enabled": true,
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://meshes/player/run.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
