@@ -20,7 +20,7 @@ enum State { MELLE_ATTACK, CHASE, AIMING_PLAYER,JUMPING,PREPARE_JUMP,STUN}
 
 @export_subgroup("JumpAttack")
 ## The range that trigger the jump action if the player is over
-@export var JUMPING_RANGE: int = 10
+@export var JUMPING_RANGE: float = 10
 ## The time before the jump when the boss is targeting the player in sec
 @export var AIMING_TIME:float = 1.5
 ## Time elasped between 2 jumps in sec
@@ -70,6 +70,9 @@ func _ready():
 	back_to_default_state()
 	jump_path.mesh.set_height(JUMPING_DISTANCE)
 	jump_path.position = Vector3(0,0.5,JUMPING_DISTANCE/2)
+	start_attack_timer_for(JUMP_COOLDOWN)
+	jump_ready = false
+	jump_path.visible = false
 
 func _physics_process(delta):
 	# Handle functions
@@ -153,7 +156,7 @@ func blink(delta):
 	
 # ---CHASE PLAYER---
 func chase_player():
-	animation.play("boss walk", 0.5)
+	animation.play("boss walk", -1,0.6)
 	particles_trail.emitting = true
 	movement_velocity = position.direction_to(target.position) * movement_speed
 
