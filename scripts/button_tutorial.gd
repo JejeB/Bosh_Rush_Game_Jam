@@ -61,3 +61,9 @@ func _on_area_entered(area):
 		gate_state = true
 		dialog_label.text = "Excellent! You opened the door! \nNow, use your abilities to cross the chasum."
 		dialog_center.show()
+
+
+func _on_cut_dialog_body_entered(body):
+	if body.get_name() == 'Player':
+		control_help.hide()
+		dialog_hud.hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://5q1qlu23flg4"]
+[gd_scene load_steps=51 format=3 uid="uid://5q1qlu23flg4"]
 
 [ext_resource type="PackedScene" uid="uid://c1dqbeag1cxkr" path="res://objects/first_platform.tscn" id="1_1aide"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_fp412"]
@@ -64,6 +64,9 @@ size = Vector3(2.03809, 1, 0.455566)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_282j0"]
 vertex_color_is_srgb = true
 albedo_color = Color(0.741176, 0.482353, 0.247059, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ewjq"]
+size = Vector3(2.91895, 1, 1.97156)
 
 [sub_resource type="FogMaterial" id="FogMaterial_lteg6"]
 density = 10.0
@@ -437,6 +440,9 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.15342, 0.0894247, 1.
 HOVER_MATERIAL = SubResource("StandardMaterial3D_gahem")
 ACTIVATED_MATERIAL = SubResource("StandardMaterial3D_88qc6")
 gate_mesh = NodePath("../Wall")
+dialog = ["Welcome, noble Aztec fighter! 
+Use your powers to open the gate! 
+Press <SPACEBAR> while highlighting your target with the <MOUSE>", "Place the stone on the purple platform to open the door!"]
 blink_time = 0.3
 
 [node name="Wall" type="StaticBody3D" parent="ButtonTutorial"]
@@ -450,6 +456,13 @@ transform = Transform3D(1.9, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, -0.0
 mesh = ExtResource("25_720k1")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_282j0")
+
+[node name="CutDialog" type="Area3D" parent="ButtonTutorial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.29124, 1.15254, -11.1378)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonTutorial/CutDialog"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.627795, 1.05052, -0.187705)
+shape = SubResource("BoxShape3D_3ewjq")
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(100, 0, 0, 0, 10, 0, 0, 0, 100, -28.1768, -23.7284, -63.6558)
@@ -499,5 +512,6 @@ draw_pass_1 = SubResource("QuadMesh_qsn0x")
 [connection signal="swap_positon" from="Player" to="View" method="_on_player_swap_positon"]
 [connection signal="timeout" from="GameHud/VFX/BloodTime" to="GameHud" method="_on_blood_time_timeout"]
 [connection signal="body_entered" from="TpNode/Character-soldier/Area3D" to="TpNode" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="ButtonTutorial/CutDialog" to="ButtonTutorial/ButtonTutorial" method="_on_cut_dialog_body_entered"]
 [connection signal="area_entered" from="BushCuttingTutorial/ActivationArea" to="BushCuttingTutorial" method="_on_activation_area_area_entered"]
 [connection signal="body_entered" from="BushCuttingTutorial/ActivationArea" to="BushCuttingTutorial" method="_on_activation_area_body_entered"]
