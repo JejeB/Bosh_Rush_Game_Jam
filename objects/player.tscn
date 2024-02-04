@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=14 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ffboj"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="3_0c7wt"]
@@ -48,6 +48,9 @@ shader_parameter/step_mult = 0.26
 [sub_resource type="BoxMesh" id="BoxMesh_2uy2n"]
 material = SubResource("ShaderMaterial_as8ww")
 size = Vector3(1.5, 1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qs7r7"]
+size = Vector3(0.221161, 5.35072, 0.763824)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ffboj")
@@ -103,22 +106,21 @@ bones/1/rotation = Quaternion(-0.0877397, 0.16369, -0.0370734, 0.981903)
 bones/2/rotation = Quaternion(0.0404106, 8.9532e-09, 7.20049e-09, 0.999183)
 bones/3/rotation = Quaternion(-0.0527651, -0.344358, 0.0673246, 0.934934)
 bones/4/rotation = Quaternion(-0.0658267, -0.122361, -0.0826726, 0.986843)
-bones/5/rotation = Quaternion(-0.833055, 1.13535e-09, -1.95696e-07, 0.55319)
-bones/6/rotation = Quaternion(-0.224974, -1.98902e-09, -4.98334e-08, 0.974365)
-bones/7/rotation = Quaternion(-0.0840949, 1.31372e-09, -2.10953e-08, 0.996458)
+bones/5/rotation = Quaternion(-0.876606, 0.00410239, -0.00651411, 0.481147)
+bones/6/rotation = Quaternion(-0.306122, 0.00745673, -0.00191259, 0.951961)
+bones/7/rotation = Quaternion(-0.167605, 0.00765295, -0.000832488, 0.985824)
 bones/8/rotation = Quaternion(-0.0623581, 0.0728327, -0.962727, 0.25291)
 bones/9/rotation = Quaternion(0.570741, -0.0568121, 0.0487714, 0.817709)
 bones/10/rotation = Quaternion(-0.192772, 0.0147409, -0.0186454, 0.980956)
 bones/11/rotation = Quaternion(-0.0117591, 0.0890978, 0.953973, 0.286111)
-bones/11/scale = Vector3(1, 1, 1)
 bones/12/rotation = Quaternion(0.663996, 0.0506044, -0.0551857, 0.743978)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/rotation = Quaternion(0.0372317, -0.120052, 0.0335503, 0.991502)
-bones/14/rotation = Quaternion(0.86306, 0.132682, -0.307494, 0.378115)
+bones/14/rotation = Quaternion(0.844508, 0.058091, -0.403884, 0.346857)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(0.583508, 0.0510233, 0.100352, 0.804267)
+bones/15/rotation = Quaternion(0.358928, 0.00787272, 0.021804, 0.933077)
 bones/15/scale = Vector3(1, 1, 1)
-bones/16/rotation = Quaternion(-0.804455, -0.0299877, -0.144084, 0.575494)
+bones/16/rotation = Quaternion(-0.628725, -0.0174041, -0.0352832, 0.776632)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(0.78873, -0.200392, 0.302665, 0.496127)
 bones/17/scale = Vector3(1, 1, 1)
@@ -133,8 +135,19 @@ visible = false
 mesh = SubResource("BoxMesh_2uy2n")
 skeleton = NodePath("../..")
 
+[node name="SwordNode" type="Node3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62728, 1.76208, 0.544307)
+
+[node name="Area3D" type="Area3D" parent="Character/SwordNode" groups=["player_sword"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character/SwordNode/Area3D"]
+transform = Transform3D(0.593759, 0.410087, 0.6923, -0.638641, 0.763564, 0.0954359, -0.489478, -0.498796, 0.715271, 0.977242, 2.04583, -0.678213)
+shape = SubResource("BoxShape3D_qs7r7")
+disabled = true
+
 [connection signal="timeout" from="SwapCooldownTimer" to="." method="_on_swap_cooldown_timer_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="body_entered" from="Character/SwordNode/Area3D" to="." method="_on_area_3d_body_entered"]
 
 [editable path="Character"]
