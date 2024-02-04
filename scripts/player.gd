@@ -138,6 +138,7 @@ func handle_hp():
 	
 func update_hp(value:int):
 	hp=hp+value
+	hp=clamp(hp , 0, max_hp)
 	hp_changed.emit((float(hp)/float(max_hp))*100)
 
 #--- HURT---

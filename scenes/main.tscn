@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=58 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Texture2D" uid="uid://bqq1twwybriuv" path="res://sprites/photo-panoramique-3-pucelles-grenoble-041018.jpg" id="1_0m66n"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
@@ -39,6 +39,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bjqw66354gtl2" path="res://models/tutorial_models/resourceStone.obj" id="34_5otps"]
 [ext_resource type="ArrayMesh" uid="uid://bfwk0m3dguh08" path="res://models/tutorial_models/fence.obj" id="35_1qmwc"]
 [ext_resource type="ArrayMesh" uid="uid://bhoxmfvvu7es7" path="res://models/tutorial_models/column-damaged.obj" id="36_5kra2"]
+[ext_resource type="Script" path="res://scripts/HealthSpawnner.gd" id="40_pb4tk"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u8oad"]
 panorama = ExtResource("1_0m66n")
@@ -1081,6 +1082,11 @@ mesh = ExtResource("26_vfhlv")
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2.45714, 0.223448, 40.1243)
 mesh = ExtResource("27_c8cve")
 
+[node name="HealthSpawnner" type="Node3D" parent="."]
+script = ExtResource("40_pb4tk")
+
+[node name="Timer" type="Timer" parent="HealthSpawnner"]
+
 [connection signal="hp_changed" from="Player" to="GameHud" method="_on_player_hp_changed"]
 [connection signal="player_initiated" from="Player" to="StoneSpawnner" method="_on_player_player_initiated"]
 [connection signal="spell_changed" from="Player" to="GameHud" method="_on_player_spell_changed"]
@@ -1094,3 +1100,4 @@ mesh = ExtResource("27_c8cve")
 [connection signal="timeout" from="GameHud/VFX/BloodTime" to="GameHud" method="_on_blood_time_timeout"]
 [connection signal="button_down" from="ReplayHud/VBoxContainer/TextureButton" to="ReplayHud" method="_on_texture_button_button_down"]
 [connection signal="timeout" from="StoneSpawnner/Timer" to="StoneSpawnner" method="_on_timer_timeout"]
+[connection signal="timeout" from="HealthSpawnner/Timer" to="HealthSpawnner" method="_on_timer_timeout"]

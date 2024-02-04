@@ -9,9 +9,12 @@ extends CanvasLayer
 @onready var swappable_info: TextureRect = $Player/LifeBarHBox/SwappableInfo
 
 func _on_player_hp_changed(ratio):
+	var old_value = player_life_bar.value
 	player_life_bar.set_value(ratio)
-	blood_texture.visible = true
-	blood_timer.start()
+	
+	if ratio < old_value:
+		blood_texture.visible = true
+		blood_timer.start()
 
 func _on_blood_time_timeout():
 	blood_texture.visible = false	
