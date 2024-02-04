@@ -10,6 +10,7 @@ extends Node3D
 @onready var cut_particles = $CutParticles
 
 var player_is_in_area = false
+var player_cuted_bush = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +32,7 @@ func _on_activation_area_body_entered(body):
 
 
 func _on_activation_area_area_entered(area: Area3D):
-	if area.is_in_group('player_sword'):
+	if area.is_in_group('player_sword') and !player_cuted_bush:
+		player_cuted_bush = true
 		bush_object.queue_free()
 		cut_particles.emitting = true
