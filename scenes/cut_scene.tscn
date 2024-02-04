@@ -1,10 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://sa2m6ex60hcw"]
+[gd_scene load_steps=35 format=3 uid="uid://sa2m6ex60hcw"]
 
 [ext_resource type="Texture2D" uid="uid://bqq1twwybriuv" path="res://sprites/photo-panoramique-3-pucelles-grenoble-041018.jpg" id="1_qcpm4"]
 [ext_resource type="Material" uid="uid://4osrpxngjhts" path="res://scenes/grasstiletexture.tres" id="5_qocyi"]
 [ext_resource type="ArrayMesh" uid="uid://b7eo6urtgmq2" path="res://meshes/grass.obj" id="6_aamqr"]
 [ext_resource type="ArrayMesh" uid="uid://bd8rte00y1rvi" path="res://meshes/rocks/stone_smallFlatB.obj" id="7_th05j"]
-[ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="8_8d6vx"]
 [ext_resource type="Script" path="res://scripts/CinemaCamera.gd" id="18_x8lid"]
 [ext_resource type="FontFile" uid="uid://clh3ck04e0cbq" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="19_i5rjb"]
 [ext_resource type="PackedScene" uid="uid://bnukdmpsc0u6f" path="res://meshes/dragon/boss1.glb" id="20_2pmb7"]
@@ -20,7 +19,6 @@
 [ext_resource type="ArrayMesh" uid="uid://bhoxmfvvu7es7" path="res://models/tutorial_models/column-damaged.obj" id="36_2ajvs"]
 [ext_resource type="EventAsset" uid="uid://drmskm4wfjn78" path="res://addons/FMOD/editor/resources/events/{4ef5f11d-53da-4dff-aaf2-e2d497ada499}.tres" id="38_gyect"]
 [ext_resource type="PackedScene" uid="uid://ctdtaebo1jh0b" path="res://meshes/statue.glb" id="39_d1wv0"]
-
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u8oad"]
 panorama = ExtResource("1_qcpm4")
@@ -132,58 +130,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Boss:position")
+tracks/4/path = NodePath("Camera:fov")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-15.969, 0.5, -12.609)]
+"values": [30.0]
 }
-tracks/5/type = "value"
+tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Boss:rotation")
+tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.792047, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Boss:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Camera:fov")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [30.0]
-}
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
@@ -255,58 +217,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Boss:position")
+tracks/4/path = NodePath("Camera:fov")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 6, 6.5, 8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-35.0416, 0.5, -30.0582), Vector3(-33.0993, 0.5, -24.7071), Vector3(-31.0223, 0.5, -22.9204), Vector3(-29.2442, 0.5, -22.5799), Vector3(-24.6082, 0.5, -19.7398), Vector3(-20.7006, 0.5, -15.621), Vector3(-19.4805, 0.5, -14.5621), Vector3(-15.9687, 0.5, -12.6089)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Boss:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 6, 6.5, 8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0), Vector3(0, 0.792047, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Boss:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 6, 6.5, 8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Camera:fov")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0, 4.1, 6, 7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [75.0, 100.0, 75.0, 30.0]
 }
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(8),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -1020,16 +946,6 @@ mesh = ExtResource("28_i42kn")
 [node name="Target" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.955, 0.907, -10.861)
 
-[node name="Boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_8d6vx")]
-transform = Transform3D(0.70239, 0, 0.711793, 0, 1, 0, -0.711793, 0, 0.70239, -15.969, 0.5, -12.609)
-movement_speed = 3
-target = NodePath("../Target")
-MELEE_RANGE = 5.0
-JUMPING_RANGE = 6
-AIMING_TIME = 1.0
-JUMP_COOLDOWN = 7.0
-STUN_TIME = 3.0
-
 [node name="CinemaCamera" type="Node3D" parent="."]
 script = ExtResource("18_x8lid")
 
@@ -1066,8 +982,61 @@ grow_vertical = 0
 text = "TEZCATLIPOCA"
 label_settings = SubResource("LabelSettings_f1268")
 
-[node name="dragon7" parent="." instance=ExtResource("20_2pmb7")]
-transform = Transform3D(0.702153, 0, -0.712026, 0, 1, 0, 0.712026, 0, 0.702153, -15.969, 1.07094, -12.507)
-visible = false
+[node name="boss1" parent="." instance=ExtResource("20_2pmb7")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -31, -0.157647, -26)
+
+[node name="Skeleton3D" parent="boss1/Armature" index="0"]
+bones/0/position = Vector3(-0.0251155, 6.70283, -8.13045)
+bones/0/rotation = Quaternion(-0.41546, -0.254057, -0.122046, 0.864843)
+bones/1/position = Vector3(0.53696, 1.06527, 5.17103)
+bones/1/rotation = Quaternion(-0.0544655, -2.14258e-06, 1.1687e-07, 0.998516)
+bones/2/position = Vector3(-7.70025e-07, 1.41731, -2.43633)
+bones/2/rotation = Quaternion(0.624321, -8.74192e-06, -7.08816e-06, 0.781168)
+bones/3/rotation = Quaternion(-0.151335, -0.00082259, -0.0463543, 0.987395)
+bones/4/rotation = Quaternion(0.21125, -0.00051176, -0.00502186, 0.977419)
+bones/5/rotation = Quaternion(0.499479, 0.000549008, -0.00465816, 0.866313)
+bones/6/rotation = Quaternion(0.113952, 0.21492, 0.697268, 0.674271)
+bones/6/scale = Vector3(1.5, 1.5, 1.5)
+bones/7/rotation = Quaternion(0.269461, -0.0503622, -0.706823, 0.652116)
+bones/8/rotation = Quaternion(-0.272942, 0.373837, -0.0411405, 0.885469)
+bones/9/rotation = Quaternion(-0.495748, 0.0370681, 0.0397046, 0.866766)
+bones/10/position = Vector3(-0.00345427, 1.55785, 0.520199)
+bones/10/rotation = Quaternion(0.170963, 0.000779134, 0.00982825, 0.985228)
+bones/11/position = Vector3(0.00345521, 1.31285, -0.437515)
+bones/11/rotation = Quaternion(-0.0296578, -0.00119692, 0.00978502, 0.999512)
+bones/12/rotation = Quaternion(-0.699317, 0.0830714, 0.699408, -0.121997)
+bones/13/rotation = Quaternion(-0.0274543, -0.0017135, 0.206279, 0.978106)
+bones/14/rotation = Quaternion(-0.736765, -0.0151003, 0.658332, -0.153458)
+bones/15/rotation = Quaternion(-0.0600077, 0.0273906, 0.0568416, 0.996202)
+bones/16/rotation = Quaternion(0.139802, -0.281345, -0.621132, 0.717981)
+bones/16/scale = Vector3(1.5, 1.5, 1.5)
+bones/17/rotation = Quaternion(-0.0543263, -0.0177621, 0.72754, 0.68368)
+bones/18/rotation = Quaternion(-0.00155656, -0.352589, -0.171283, 0.919968)
+bones/19/rotation = Quaternion(-0.635785, 0.720567, 0.269442, -0.0629435)
+bones/19/scale = Vector3(1.5, 1.5, 1.5)
+bones/20/rotation = Quaternion(-0.603899, -0.120484, -0.616147, 0.491073)
+bones/21/rotation = Quaternion(0.210252, -0.257378, 0.880746, 0.337399)
+bones/22/rotation = Quaternion(0.999032, -0.00234932, -0.000285255, -0.0439206)
+bones/23/rotation = Quaternion(0.565475, -1.47151e-06, -4.88536e-07, 0.824766)
+bones/24/rotation = Quaternion(0.0109896, -1.9784e-08, 8.76265e-08, 0.99994)
+bones/25/rotation = Quaternion(-0.197235, -0.219493, -0.180398, 0.938284)
+bones/26/rotation = Quaternion(0.60318, 0.784574, 0.142431, -0.0182022)
+bones/26/scale = Vector3(1.5, 1.5, 1.5)
+bones/27/rotation = Quaternion(-0.473574, 0.140927, 0.57893, 0.64862)
+bones/28/rotation = Quaternion(-0.0841976, 0.126962, -0.848647, 0.506546)
+bones/29/position = Vector3(0.541447, 4.68699, 3.78039)
+bones/29/rotation = Quaternion(0.348604, -4.58098e-06, -1.70383e-06, 0.93727)
+bones/30/position = Vector3(-8.54521e-07, 4.14303, -2.65203)
+bones/30/rotation = Quaternion(0.348604, -8.82542e-25, -7.74057e-17, 0.93727)
+bones/31/position = Vector3(-1.61097, 0.796927, 3.87456)
+bones/31/rotation = Quaternion(-0.0790124, 0.683929, -0.589439, 0.422563)
+bones/32/position = Vector3(-0.953377, 0.554502, -2.77592)
+bones/32/rotation = Quaternion(0.461587, 0.532506, -0.553006, -0.444476)
+bones/33/position = Vector3(2.57974, 0.698539, 4.24365)
+bones/33/rotation = Quaternion(0.0739222, 0.676382, -0.573648, -0.456038)
+bones/34/position = Vector3(1.49319, 0.620016, -2.67999)
+bones/34/rotation = Quaternion(-0.453112, 0.542853, -0.542853, 0.453112)
 
 [connection signal="animation_finished" from="CinemaCamera/CameraAnimation" to="CinemaCamera" method="_on_camera_animation_animation_finished"]
+
+[editable path="boss1"]
