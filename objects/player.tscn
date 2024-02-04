@@ -121,13 +121,10 @@ bones/14/scale = Vector3(1, 1, 1)
 bones/15/rotation = Quaternion(0.358928, 0.00787272, 0.021804, 0.933077)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/rotation = Quaternion(-0.628725, -0.0174041, -0.0352832, 0.776632)
->>>>>>> 3369262b45e18d1d37118b122b2a4ebdd0a2e666
-bones/16/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(0.996866, -0.0301062, 0.00423716, 0.073039)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/rotation = Quaternion(0.0342507, -0.00434292, -0.0287085, 0.998991)
 bones/18/scale = Vector3(1, 1, 1)
-bones/19/rotation = Quaternion(-0.593276, 0.0113852, 0.0307256, 0.804332)
 bones/19/scale = Vector3(1, 1, 1)
 
 [node name="Swapeffect" type="MeshInstance3D" parent="Character"]

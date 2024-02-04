@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://440rqsqg6bur" path="res://objects/boss.tscn" id="8_8d6vx"]
 [ext_resource type="Script" path="res://scripts/CinemaCamera.gd" id="18_x8lid"]
 [ext_resource type="FontFile" uid="uid://clh3ck04e0cbq" path="res://fonts/CfPeruAdventureRegular-xO5R.ttf" id="19_i5rjb"]
-[ext_resource type="PackedScene" uid="uid://dlqheynf75ul8" path="res://meshes/dragon/dragon7.tscn" id="20_2pmb7"]
+[ext_resource type="PackedScene" uid="uid://bnukdmpsc0u6f" path="res://meshes/dragon/boss1.glb" id="20_2pmb7"]
 [ext_resource type="ArrayMesh" uid="uid://dgrl31kp3w70j" path="res://meshes/rocks/formationLarge_stone.obj" id="27_71s4m"]
 [ext_resource type="ArrayMesh" uid="uid://dfqr42r5uvx0s" path="res://meshes/rocks/formation_stone.obj" id="28_i42kn"]
 [ext_resource type="ArrayMesh" uid="uid://nwyqjf1gum3h" path="res://models/tutorial_models/tree.obj" id="29_vyvc2"]
@@ -20,6 +20,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bhoxmfvvu7es7" path="res://models/tutorial_models/column-damaged.obj" id="36_2ajvs"]
 [ext_resource type="EventAsset" uid="uid://drmskm4wfjn78" path="res://addons/FMOD/editor/resources/events/{4ef5f11d-53da-4dff-aaf2-e2d497ada499}.tres" id="38_gyect"]
 [ext_resource type="PackedScene" uid="uid://ctdtaebo1jh0b" path="res://meshes/statue.glb" id="39_d1wv0"]
+
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u8oad"]
 panorama = ExtResource("1_qcpm4")

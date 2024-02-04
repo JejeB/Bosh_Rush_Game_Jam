@@ -21,6 +21,11 @@ config/icon="res://icon.png"
 
 FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [editor]
 
 movie_writer/movie_file="C:/Users/Kenney/Desktop/video-footage.avi"
