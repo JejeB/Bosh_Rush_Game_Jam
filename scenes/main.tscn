@@ -1,6 +1,6 @@
 [gd_scene load_steps=58 format=3 uid="uid://bqqgyqafm7xwp"]
 
-[ext_resource type="Texture2D" uid="uid://bqq1twwybriuv" path="res://sprites/photo-panoramique-3-pucelles-grenoble-041018.jpg" id="1_0m66n"]
+[ext_resource type="Shader" path="res://scenes/sky.gdshader" id="1_dxlaj"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_onms2"]
 [ext_resource type="Script" path="res://scenes/Camera.gd" id="4_dysvp"]
 [ext_resource type="Script" path="res://scripts/view.gd" id="5_bg0fr"]
@@ -41,14 +41,31 @@
 [ext_resource type="ArrayMesh" uid="uid://bhoxmfvvu7es7" path="res://models/tutorial_models/column-damaged.obj" id="36_5kra2"]
 [ext_resource type="Script" path="res://scripts/HealthSpawnner.gd" id="40_pb4tk"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u8oad"]
-panorama = ExtResource("1_0m66n")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h12ff"]
+shader = ExtResource("1_dxlaj")
+shader_parameter/clouds_samples = 16
+shader_parameter/shadow_sample = 4
+shader_parameter/clouds_density = 0.5
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_smoothness = 0.035
+shader_parameter/clouds_light_color = null
+shader_parameter/clouds_shadow_intensity = 1.0
+shader_parameter/high_clouds_density = 0.0
+shader_parameter/top_color = Color(1, 1, 1, 1)
+shader_parameter/bottom_color = Color(1, 1, 1, 1)
+shader_parameter/sun_scatter = Color(1, 1, 1, 1)
+shader_parameter/astro_tint = null
+shader_parameter/astro_scale = 1.0
+shader_parameter/astro_intensity = 1.0
+shader_parameter/stars_intensity = 0.0
+shader_parameter/shooting_stars_intensity = 0.0
+shader_parameter/shooting_star_tint = null
 
 [sub_resource type="Sky" id="Sky_m5doi"]
-sky_material = SubResource("PanoramaSkyMaterial_u8oad")
+sky_material = SubResource("ShaderMaterial_h12ff")
 
 [sub_resource type="Environment" id="Environment_j3jaf"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.807843, 0.815686, 0.933333, 1)
 background_canvas_max_layer = 1
 sky = SubResource("Sky_m5doi")
